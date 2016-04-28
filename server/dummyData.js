@@ -1,9 +1,18 @@
-var client = require('./config/db');
+var connectionString = require(path.join(__dirname, '../', '../', 'config'));
 
-client.connect();
+pg.connect(connectionString, function(err, client, done) {
+  // Handle connection errors
+  if (err) {
+    done();
+    console.log(err);
+  }
 
-// add dummy user
-client.query("INSERT INTO users (username) VALUES ('Alexander')");
-console.log('ran');
+  // add dummy user
+  var queryAddUser = client.query("INSERT INTO users (username) VALUES ('Alexander')");
 
-client.end();
+  queryAddUser.on('end', function() {
+    done();
+  });
+
+  console.log('ran');
+});
