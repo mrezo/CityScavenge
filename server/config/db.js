@@ -6,5 +6,5 @@ module.exports = (function() {
 
   var client = new pg.Client(connectionString);
 
-  client.connect();
-})
+  pg.connect();
+});
