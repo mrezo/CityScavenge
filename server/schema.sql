@@ -7,6 +7,7 @@ CREATE DATABASE city_scavenge;
 CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY,
   username VARCHAR(61) NOT NULL UNIQUE
-)
+);
 
 -- Dummy Data
+INSERT INTO users (username) VALUES ('Genevieve'), ('Michael'), ('Alexander');
