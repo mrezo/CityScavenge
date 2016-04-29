@@ -37,7 +37,7 @@ Webpack bundles dependencies into one file, so that all dependencies can be load
 On the client side, the state of the app is maintained in a Redux store. We render the index page by initializing this store. When a user interacts with the app (e.g. when the "start game"; is clicked, for example), an action is triggered, which tells the reducers how the state should update in response (e.g. render a pin at a random location on the map). For more information, review the [Redux documentation](http://redux.js.org/index.html) and watch [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux).
 
 #### Schema
-User data and saved places are managed in a Postgres database called `??`.
+User data and saved places are managed in a Postgres database called `city_scavenge`.
 ![Schema design]
 ??(link to image)??
 
@@ -50,7 +50,7 @@ webpack
 npm start
 ```
 
-Visit `localhost:??` in the browser.
+Visit `localhost:1337` in the browser.
 
 ## Requirements
 
@@ -70,6 +70,14 @@ From within the root directory:
 npm install -g nodemon webpack
 ```
 
+### Setting up the server
+
+From within the root directory:
+
+```
+psql -f server/schema.sql
+```
+
 ### Running Locally
 
 To compile client-side code, run:
@@ -84,7 +92,7 @@ In a separate shell, start the server by running:
 ??npm run dev??
 ```
 
-Visit `localhost:??` in the browser.
+Visit `localhost:1337` in the browser.
 
 ## Deployment
 #### TBD once deployed
