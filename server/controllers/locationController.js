@@ -1,6 +1,13 @@
 const geoSuccess = function(position) {
+  let currentLocation =
+    {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    };
   //TODO: save position to database - only every so often
   renderOnMap(position.coords.latitude, position.coords.longitude);
+
+  return currentLocation;
 }
 
 const geoError = function() {
@@ -10,7 +17,7 @@ const geoError = function() {
 const geoOptions = {
   enableHighAccuracy: true,
   maximumAge        : 30000,
-  timeout           : 27000
+  timeout           : 27000,
  };
 
   /* watchPosition returns a watchID. This id can be used to uniquely identify the requested position watcher; 
@@ -20,17 +27,9 @@ let watchID = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptio
 
 //stop watching the user's position when they reach the goal
 
-//TODO: define latitude and longitude
-if (position.coords.latitude === position.coords.longitude) {
+//TODO: generate goal location
+//TODO: write algorithm for radius of current location
+if (currentLocation.latitude === goalLocation.latitude && currentLocation.longitude === goalLocation.longitude) {
   navigator.geolocation.clearWatch(watchID);
-  //call success function
+  //TODO: end game and declare winner
 }
-
-/* TODO: handle no geolocation found
-if ('geolocation' in navigator) {
-
-} else {
-
-}
-
-*/
