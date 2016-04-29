@@ -1,1 +1,1 @@
-module.exports = 'YOUR_GOOGLE_PLACES_API_KEY';
+module.exports = 'YOUR_CLIENT_ID';
