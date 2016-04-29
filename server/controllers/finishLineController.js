@@ -16,7 +16,7 @@ var PlacesObj = function(googlePlacesData) {
     longitude: googlePlacesData['geometry']['location']['lng'],
     url: '',
     rating: Math.round(googlePlacesData.rating),
-    numberOfReviews: googlePlacesData.reviews.length
+    numberOfReviews: googlePlacesData.reviews.length,
   }
 }
 
@@ -32,10 +32,9 @@ module.exports.searchGoogle = function(req, res) {
 
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + '37.7836970,-122.4089660'
-      + '&radius=' +  10000
-      + '&keyword=' +'scenery'
+      + '&radius=' +  3200
       + '&key=' + GOOGLE_PLACES_API_KEY
-      + '&types=' + 'park|bar|restaurant'
+      + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
     .then(function(body){
       var data = JSON.parse(body);                   //parse the data
