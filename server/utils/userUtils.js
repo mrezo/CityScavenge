@@ -27,7 +27,7 @@ module.exports = (function(req, res) {
         });
         queryRetrieveUser.on('end', function() {
           done();
-          return res.json(results);
+          return res.json(result);
         });
       });
     },
