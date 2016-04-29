@@ -1,5 +1,5 @@
-const geoSuccess = function(position) {
-  let currentLocation =
+var geoSuccess = function(position) {
+  var currentLocation =
     {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
@@ -10,11 +10,11 @@ const geoSuccess = function(position) {
   return currentLocation;
 }
 
-const geoError = function() {
+var geoError = function() {
   console.log('Finding geolocation failed.');
 }
 
-const geoOptions = {
+var geoOptions = {
   enableHighAccuracy: true,
   maximumAge        : 30000,
   timeout           : 27000,
@@ -23,7 +23,7 @@ const geoOptions = {
   /* watchPosition returns a watchID. This id can be used to uniquely identify the requested position watcher; 
    this value can be used in tandem with the clearPosition() method to stop watching the user’s location */
 
-let watchID = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
+var watchID = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
 
 //stop watching the user's position when they reach the goal
 
