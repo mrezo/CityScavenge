@@ -1,24 +1,36 @@
-if ('geolocation' in navigator) {
-  /* geolocation is available */
-} else {
-  /* geolocation IS NOT available */
+const geoSuccess = function(position) {
+  //TODO: save position to database - only every so often
+  renderOnMap(position.coords.latitude, position.coords.longitude);
 }
 
+const geoError = function() {
+  console.log('Finding geolocation failed.');
+}
 
-let watchID = navigator.geolocation.watchPosition(function(position) {
-  renderOnMap(position.coords.latitude, position.coords.longitude);
-});
+const geoOptions = {
+  enableHighAccuracy: true,
+  maximumAge        : 30000,
+  timeout           : 27000
+ };
+
   /* watchPosition returns a watchID. This id can be used to uniquely identify the requested position watcher; 
    this value can be used in tandem with the clearPosition() method to stop watching the user’s location */
 
-function callback(position) {
-  //options:
-    //put current location in database
-      //would be very heavy on DB
-}
+let watchID = navigator.geolocation.watchPosition(geoSuccess, geoError, geoOptions);
 
 //stop watching the user's position when they reach the goal
 
-const stopTracking = navigator.geolocation.clearWatch(watchID);
+//TODO: define latitude and longitude
+if (position.coords.latitude === position.coords.longitude) {
+  navigator.geolocation.clearWatch(watchID);
+  //call success function
+}
 
-//counter: only update database every so often
+/* TODO: handle no geolocation found
+if ('geolocation' in navigator) {
+
+} else {
+
+}
+
+*/
