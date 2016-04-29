@@ -1,5 +1,6 @@
 var path = require('path');
 var userUtils = require(path.join(__dirname, '../utils/userUtils'));
+var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
@@ -7,4 +8,6 @@ module.exports = function (app, express) {
   // user routing
   app.post('/api/user', userUtils.newUser);
   app.get('/api/user/:id', userUtils.allUsers);
+  app.get('/api/gamestart', finishLineController.searchGoogle);
+
 };
