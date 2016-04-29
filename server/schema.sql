@@ -1,8 +1,8 @@
 -- If there is already a database with that name, drop it
 -- otherwise create it
-DROP DATABASE IF EXISTS city_scavange;
+DROP DATABASE IF EXISTS city_scavenge;
 CREATE DATABASE city_scavenge;
-\c city_scavange;
+\c city_scavenge;
 
 CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY,
