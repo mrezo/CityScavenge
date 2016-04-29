@@ -1,6 +1,5 @@
 var path = require('path');
 var pg = require('pg');
-
 var connectionString = require(path.join(__dirname, 'config/dbconfig'));
 
 pg.connect(connectionString, function(err, client, done) {
@@ -11,7 +10,7 @@ pg.connect(connectionString, function(err, client, done) {
   }
 
   // add dummy user
-  var queryAddUser = client.query("INSERT INTO users (username) VALUES ('Alexander')");
+  var queryAddUser = client.query("INSERT INTO users (username) VALUES ($1), ($2), ($3)", ['Genevieve', 'Michael', 'Alexander']);
 
   queryAddUser.on('end', function() {
     done();
