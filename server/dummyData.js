@@ -1,7 +1,7 @@
 var path = require('path');
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/city_scavange';
-// var connectionString = require(path.join(__dirname, '../', '../', 'config'));
+
+var connectionString = require(path.join(__dirname, 'config/dbconfig'));
 
 pg.connect(connectionString, function(err, client, done) {
   // Handle connection errors
@@ -16,6 +16,4 @@ pg.connect(connectionString, function(err, client, done) {
   queryAddUser.on('end', function() {
     done();
   });
-
-  console.log('ran');
 });

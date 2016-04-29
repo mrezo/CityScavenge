@@ -1,9 +1,10 @@
+var path = require('path');
 var pg = require('pg');
 
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/city_scavange';
+module.exports = (function() {
+  var connectionString = require(path.join(__dirname, 'config/dbconfig'));
 
-var client = new pg.Client(connectionString);
+  var client = new pg.Client(connectionString);
 
-client.connect();
-
-module.exports = client;
+  client.connect();
+})
