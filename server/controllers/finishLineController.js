@@ -1,5 +1,4 @@
-var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
-var GOOGLE_MAP_API_KEY = require(__dirname + '/../config/googlemaps.js');
+var GOOGLE_PLACES_API_KEY = require(__dirname + './../config/googleplaces.js');
 var urlParser = require('url');
 var rp = require('request-promise'); 
 // var userLocation = require('./locationController');
@@ -69,12 +68,16 @@ module.exports.searchGoogle = function(req, res) {
 };
 
 module.exports.getDistance = function(req, res) {
+  console.log(GOOGLE_PLACES_API_KEY);
   rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
-    + '&origins=' + userLocation.latitude + ',' + userLocation.longitude
-    + '&destinations=' + endpoint.latitude + '%2C' + endpoint.longitude
-    + 'key=' + GOOGLE_MAP_API_KEY
+    + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
+    + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
+    + '&key=' + GOOGLE_PLACES_API_KEY
   )
+  .catch(function(err){
+    console.log('Google Distance Matrix API call failure', err);
+  })
   .then(function (body) {
     res.json(JSON.parse(body));
   });

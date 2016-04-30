@@ -9,6 +9,5 @@ module.exports = function (app, express) {
   app.post('/api/user', userUtils.newUser);
   app.get('/api/user/:id', userUtils.allUsers);
   app.get('/api/geo/gamestart', finishLineController.searchGoogle);
-  app.get('/api/geo/distance', finishLineController.getDistance);
-
+  app.post('/api/geo/distance', finishLineController.getDistance);
 };
