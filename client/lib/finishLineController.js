@@ -1,85 +1,70 @@
-import GOOGLE_PLACES_API_KEY from '../../server/config/googleplces';
-
-// var urlParser = require('url');
-// var rp = require('request-promise');
-import userLocation from './locationController.js';
-
-var endpoint = {
-  latitude: 0,
-  longitude: 0,
-};
-
-// Dummy data
-userLocation = {
-  latitude: 37.7837731,
-  longitude: -122.4090172,
-};
-
-var PlacesObj = function(googlePlacesData) {
-  return {
-    name: googlePlacesData.name,
-    address: googlePlacesData['formatted_address'],
-    googlePlaceId: googlePlacesData['place_id'],
-    latitude: googlePlacesData['geometry']['location']['lat'],
-    longitude: googlePlacesData['geometry']['location']['lng'],
-    url: '',
-    rating: Math.round(googlePlacesData.rating),
-    numberOfReviews: googlePlacesData.reviews.length,
+exports.searchGoogle = (userLatitude, userLongitude, GOOGLE_PLACES_API_KEY, userLocation) => {
+  let placesObj = (googlePlacesData) => {
+    return {
+      name: googlePlacesData.name,
+      address: googlePlacesData.formatted_address,
+      googlePlaceId: googlePlacesData.place_id,
+      latitude: googlePlacesData['geometry']['location']['lat'],
+      longitude: googlePlacesData['geometry']['location']['lng'],
+      url: '',
+      rating: Math.round(googlePlacesData.rating),
+      numberOfReviews: googlePlacesData.reviews.length,
+    };
   };
-};
-
-
-module.exports.searchGoogle = function(req, res) {
-
-  var responseBody = {};
-  responseBody.places = [];
-
-  rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+  // var xhr = new XMLHttpRequest();
+  // xhr.open('GET', 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+  //     + '&location=' + userLocation.latitude + ',' + userLocation.longitude
+  //     + '&radius=' + 3200
+  //     + '&key=' + GOOGLE_PLACES_API_KEY
+  //     + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
+  // );
+  $.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + userLocation.latitude + ',' + userLocation.longitude
       + '&radius=' + 3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
-    .then(function(body){
+    .fail((err) => {
+      console.log('google places API call failure', err);
+    })
+    .done((data) => {
       // parse the data
-      var data = JSON.parse(body);
+      data = JSON.parse(data);
       // check that there is data
       if (data.results && data.results.length > 0) {
         // randomly pick a location
-        var rand = Math.floor(Math.random() * data.results.length);
+        const rand = Math.floor(Math.random() * data.results.length);
         return data.results[rand];
+      } else {
+        return { result: 'No place found' };
       }
     })
-    .catch(function(err){
-      console.log('google places API call failure', err);
-    })
-    .then(function(place) {
-        rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
-                + 'key=' + GOOGLE_PLACES_API_KEY
-                + '&placeid=' + place.place_id
-              )
-              .then(function(locationData){
-                var formattedLocation = JSON.parse(locationData).result;
-                var placesObj = PlacesObj(formattedLocation);
-                endpoint.latitude = formattedLocation.geometry.location.lat;
-                endpoint.longitude = formattedLocation.geometry.location.lng;
-                res.json(placesObj);
-              }
-              );
+    .then((place) => {
+        $.get('https://maps.googleapis.com/maps/api/place/details/json?'
+          + 'key=' + GOOGLE_PLACES_API_KEY
+          + '&placeid=' + place.place_id
+        )
+        .then((locationData) => {
+          const formattedLocation = JSON.parse(locationData).result;
+          placesObj = placesObj(formattedLocation);
+          // endpoint.latitude = formattedLocation.geometry.location.lat;
+          // endpoint.longitude = formattedLocation.geometry.location.lng;
+          return JSON.parse(placesObj);
+        });
     });
 };
 
-module.exports.getDistance = function(req, res) {
-  rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
+exports.getDistance = (req, res) => {
+  $.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
     + '&origins=' + +userLocation.latitude + ',' + +userLocation.longitude
     + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
     + '&key=' + GOOGLE_PLACES_API_KEY
   )
-  .catch(function(err){
+  .fail((err) => {
     console.log('Google Distance Matrix API call failure', err);
   })
-  .then(function (body) {
-    res.json(JSON.parse(body));
+  .done((data) => {
+    res.json(JSON.parse(data));
   });
 };
