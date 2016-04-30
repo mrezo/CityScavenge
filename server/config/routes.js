@@ -1,6 +1,6 @@
 var path = require('path');
 var userUtils = require(path.join(__dirname, '../utils/userUtils'));
-var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
+// var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
