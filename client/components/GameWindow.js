@@ -1,7 +1,7 @@
 class GameWindow extends React.Component {
 
   componentDidMount() {
-    var mapOptions = {
+    let mapOptions = {
       center: {lat: 37.7836970, lng: -122.4089660},
       zoom: 15,
     }
@@ -11,7 +11,7 @@ class GameWindow extends React.Component {
   }
 
   render() {
-    var style = {
+    const style = {
             width: '500px',
             height: '500px',
     };
