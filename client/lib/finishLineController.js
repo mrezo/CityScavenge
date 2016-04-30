@@ -18,6 +18,28 @@ exports.searchGoogle = (userLatitude, userLongitude, GOOGLE_PLACES_API_KEY, user
   //     + '&key=' + GOOGLE_PLACES_API_KEY
   //     + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
   // );
+  const defaultCorsHeaders = {
+    'access-control-allow-origin': '*',
+    'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'access-control-allow-headers': 'content-type, accept',
+    'access-control-max-age': 10 // Seconds.
+  };
+  $.ajax({
+    url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
+      + '&location=' + userLocation.latitude + ',' + userLocation.longitude
+      + '&radius=' + 3200
+      + '&key=' + GOOGLE_PLACES_API_KEY
+      + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature',
+    data: '',
+    type: 'GET',
+    crossDomain: true,
+    dataType: 'jsonp',
+    beforeSend: (request) => {
+      request.setRequestHeader('access-control-allow-origin', '*');
+    },
+    success: () => { alert('Success'); },
+    error: () => { alert('Failed!'); },
+  });
   $.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + userLocation.latitude + ',' + userLocation.longitude
       + '&radius=' + 3200
