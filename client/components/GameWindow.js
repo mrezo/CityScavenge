@@ -1,13 +1,19 @@
 class GameWindow extends React.Component {
 
   componentDidMount() {
-    let mapOptions = {
+    const mapOptions = {
       center: {lat: 37.7836970, lng: -122.4089660},
       zoom: 15,
-    }
-    let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    };
+    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    this.setState({map: map});
+    const finalLocationOptions = {
+      position: { lat: 37.7836970, lng: -122.4089660 },
+      map,
+      title: 'Finish',
+    };
+    let marker = new google.maps.Marker(finalLocationOptions);
+    this.setState({ map });
   }
 
   render() {
