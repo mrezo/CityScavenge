@@ -2,4 +2,7 @@
 server/config/googleplaces.js
 server/config/googlemaps.js
 
+# Dependency directories
 node_modules
+client/bundle.js
+>>>>>>> Update .gitignore to ignore dev dependencies and add request-promises to package.json
