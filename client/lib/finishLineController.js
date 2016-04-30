@@ -1,7 +1,8 @@
-var GOOGLE_PLACES_API_KEY = require(__dirname + './../config/googleplaces.js');
-var urlParser = require('url');
-var rp = require('request-promise'); 
-// var userLocation = require('./locationController');
+import GOOGLE_PLACES_API_KEY from '../../server/config/googleplces';
+
+// var urlParser = require('url');
+// var rp = require('request-promise');
+import userLocation from './locationController.js';
 
 var endpoint = {
   latitude: 0,
@@ -35,7 +36,7 @@ module.exports.searchGoogle = function(req, res) {
 
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + userLocation.latitude + ',' + userLocation.longitude
-      + '&radius=' +  3200
+      + '&radius=' + 3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
@@ -71,7 +72,7 @@ module.exports.searchGoogle = function(req, res) {
 module.exports.getDistance = function(req, res) {
   rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
-    + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
+    + '&origins=' + +userLocation.latitude + ',' + +userLocation.longitude
     + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
     + '&key=' + GOOGLE_PLACES_API_KEY
   )
