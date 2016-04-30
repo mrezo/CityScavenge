@@ -1,3 +1,5 @@
 # API keys
 server/config/googleplaces.js
 server/config/googlemaps.js
+
+node_modules
