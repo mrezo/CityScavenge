@@ -1,6 +1,6 @@
 var path = require('path');
 var userUtils = require(path.join(__dirname, '../utils/userUtils'));
-// var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
+var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
@@ -10,6 +10,6 @@ module.exports = function (app, express) {
   app.get('/api/user/:id', userUtils.allUsers);
 
   // below routes are no longer in use
-  // app.get('/api/geo/gamestart', finishLineController.searchGoogle);
-  // app.post('/api/geo/distance', finishLineController.getDistance);
+  app.get('/api/geo/gamestart', finishLineController.searchGoogle);
+  app.post('/api/geo/distance', finishLineController.getDistance);
 };
