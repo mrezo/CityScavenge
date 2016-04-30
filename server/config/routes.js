@@ -8,6 +8,7 @@ module.exports = function (app, express) {
   // user routing
   app.post('/api/user', userUtils.newUser);
   app.get('/api/user/:id', userUtils.allUsers);
-  app.get('/api/gamestart', finishLineController.searchGoogle);
+  app.get('/api/geo/gamestart', finishLineController.searchGoogle);
+  app.get('/api/geo/distance', finishLineController.getDistance);
 
 };
