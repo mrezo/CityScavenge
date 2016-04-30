@@ -44,8 +44,9 @@ module.exports.searchGoogle = function(req, res) {
       var data = JSON.parse(body);
       // check that there is data
       if (data.results && data.results.length > 0) {
-        // TODO: randomize chosen location
-        return data.results[0];
+        // randomly pick a location
+        var rand = Math.floor(Math.random() * data.results.length);
+        return data.results[rand];
       }
     })
     .catch(function(err){
@@ -68,7 +69,6 @@ module.exports.searchGoogle = function(req, res) {
 };
 
 module.exports.getDistance = function(req, res) {
-  console.log(GOOGLE_PLACES_API_KEY);
   rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
     + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
