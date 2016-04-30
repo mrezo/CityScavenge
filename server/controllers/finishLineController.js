@@ -79,6 +79,9 @@ module.exports.getDistance = function(req, res) {
     console.log('Google Distance Matrix API call failure', err);
   })
   .then(function (body) {
+    if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
+      console.log('You win!');
+    }
     res.json(JSON.parse(body));
   });
 };
