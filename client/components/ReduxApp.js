@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import stateVariables from '../props';
+
 // TODO remove below file examples
 import {EncounterList, EncounterListContainer} from './EncounterList';
 import {UserProfileContainer} from './UserProfile.js';
@@ -13,22 +15,14 @@ class App extends React.Component {
     return (
       <div>
         <div>
-        <GameHeader user={this.state.currentUser} />
+        <GameHeader user={stateVariables.currentUser} />
         </div>
         <div className = 'game-window'>
-          <GameWindow map={this.state.currentMap} />
+          <GameWindow map={stateVariables.currentMap} />
         </div>
       </div>
     );
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    currentMap: state.getIn(['currentMap']),
-    username: state.getIn(['currentUser', 'username']),
-    userImage: state.getIn(['currentUser', 'image']),
-  };
 }
 
 function mapDispatchToProps(dispatch) {
