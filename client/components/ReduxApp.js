@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import stateVariables from '../props';
 
 // TODO remove below file examples
-import {EncounterList, EncounterListContainer} from './EncounterList';
-import {UserProfileContainer} from './UserProfile.js';
+// import {EncounterList, EncounterListContainer} from './EncounterList';
+// import {UserProfileContainer} from './UserProfile.js';
 
 // export const App = React.createClass({
 class App extends React.Component {
