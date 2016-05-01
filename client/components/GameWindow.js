@@ -6,6 +6,8 @@ class GameWindow extends React.Component {
       endLat: 0,
       endLng: 0,
       collision: false,
+      markers: [],
+      map: 0,
     };
   }
 
@@ -53,6 +55,13 @@ class GameWindow extends React.Component {
     });
   }
 
+  // Sets the map on all markers in the array.
+  setMapOnAll(map) {
+    for (let i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(map);
+    }
+  }
+
   initMap() {
     const mapOptions = {
       center: { lat: 37.7836970, lng: -122.4089660 },
@@ -77,8 +86,39 @@ class GameWindow extends React.Component {
       label: 'F',
     };
     let finishLineMarker = new google.maps.Marker(finishLineOptions);
+
+    map.addListener('click', (event) => {
+      this.addMarker(event.latLng);
+    });
+
     this.setState({ map });
   }
+
+  // Adds a marker to the map and push to the array.
+  addMarker(location) {
+    const marker = new google.maps.Marker({
+      position: location,
+      map: this.state.map,
+    });
+    this.setState({ markers: this.state.markers.concat(marker) });
+  }
+
+  // Removes the markers from the map, but keeps them in the array.
+  clearMarkers() {
+    this.setMapOnAll(null);
+  }
+
+  // Shows any markers currently in the array.
+  showMarkers() {
+    this.setMapOnAll(this.state.map);
+  }
+
+  // Deletes all markers in the array by removing references to them.
+  deleteMarkers() {
+    this.clearMarkers();
+    this.setState({ markers: [] });
+  }
+
   render() {
     const style = {
       width: '500px',
@@ -86,7 +126,12 @@ class GameWindow extends React.Component {
     };
 
     return (
-      <div id="map" style={style}></div>
+      <div>
+        <div id="floating-panel">
+          <input onClick={this.deleteMarkers.bind(this)} type="button" value="Delete Markers" />
+        </div>      
+        <div id="map" style={style} onClick={this.showMarkers.bind(this)}></div>
+      </div>
     );
   }
 }
