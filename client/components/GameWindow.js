@@ -55,6 +55,13 @@ class GameWindow extends React.Component {
     });
   }
 
+  // Sets the map on all markers in the array.
+  setMapOnAll(map) {
+    for (let i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(map);
+    }
+  }
+
   initMap() {
     const mapOptions = {
       center: { lat: 37.7836970, lng: -122.4089660 },
@@ -80,36 +87,11 @@ class GameWindow extends React.Component {
     };
     let finishLineMarker = new google.maps.Marker(finishLineOptions);
 
-    // Adds a marker on the map to represent a user
-    const userOptions = {
-      position: { lat: 37.7848606, lng: -122.4130205 },
-      map,
-      title: 'user',
-      label: 'U',
-    };
-    let userMarker = new google.maps.Marker(userOptions);
-
-    // Adds a marker on the map to represent the finish line location
-    const finishLineOptions = {
-      position: { lat: 37.7836970, lng: -122.4089660 },
-      map,
-      title: 'Finish',
-      label: 'F',
-    };
-    let finishLinemarker = new google.maps.Marker(finishLineOptions);
-
     map.addListener('click', (event) => {
       this.addMarker(event.latLng);
     });
 
     this.setState({ map });
-  }
-
-  // Sets the map on all markers in the array.
-  setMapOnAll(map) {
-    for (let i = 0; i < this.state.markers.length; i++) {
-      this.state.markers[i].setMap(map);
-    }
   }
 
   // Adds a marker to the map and push to the array.
