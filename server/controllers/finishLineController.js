@@ -69,6 +69,7 @@ module.exports.searchGoogle = function(req, res) {
 };
 
 module.exports.getDistance = function(req, res) {
+  console.log(req.body);
   rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
     + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
@@ -80,10 +81,12 @@ module.exports.getDistance = function(req, res) {
   })
   .then(function (body) {
     var collision = false;
+    console.log(JSON.parse(body).rows[0].elements[0]);
     if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
       collision = true;
       console.log('You win!');
     }
+    console.log(collision);
     res.json(collision);
   });
 };
