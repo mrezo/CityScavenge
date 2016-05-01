@@ -5,6 +5,7 @@ class GameWindow extends React.Component {
     this.state = {
       endLat: 0,
       endLng: 0,
+      collision: false,
     };
   }
 
@@ -19,13 +20,39 @@ class GameWindow extends React.Component {
           endLat: data.latitude,
           endLng: data.longitude,
         });
+        this.updateCoords();
         this.initMap();
+        setInterval(() => { this.updateCoords(); }, 3000);
       },
       error: (error) => {
         console.log('error', error);
       },
     });
   }
+
+  updateCoords() {
+    $.ajax({
+      type: 'POST',
+      url: '/api/geo/distance',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        userLatitude: 37.7836970,
+        userLongitude: -122.4089660,
+        endpointLatitude: this.state.endLat,
+        endpointLongitude: this.state.endLng,
+      }),
+      dataType: 'json',
+      success: (data) => {
+        this.setState({
+          collision: data,
+        });
+      },
+      error: (error) => {
+        console.log('error', error);
+      },
+    });
+  }
+
   initMap() {
     const mapOptions = {
       center: { lat: 37.7836970, lng: -122.4089660 },
