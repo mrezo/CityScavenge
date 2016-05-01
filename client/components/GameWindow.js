@@ -80,61 +80,45 @@ class GameWindow extends React.Component {
     };
     let finishLineMarker = new google.maps.Marker(finishLineOptions);
 
-    // // Adds a marker on the map to represent a user
-    // const userOptions = {
-    //   position: { lat: 37.7848606, lng: -122.4130205 },
-    //   map,
-    //   title: 'user',
-    //   label: 'U',
-    // };
-    // let userMarker = new google.maps.Marker(userOptions);
+    // Adds a marker on the map to represent a user
+    const userOptions = {
+      position: { lat: 37.7848606, lng: -122.4130205 },
+      map,
+      title: 'user',
+      label: 'U',
+    };
+    let userMarker = new google.maps.Marker(userOptions);
 
-    // // Adds a marker on the map to represent the finish line location
-    // const finishLineOptions = {
-    //   position: { lat: 37.7836970, lng: -122.4089660 },
-    //   map,
-    //   title: 'Finish',
-    //   label: 'F',
-    // };
-    // let finishLinemarker = new google.maps.Marker(finishLineOptions);
+    // Adds a marker on the map to represent the finish line location
+    const finishLineOptions = {
+      position: { lat: 37.7836970, lng: -122.4089660 },
+      map,
+      title: 'Finish',
+      label: 'F',
+    };
+    let finishLinemarker = new google.maps.Marker(finishLineOptions);
 
     map.addListener('click', (event) => {
-      const center = { lat: 37.7836970, lng: -122.4089660 };
       this.addMarker(event.latLng);
-      // Adds a marker at the center of the map.
-      this.addMarker(center);
     });
 
     this.setState({ map });
   }
 
-  // In the following example, markers appear when the user clicks on the map.
-  // The markers are stored in an array.
-  // The user can then click an option to hide, show or delete the markers.
-  // initMap() {
-  //   // This event listener will call addMarker() when the map is clicked.
-  //   map.addListener('click', function(event) {
-  //     const center = { lat: 37.7836970, lng: -122.4089660 };
-  //     addMarker(event.latLng);
-  //     // Adds a marker at the center of the map.
-  //     addMarker(center);
-  //   });
-  // }
+  // Sets the map on all markers in the array.
+  setMapOnAll(map) {
+    for (let i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(map);
+    }
+  }
 
   // Adds a marker to the map and push to the array.
   addMarker(location) {
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: location,
-      map: map
+      map: this.state.map,
     });
-    this.markers.push(marker);
-  }
-
-  // Sets the map on all markers in the array.
-  setMapOnAll(map) {
-    for (var i = 0; i < this.state.markers.length; i++) {
-      this.markers[i].setMap(map);
-    }
+    this.setState({ markers: this.state.markers.concat(marker) });
   }
 
   // Removes the markers from the map, but keeps them in the array.
@@ -144,7 +128,7 @@ class GameWindow extends React.Component {
 
   // Shows any markers currently in the array.
   showMarkers() {
-    this.setMapOnAll(map);
+    this.setMapOnAll(this.state.map);
   }
 
   // Deletes all markers in the array by removing references to them.
@@ -164,7 +148,7 @@ class GameWindow extends React.Component {
         <div id="floating-panel">
           <input onClick={this.deleteMarkers.bind(this)} type="button" value="Delete Markers" />
         </div>      
-        <div id="map" style={style} onClick={this.showMarkers}></div>
+        <div id="map" style={style} onClick={this.showMarkers.bind(this)}></div>
       </div>
     );
   }
