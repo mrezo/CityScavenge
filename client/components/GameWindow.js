@@ -20,13 +20,17 @@ class GameWindow extends React.Component {
           endLat: data.latitude,
           endLng: data.longitude,
         });
+        this.updateCoords();
         this.initMap();
+        setInterval(() => { this.updateCoords(); }, 3000);
       },
       error: (error) => {
         console.log('error', error);
       },
     });
+  }
 
+  updateCoords() {
     $.ajax({
       type: 'POST',
       url: '/api/geo/distance',
