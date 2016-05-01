@@ -31,12 +31,12 @@ class GameWindow extends React.Component {
       type: 'POST',
       url: '/api/geo/distance',
       contentType: 'application/json',
-      data: {
+      data: JSON.stringify({
         userLatitude: 37.7836970,
         userLongitude: -122.4089660,
         endpointLatitude: this.state.endLat,
         endpointLongitude: this.state.endLng,
-      },
+      }),
       dataType: 'json',
       success: (data) => {
         this.setState({
