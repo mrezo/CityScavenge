@@ -3,31 +3,31 @@ var ip = require('ip').address();
 
 module.exports = {
   entry: [
-    './client/index.js'
+    './client/index.js',
   ],
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'react-hot!babel'
-    }]
+      loader: 'react-hot!babel',
+    }],
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
   output: {
     path: __dirname + '/client',
     publicPath: 'http://' + ip + ':8080/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   // externals: {
   //   "jquery": "$"
   // },
   devServer: {
     contentBase: 'client/',
-    hot: true
+    hot: true,
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
