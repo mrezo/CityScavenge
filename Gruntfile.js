@@ -4,26 +4,26 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    mocha_casperjs: {
-      files: {
-        src: ['test_client/**/*.js']
-      }
-    },
+    // mocha_casperjs: {
+    //   files: {
+    //     src: ['test_client/**/*.js']
+    //   }
+    // },
 
-    mochaTest: {
-      options: {
-        timeout: 4000
-      },
-      test: {
-        src: ['test_server/**/*.js']
-      }
-    },
+    // mochaTest: {
+    //   options: {
+    //     timeout: 4000
+    //   },
+    //   test: {
+    //     src: ['test_server/**/*.js']
+    //   }
+    // },
 
     watch: {
       scripts: {
         files: ['client/**/*.js', '!client/bundle.js'],
-        tasks: ['webpack']
-      }
+        tasks: ['webpack'],
+      },
     },
 
     webpack: {
@@ -32,30 +32,30 @@ module.exports = function (grunt) {
         entry: './client/index.js',
         output: {
           path: __dirname + '/client',
-          filename: 'bundle.js'
+          filename: 'bundle.js',
         },
         stats: 'errors-only',
         watch: false,
-        progress: true
-        
-      }
+        progress: true,
+
+      },
     },
 
     nodemon: {
       dev: {
         script: 'server/server.js',
-        watch: ['server']
-      }
+        watch: ['server'],
+      },
     },
 
     concurrent: {
       dev: {
         tasks: ['nodemon', 'watch'],
         options: {
-          logConcurrentOutput: true
-        }
-      }
-    }
+          logConcurrentOutput: true,
+        },
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-concurrent');
@@ -65,15 +65,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-mocha-casperjs');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  grunt.registerTask('test', '', function() {
-  var taskList = ['mochaTest', 'mocha_casperjs'];
-    grunt.task.run(taskList);
-  });
+  // grunt.registerTask('test', '', function() {
+  // var taskList = ['mochaTest', 'mocha_casperjs'];
+  //   grunt.task.run(taskList);
+  // });
 
   grunt.registerTask('startserver', '', function () {
     var taskList = ['webpack', 'concurrent', 'nodemon', 'watch'];
     grunt.task.run(taskList);
   });
-
-
 };
