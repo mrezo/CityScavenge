@@ -5,9 +5,13 @@ class GameWindow extends React.Component {
     this.state = {
       endLat: 0,
       endLng: 0,
+      userLat: 0,
+      userLng: 0,
       collision: false,
       markers: [],
       map: 0,
+      userMarker: 0,
+      endMarker: 0,
     };
   }
 
@@ -24,7 +28,17 @@ class GameWindow extends React.Component {
         });
         this.updateCoords();
         this.initMap();
-        setInterval(() => { this.updateCoords(); }, 3000);
+        setInterval(() => {
+          this.updateCoords();
+          navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({
+              userLat: position.coords.latitude,
+              userLng: position.coords.longitude,
+            });
+            this.deleteMarker();
+            this.placeMarker();
+          });
+        }, 3000);
       },
       error: (error) => {
         console.log('error', error);
@@ -38,8 +52,8 @@ class GameWindow extends React.Component {
       url: '/api/geo/distance',
       contentType: 'application/json',
       data: JSON.stringify({
-        userLatitude: 37.7836970,
-        userLongitude: -122.4089660,
+        userLatitude: this.state.userLat,
+        userLongitude: this.state.userLng,
         endpointLatitude: this.state.endLat,
         endpointLongitude: this.state.endLng,
       }),
@@ -55,13 +69,6 @@ class GameWindow extends React.Component {
     });
   }
 
-  // Sets the map on all markers in the array.
-  setMapOnAll(map) {
-    for (let i = 0; i < this.state.markers.length; i++) {
-      this.state.markers[i].setMap(map);
-    }
-  }
-
   initMap() {
     const mapOptions = {
       center: { lat: 37.7836970, lng: -122.4089660 },
@@ -71,7 +78,7 @@ class GameWindow extends React.Component {
 
     // Adds a marker on the map to represent a user
     const userOptions = {
-      position: { lat: 37.7848606, lng: -122.4130205 },
+      position: { lat: this.state.userLat, lng: this.state.userLng },
       map,
       title: 'user',
       label: 'U',
@@ -79,19 +86,36 @@ class GameWindow extends React.Component {
     const userMarker = new google.maps.Marker(userOptions);
 
     // Adds a marker on the map to represent the finish line location
-    const finishLineOptions = {
+    const endOptions = {
       position: { lat: this.state.endLat, lng: this.state.endLng },
       map,
       title: 'Finish',
       label: 'F',
     };
-    let finishLineMarker = new google.maps.Marker(finishLineOptions);
+    let endMarker = new google.maps.Marker(endOptions);
 
     map.addListener('click', (event) => {
       this.addMarker(event.latLng);
     });
 
     this.setState({ map });
+  }
+
+  // Sets the map on all markers in the array.
+  setMapOnAll(map) {
+    for (let i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(map);
+    }
+  }
+
+  placeMarker() {
+    const userOptions = {
+      position: { lat: this.state.userLat, lng: this.state.userLng },
+      map: this.state.map,
+      title: 'user',
+      label: 'U',
+    };
+    const userMarker = new google.maps.Marker(userOptions);
   }
 
   // Adds a marker to the map and push to the array.
@@ -119,6 +143,12 @@ class GameWindow extends React.Component {
     this.setState({ markers: [] });
   }
 
+  // Deletes all markers in the array by removing references to them.
+  deleteMarker(map) {
+    this.clearMarkers();
+    this.setState({ markers: [] });
+  }
+
   render() {
     const style = {
       width: '500px',
@@ -128,7 +158,7 @@ class GameWindow extends React.Component {
     return (
       <div>
         <div id="floating-panel">
-          <input onClick={this.deleteMarkers.bind(this)} type="button" value="Delete Markers" />
+          <input onClick={this.deleteMarker.bind(this)} type="button" value="Delete Markers" />
         </div>      
         <div id="map" style={style} onClick={this.showMarkers.bind(this)}></div>
       </div>
