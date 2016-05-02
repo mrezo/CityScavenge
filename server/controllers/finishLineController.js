@@ -80,6 +80,7 @@ module.exports.getDistance = function(req, res) {
   })
   .then(function (body) {
     var collision = false;
+    console.log(JSON.parse(body).rows[0].elements[0].distance.value);
     if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
       collision = true;
       console.log('You win!');
