@@ -28,7 +28,7 @@ module.exports = function (grunt) {
 
     webpack: {
       options: webpackConfig,
-      faunadex: {
+      thesis: {
         entry: './client/index.js',
         output: {
           path: __dirname + '/client',
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-webpack-without-server');
   grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-mocha-casperjs');
+  // grunt.loadNpmTasks('grunt-mocha-casperjs');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   // grunt.registerTask('test', '', function() {
