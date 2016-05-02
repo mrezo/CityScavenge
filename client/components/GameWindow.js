@@ -27,21 +27,25 @@ class GameWindow extends React.Component {
         });
         this.updateCoords();
         this.initMap();
-        setInterval(() => {
+        // Watch the user's position every minute or so
+        navigator.geolocation.watchPosition((position) => {
+          this.setState({
+            userLat: position.coords.latitude,
+            userLng: position.coords.longitude,
+          });
           // Delete the current user marker
           this.deleteMarker();
-          // Get the user's current location
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-              userLat: position.coords.latitude,
-              userLng: position.coords.longitude,
-            });
-            // Update the coordinates on the back-end and check for a collision
-            this.updateCoords();
-            // Add the new user marker
-            this.placeMarker();
-          });
-        }, 3000);
+          // Update the coordinates on the back-end and check for a collision
+          this.updateCoords();
+          // Add the new user marker
+          this.placeMarker();
+        }, () => {
+          console.log('Geolocation error!');
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 30000,
+          timeout: 27000,
+        });
       },
       error: (error) => {
         console.log('error', error);
