@@ -74,31 +74,33 @@ class GameWindow extends React.Component {
       center: { lat: 37.7836970, lng: -122.4089660 },
       zoom: 15,
     };
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    // Adds a marker on the map to represent a user
+    this.setState({
+      map: new google.maps.Map(document.getElementById('map'), mapOptions),
+    });
+
     const userOptions = {
       position: { lat: this.state.userLat, lng: this.state.userLng },
-      map,
+      map: this.state.map,
       title: 'user',
       label: 'U',
     };
-    const userMarker = new google.maps.Marker(userOptions);
 
-    // Adds a marker on the map to represent the finish line location
     const endOptions = {
       position: { lat: this.state.endLat, lng: this.state.endLng },
-      map,
+      map: this.state.map,
       title: 'Finish',
       label: 'F',
     };
-    let endMarker = new google.maps.Marker(endOptions);
 
-    map.addListener('click', (event) => {
-      this.addMarker(event.latLng);
+    this.setState({
+      userMarker: new google.maps.Marker(userOptions),
+      endMarker: new google.maps.Marker(endOptions),
     });
 
-    this.setState({ map });
+    this.state.map.addListener('click', (event) => {
+      this.addMarker(event.latLng);
+    });
   }
 
   // Sets the map on all markers in the array.
