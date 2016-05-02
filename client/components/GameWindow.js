@@ -5,9 +5,12 @@ class GameWindow extends React.Component {
     this.state = {
       endLat: 0,
       endLng: 0,
+      userLat: 0,
+      userLng: 0,
       collision: false,
-      markers: [],
       map: 0,
+      userMarker: 0,
+      endMarker: 0,
     };
   }
 
@@ -24,7 +27,28 @@ class GameWindow extends React.Component {
         });
         this.updateCoords();
         this.initMap();
-        setInterval(() => { this.updateCoords(); }, 3000);
+        // Watch the user's position every minute or so
+        navigator.geolocation.watchPosition((position) => {
+          this.setState({
+            userLat: position.coords.latitude,
+            userLng: position.coords.longitude,
+          });
+          // Delete the current user marker
+          this.deleteMarker();
+          // Update the coordinates on the back-end and check for a collision
+          this.updateCoords();
+          // Add the new user marker
+          this.placeMarker();
+          // Alert the user if they win, but this.updateCoords is async so the below
+          // needs to go into updateCoords as a callback
+          alert(this.state.collision);
+        }, () => {
+          console.log('Geolocation error!');
+        }, {
+          enableHighAccuracy: true,
+          maximumAge: 30000,
+          timeout: 27000,
+        });
       },
       error: (error) => {
         console.log('error', error);
@@ -32,14 +56,15 @@ class GameWindow extends React.Component {
     });
   }
 
+  // Updates the coordinates on the back-end and checks for a collision
   updateCoords() {
     $.ajax({
       type: 'POST',
       url: '/api/geo/distance',
       contentType: 'application/json',
       data: JSON.stringify({
-        userLatitude: 37.7836970,
-        userLongitude: -122.4089660,
+        userLatitude: this.state.userLat,
+        userLongitude: this.state.userLng,
         endpointLatitude: this.state.endLat,
         endpointLongitude: this.state.endLng,
       }),
@@ -55,68 +80,58 @@ class GameWindow extends React.Component {
     });
   }
 
-  // Sets the map on all markers in the array.
-  setMapOnAll(map) {
-    for (let i = 0; i < this.state.markers.length; i++) {
-      this.state.markers[i].setMap(map);
-    }
-  }
-
+  // Initializes the map
   initMap() {
     const mapOptions = {
       center: { lat: 37.7836970, lng: -122.4089660 },
       zoom: 15,
     };
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    // Adds a marker on the map to represent a user
+    this.setState({
+      map: new google.maps.Map(document.getElementById('map'), mapOptions),
+    });
+
     const userOptions = {
-      position: { lat: 37.7848606, lng: -122.4130205 },
-      map,
+      position: { lat: this.state.userLat, lng: this.state.userLng },
+      map: this.state.map,
       title: 'user',
       label: 'U',
     };
-    const userMarker = new google.maps.Marker(userOptions);
 
-    // Adds a marker on the map to represent the finish line location
-    const finishLineOptions = {
+    const endOptions = {
       position: { lat: this.state.endLat, lng: this.state.endLng },
-      map,
+      map: this.state.map,
       title: 'Finish',
       label: 'F',
     };
-    let finishLineMarker = new google.maps.Marker(finishLineOptions);
 
-    map.addListener('click', (event) => {
+    this.setState({
+      userMarker: new google.maps.Marker(userOptions),
+      endMarker: new google.maps.Marker(endOptions),
+    });
+
+    this.state.map.addListener('click', (event) => {
       this.addMarker(event.latLng);
     });
-
-    this.setState({ map });
   }
 
-  // Adds a marker to the map and push to the array.
-  addMarker(location) {
-    const marker = new google.maps.Marker({
-      position: location,
+  // Places a marker on the user's location
+  placeMarker() {
+    const userOptions = {
+      position: { lat: this.state.userLat, lng: this.state.userLng },
       map: this.state.map,
+      title: 'user',
+      label: 'U',
+    };
+    this.setState({
+      userMarker: new google.maps.Marker(userOptions),
     });
-    this.setState({ markers: this.state.markers.concat(marker) });
-  }
-
-  // Removes the markers from the map, but keeps them in the array.
-  clearMarkers() {
-    this.setMapOnAll(null);
-  }
-
-  // Shows any markers currently in the array.
-  showMarkers() {
-    this.setMapOnAll(this.state.map);
   }
 
   // Deletes all markers in the array by removing references to them.
-  deleteMarkers() {
-    this.clearMarkers();
-    this.setState({ markers: [] });
+  deleteMarker() {
+    this.state.userMarker.setMap(null);
+    this.setState({ userMarker: 0 });
   }
 
   render() {
@@ -126,12 +141,7 @@ class GameWindow extends React.Component {
     };
 
     return (
-      <div>
-        <div id="floating-panel">
-          <input onClick={this.deleteMarkers.bind(this)} type="button" value="Delete Markers" />
-        </div>      
-        <div id="map" style={style} onClick={this.showMarkers.bind(this)}></div>
-      </div>
+      <div id="map" style={style}></div>
     );
   }
 }
