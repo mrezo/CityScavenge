@@ -45,7 +45,7 @@ describe('Basic Server Functions', function () {
     it('will respond to GET /api/user/:id', function (done) {
       makeGET('/api/user/1', function(error, res, body) {
         expect(error).to.equal(null);
-        expect(res.statusCode).to.equal(401);
+        expect(res.statusCode).to.equal(200);
         done();
       });
     });
@@ -57,7 +57,7 @@ describe('Basic Server Functions', function () {
         },
         function(error, res, body) {
           expect(error).to.equal(null);
-          expect(res.statusCode).to.equal(401);
+          expect(res.statusCode).to.equal(200);
           done();
         });
     });
