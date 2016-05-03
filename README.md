@@ -67,10 +67,11 @@ Visit `localhost:1337` in the browser.
 From within the root directory:
 
 ```
-npm install -g nodemon webpack
+npm install -g nodemon webpack grunt
+npm install
 ```
 
-### Setting up the server
+### Setting up the database
 
 From within the root directory:
 
@@ -80,17 +81,11 @@ psql -f server/schema.sql
 
 ### Running Locally
 
-To compile client-side code, run:
+To compile client-side code and start the server, run:
 ```
-webpack --watch
+npm start
 ```
-`webpack --watch` will recompile a `bundle.js` file when any client-side JS files have changed, streamlining the development workflow.
-
-In a separate shell, start the server by running:
-```
-??npm install??
-??npm run dev??
-```
+`npm start` will recompile a `bundle.js` file when any client-side JS files have changed, streamlining the development workflow.
 
 Visit `localhost:1337` in the browser.
 
@@ -102,7 +97,6 @@ Visit `localhost:1337` in the browser.
 
 ==============================
 
-- `npm start`
 - Go to `xxx.xxx.xx.x:??` to see your site live
 
 
