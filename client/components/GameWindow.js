@@ -1,4 +1,8 @@
-class GameWindow extends React.Component {
+import React from 'react';
+import { connect } from 'react-redux';
+import { mapStateToPropsWindow } from '../props';
+
+export class GameWindow extends React.Component {
   constructor(props) {
     super(props);
 
@@ -39,9 +43,6 @@ class GameWindow extends React.Component {
           this.updateCoords();
           // Add the new user marker
           this.placeMarker();
-          // Alert the user if they win, but this.updateCoords is async so the below
-          // needs to go into updateCoords as a callback
-          alert(this.state.collision);
         }, () => {
           console.log('Geolocation error!');
         }, {
@@ -146,4 +147,4 @@ class GameWindow extends React.Component {
   }
 }
 
-window.GameWindow = GameWindow;
+export const GameWindowContainer = connect(mapStateToPropsWindow)(GameWindow);

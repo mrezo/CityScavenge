@@ -1,13 +1,19 @@
-class App extends React.Component {
+import React from 'react';
+import { connect } from 'react-redux';
+import { HeaderContainer } from './Header';
+import { GameWindowContainer } from './GameWindow';
+import { mapStateToProps } from '../props';
+
+export class App extends React.Component {
   constructor(props) {
     super(props);
 
     // Current state of the app
     // ===================================
-    this.state = {
-      currentUser: props.game.username,
-      userImage: props.game.image,
-    };
+    // this.state = {
+    //   currentUser: props.game.username,
+    //   userImage: props.game.image,
+    // };
   }
 
   // Initial rendering of the app
@@ -16,16 +22,29 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <GameHeader user={this.state.currentUser} />
+          <HeaderContainer />
         </div>
         <div>
-          <GameWindow user={this.state.currentUser} />
+          <GameWindowContainer user={this.props.username} />
         </div>
       </div>
     );
   }
 }
 
+// function mapStateToProps(state) {
+//   return {
+//     game: {
+//       username: state.currentUser.username,
+//       image: state.currentUser.image,
+//     },
+//   };
+// }
+
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
 // Temporary Dummy Data
 // ===================================
 window.dummyGameData = {
@@ -33,5 +52,4 @@ window.dummyGameData = {
   image: 'http://www.hdiphonewallpaper.com/uploads/image/Animals/Gray%20animal%20wallpaper.jpg',
 };
 
-ReactDOM.render(<App game={dummyGameData} />, document.getElementById('app'));
-
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
