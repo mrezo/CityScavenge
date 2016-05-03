@@ -6,4 +6,12 @@ export function mapStateToProps(state) {
     username: state.currentUser.username,
     userImage: state.currentUser.image,
   };
-};
+}
+
+export function mapStateToPropsWindow(state) {
+  return {
+    currentMap: state.currentMap,
+    username: state.currentUser.username,
+    userImage: state.currentUser.image,
+  };
+}

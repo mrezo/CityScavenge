@@ -58,6 +58,7 @@ const store = createStore(reducer, initalState, applyMiddleware(thunk));
 
 // TODO remove below code
 // Anything that needs to run immediately upon page load goes below
+// EXAMPLE
 // store.dispatch((dispatch) => {
 //   if (auth.isSignedIn()) {
 //     $.ajaxSetup({ headers: { 'x-access-token': window.localStorage.getItem('com.faunadex') } });

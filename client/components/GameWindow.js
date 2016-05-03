@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { mapStateToPropsWindow } from '../props';
 
 export class GameWindow extends React.Component {
   constructor(props) {
@@ -146,9 +147,4 @@ export class GameWindow extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  };
-}
-
-export const GameWindowContainer = connect(mapStateToProps)(GameWindow);
+export const GameWindowContainer = connect(mapStateToPropsWindow)(GameWindow);
