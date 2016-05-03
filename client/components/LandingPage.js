@@ -9,8 +9,8 @@ export class LandingPage extends React.Component {
         <h3 className="app-title">City Hunt</h3>
         <span>Explore your city</span>
         <div className="button-group">
-          <button type="button">Login with Google</button>
-          <button type="button">Sign Up To Play</button>
+          <button className="login-button" type="button">Login with Google</button>
+          <button className="signup-button" type="button">Sign Up To Play</button>
         </div>
       </div>
     )
