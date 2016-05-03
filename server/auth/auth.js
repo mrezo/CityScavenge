@@ -36,3 +36,23 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
+
+passport.use(new GoogleStrategy.OAuth2Strategy({
+  clientID: googleKey.CLIENT_ID,
+  clientSecret: googleKey.CLIENT_SECRET,
+  callbackURL: '/auth/google/callback',
+}, function(accessToken, refreshToken, profile, done) {
+  // Create a user if it is a new user, otherwise just get the user from the DB
+  User
+    .findOrCreate({
+      where: {
+        googleUserId: profile.id
+      },
+      defaults: {
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName
+      }
+    });
+  return done(null, profile);
+}));
+

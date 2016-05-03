@@ -29,6 +29,9 @@ module.exports = function (app, express) {
     req.session.destroy(function() {
       res.redirect('/');
     });
-  });
+  }
+    //req.logout();
+    //res.redirect('/')
+  );
 
 };
