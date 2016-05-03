@@ -52,6 +52,8 @@ export default (state = [], action) => {
       return [...state, {
         comments: action.comments,
       }];
+    default:
+      return state;
   }
   window.state = state;
   return state;
