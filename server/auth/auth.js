@@ -21,3 +21,19 @@ module.exports.authenticateGoogleLogin = passport.authenticate('google', {
   failureRedirect: '/'
 });
 
+/*
+serializeUser and deserializeUser are two required Passport methods that are
+called when using sessions with Passport. Sessions are saved via cookies 
+rather than via login credentials.
+*/
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
