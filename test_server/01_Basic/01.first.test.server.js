@@ -1,9 +1,6 @@
 var expect = require('chai').expect;
 var request = require('request');
 
-// var db = require('../../server/config/db.js');
-// var User = require('../../server/models/user.js');
-
 var requestWithSession = request.defaults({jar: true});
 var serverURL = 'http://127.0.0.1:1337';
 
@@ -28,17 +25,17 @@ describe('Basic Server Functions', function () {
   describe('Basic REST API endpoints', function () {
     var makeGET = function (endpoint, callback) {
       return requestWithSession({
-        'method': 'GET',
-        'followAllRedirects': true,
-        'uri': serverURL + endpoint,
+        method: 'GET',
+        followAllRedirects: true,
+        uri: serverURL + endpoint,
       }, callback);
     };
     var makePOST = function (endpoint, data, callback) {
       return requestWithSession({
-        'method': 'POST',
-        'followAllRedirects': true,
-        'uri': serverURL + endpoint,
-        'json': data,
+        method: 'POST',
+        followAllRedirects: true,
+        uri: serverURL + endpoint,
+        json: data,
       }, callback);
     };
 
@@ -62,7 +59,7 @@ describe('Basic Server Functions', function () {
         });
     });
 
-  }); //END describe('Basic REST API endpoints' function () {
+  }); // END describe('Basic REST API endpoints' function () {
 
-}); //END describe('Basic Server Functions', function () {
+}); // END describe('Basic Server Functions', function () {
 
