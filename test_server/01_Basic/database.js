@@ -1,5 +1,6 @@
 var expect = require('chai').expect;
 var pg = require('chai');
+var path = require('path');
 var connectionString = require(path.join(__dirname, '../../server/config/dbconfig'));
 
 // var db = require('../../server/config/db.js');
