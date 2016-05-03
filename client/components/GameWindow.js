@@ -1,4 +1,7 @@
-class GameWindow extends React.Component {
+import React from 'react';
+import { connect } from 'react-redux';
+
+export class GameWindow extends React.Component {
   constructor(props) {
     super(props);
 
@@ -146,4 +149,9 @@ class GameWindow extends React.Component {
   }
 }
 
-window.GameWindow = GameWindow;
+function mapStateToProps(state) {
+  return {
+  };
+}
+
+export const GameWindowContainer = connect(mapStateToProps)(GameWindow);
