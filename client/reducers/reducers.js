@@ -1,7 +1,7 @@
 // Map is almost just like a normal object but it is immutable
 // by nature.  Using these objects prevents us from mutating the
 // state accidentally.
-import {Map, List} from 'immutable';
+// import {Map, List} from 'immutable';
 // Helper function for below
 
 function signInAttempt(state, action) {
@@ -27,12 +27,12 @@ function createNewEncounter(state, action) {
 // The store's reducing function will be called with the current state
 //   and the given action synchronously and the returned value
 //   will be considered the next state
-export default function(state = Map(), action) {
+export default (state = [], action) => {
   switch (action.type) {
     case 'SET_STATE':
       return state.merge(action.state);
     case 'CHANGE_USER_NAME':
-      return state.merge({'user': {username: action.username}});
+      return state.merge({ 'user': { username: action.username } });
     case 'GO_TO_ENCOUNTER':
       return state.set('encounter', action.state.encounter);
     case 'SIGN_IN_ATTEMPT':
@@ -54,4 +54,4 @@ export default function(state = Map(), action) {
   }
   window.state = state;
   return state;
-}
+};

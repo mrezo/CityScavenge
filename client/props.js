@@ -2,8 +2,8 @@ import React from 'react';
 
 module.exports = ((state) => {
   return {
-    currentMap: state.getIn(['currentMap']),
-    username: state.getIn(['currentUser', 'username']),
-    userImage: state.getIn(['currentUser', 'image']),
+    currentMap: state.currentMap,
+    username: state.currentUser.username,
+    userImage: state.currentUser.image,
   };
 })();
