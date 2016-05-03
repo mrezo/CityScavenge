@@ -58,6 +58,11 @@ const store = createStore(reducer, initialState, applyMiddleware(thunk));
 
 // TODO remove below code
 // Anything that needs to run immediately upon page load goes below
+// There are three main methods on the store
+// 1. getState: retrieves the current state
+// 2. dispatch: dispatches an action to change the state of your appliction
+// 3. subscribe: lets you register a callback that the store will call any
+//   time an action has been dispatched
 // EXAMPLE
 // store.dispatch((dispatch) => {
 //   if (auth.isSignedIn()) {
