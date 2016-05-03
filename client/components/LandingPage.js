@@ -1,4 +1,5 @@
 import React from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
 import { connect } from 'react-redux';
 import { mapStateToPropsWindow } from '../props';
 
@@ -9,14 +10,13 @@ export class LandingPage extends React.Component {
         <h3 className="app-title">City Hunt</h3>
         <span>Explore your city</span>
         <div className="button-group">
-          <button className="login-button" type="button">Login with Google</button>
-          <button className="signup-button" type="button">Sign Up To Play</button>
+          <RaisedButton label="Login with Google" primary={true} />
         </div>
       </div>
-    )
+    );
   }
-} 
+}
 
-//module.exports = LandingPage;
+// module.exports = LandingPage;
 export const LandingPageContainer = connect(mapStateToPropsWindow)(LandingPage);
 
