@@ -17,6 +17,10 @@ function signUpAttempt(state, action) {
 // The store's reducing function will be called with the current state
 //   and the given action synchronously and the returned value
 //   will be considered the next state
+// Reducer composition is when one has a master reducer that calls other
+//   reducers. This is useful for when the reducer gets too large
+//   add one wants to abstract out complexity. It is like having
+//   helper reducers
 
 // TODO replace actions below with our requests
 // Below are examples of reducers being used
@@ -55,6 +59,4 @@ export default (state = [], action) => {
     default:
       return state;
   }
-  window.state = state;
-  return state;
 };
