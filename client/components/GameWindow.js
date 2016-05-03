@@ -42,9 +42,6 @@ export class GameWindow extends React.Component {
           this.updateCoords();
           // Add the new user marker
           this.placeMarker();
-          // Alert the user if they win, but this.updateCoords is async so the below
-          // needs to go into updateCoords as a callback
-          alert(this.state.collision);
         }, () => {
           console.log('Geolocation error!');
         }, {
