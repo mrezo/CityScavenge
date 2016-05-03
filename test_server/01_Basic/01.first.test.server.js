@@ -1,8 +1,8 @@
 var expect = require('chai').expect;
 var request = require('request');
 
-var db = require('../../server/config/db.js');
-var User = require('../../server/models/user.js');
+// var db = require('../../server/config/db.js');
+// var User = require('../../server/models/user.js');
 
 var requestWithSession = request.defaults({jar: true});
 var serverURL = 'http://127.0.0.1:1337';
@@ -11,8 +11,8 @@ describe('Basic Server Functions', function () {
   describe('Server', function () {
     it('will serve the homepage', function (done) {
       var options = {
-        'method': 'GET',
-        'uri': serverURL
+        method: 'GET',
+        uri: serverURL,
       };
 
       requestWithSession(options, function(error, res, body) {
@@ -30,7 +30,7 @@ describe('Basic Server Functions', function () {
       return requestWithSession({
         'method': 'GET',
         'followAllRedirects': true,
-        'uri': serverURL + endpoint
+        'uri': serverURL + endpoint,
       }, callback);
     };
     var makePOST = function (endpoint, data, callback) {
@@ -38,36 +38,23 @@ describe('Basic Server Functions', function () {
         'method': 'POST',
         'followAllRedirects': true,
         'uri': serverURL + endpoint,
-        'json': data
+        'json': data,
       }, callback);
     };
-    
-    it('will respond to GET /api/user/encounters/:userName', function (done) {
-      makeGET('/api/user/encounters/bob123456', function(error, res, body) {
+
+    it('will respond to GET /api/user/:id', function (done) {
+      makeGET('/api/user/1', function(error, res, body) {
         expect(error).to.equal(null);
         expect(res.statusCode).to.equal(401);
         done();
       });
     });
 
-    it('will respond to GET /api/recentencounters', function (done) {
-      makeGET('/api/recentencounters', function(error, res, body) {
-        expect(error).to.equal(null);
-        expect(res.statusCode).to.equal(200);
-        done();
-      });
-    });
-
-    it('will respond to POST /api/user/encounter', function(done) {
-      makePOST('/api/user/encounter',
+    it('will respond to POST /api/user', function(done) {
+      makePOST('/api/user',
         {
-          userid: 1,
-          title: 'Marmot',
-          description: 'It stole my stuff',
-          location: 'Yosemite',
-          encountertime: '2016-04-14',
-          photo: 'nophoto.com'
-        }, 
+          username: 'Test',
+        },
         function(error, res, body) {
           expect(error).to.equal(null);
           expect(res.statusCode).to.equal(401);
