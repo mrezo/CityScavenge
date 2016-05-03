@@ -27,6 +27,8 @@ function createNewEncounter(state, action) {
 // The store's reducing function will be called with the current state
 //   and the given action synchronously and the returned value
 //   will be considered the next state
+
+// TODO replace actions below with our requests
 export default (state = [], action) => {
   switch (action.type) {
     case 'SET_STATE':
