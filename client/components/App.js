@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { HeaderContainer } from './GameHeader';
 import { GameWindowContainer } from './GameWindow';
+import { mapStateToProps } from '../props';
 
 export class App extends React.Component {
   constructor(props) {
@@ -9,10 +10,10 @@ export class App extends React.Component {
 
     // Current state of the app
     // ===================================
-    this.state = {
-      currentUser: props.game.username,
-      userImage: props.game.image,
-    };
+    // this.state = {
+    //   currentUser: props.game.username,
+    //   userImage: props.game.image,
+    // };
   }
 
   // Initial rendering of the app
@@ -21,24 +22,24 @@ export class App extends React.Component {
     return (
       <div>
         <div>
-          <HeaderContainer user={this.state.currentUser} />
+          <HeaderContainer />
         </div>
         <div>
-          <GameWindowContainer user={this.state.currentUser} />
+          <GameWindowContainer user={this.props.username} />
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    game: {
-      username: state.currentUser.username,
-      image: state.currentUser.image,
-    },
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     game: {
+//       username: state.currentUser.username,
+//       image: state.currentUser.image,
+//     },
+//   };
+// }
 
 function mapDispatchToProps(dispatch) {
   return {
