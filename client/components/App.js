@@ -1,4 +1,9 @@
-class App extends React.Component {
+import React from 'react';
+import { connect } from 'react-redux';
+import { HeaderContainer } from './GameHeader';
+import { GameWindowContainer } from './GameWindow';
+
+export class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -16,16 +21,29 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <GameHeader user={this.state.currentUser} />
+          <HeaderContainer user={this.state.currentUser} />
         </div>
         <div>
-          <GameWindow user={this.state.currentUser} />
+          <GameWindowContainer user={this.state.currentUser} />
         </div>
       </div>
     );
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    game: {
+      username: state.currentUser.username,
+      image: state.currentUser.image,
+    },
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+  };
+}
 // Temporary Dummy Data
 // ===================================
 window.dummyGameData = {
@@ -33,5 +51,4 @@ window.dummyGameData = {
   image: 'http://www.hdiphonewallpaper.com/uploads/image/Animals/Gray%20animal%20wallpaper.jpg',
 };
 
-ReactDOM.render(<App game={dummyGameData} />, document.getElementById('app'));
-
+export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
