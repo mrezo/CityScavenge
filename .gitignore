@@ -5,6 +5,7 @@ server/config/googlemaps.js
 # Dependency directories
 node_modules
 client/bundle.js
+client/bundle.js.map
 
 # Logs
 logs
