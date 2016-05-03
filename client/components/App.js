@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { HeaderContainer } from './Header';
 import { GameWindowContainer } from './GameWindow';
@@ -31,5 +31,10 @@ export class App extends React.Component {
     );
   }
 }
+
+// Prop validation throws an error if data you receive is invalid
+App.propTypes = {
+  username: PropTypes.string,
+};
 
 export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
