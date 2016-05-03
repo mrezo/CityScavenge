@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { HeaderContainer } from './GameHeader';
+import { HeaderContainer } from './Header';
 import { GameWindowContainer } from './GameWindow';
 import { mapStateToProps } from '../props';
 
