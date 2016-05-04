@@ -5,3 +5,12 @@
 .signup-button {
   display: block;
 }
+
+.dash-jumbotron {
+  height: 250px;
+  background: #FF4081;
+}
+
+.avatar {
+  margin: 0 auto;
+}
