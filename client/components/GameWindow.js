@@ -150,7 +150,7 @@ export class GameWindow extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="game-wrapper">
         <LeftNav docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState({ open })}>
             <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
         </LeftNav>
@@ -185,7 +185,7 @@ export class GameWindow extends React.Component {
             <RaisedButton label="Create Broadcast" primary={true} />
           </ToolbarGroup>
         </Toolbar>
-        </div>
+      </div>
     );
   }
 }
