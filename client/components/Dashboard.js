@@ -33,9 +33,9 @@ export class Dashboard extends React.Component {
         <LeftNav docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState({ open })}>
           <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
         </LeftNav>
+        <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
         <div className="dash-jumbotron">
-          <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
-          <Avatar style={{ alignSelf: 'center' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>G</Avatar>
+          <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>A</Avatar>
         </div>
         <Tabs>
           <Tab label="Old Games" >
