@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var passport = require('passport');
 
 var app = express();
 
@@ -7,6 +8,12 @@ require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);
 
 var port = process.env.PORT || 1337;
+
+// http://passportjs.org/docs/google
+app.use(passport.initialize());
+
+// This must be declared after the Express session is declared
+app.use(passport.session());
 
 if(!module.parent){ 
   app.listen(port);
