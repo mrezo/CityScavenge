@@ -1,7 +1,8 @@
 import React from 'react';
-import AppBar from 'material-ui/lib/app-bar';
 import { connect } from 'react-redux';
 import { mapStateToPropsWindow, mapDispatchToPropsWindow } from '../props';
+import AppBar from 'material-ui/lib/app-bar';
+import LeftNav from 'material-ui/lib/left-nav';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import IconButton from 'material-ui/lib/icon-button';
 import FontIcon from 'material-ui/lib/font-icon';
@@ -150,9 +151,12 @@ export class GameWindow extends React.Component {
   render() {
     return (
       <div>
-      <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
+        <LeftNav docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState({ open })}>
+            <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
+        </LeftNav>
+        <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
         <div id="map"></div>
-        <Toolbar>
+        <Toolbar className="bottom-toolbar">
           <ToolbarGroup firstChild={true} float="left">
             <DropDownMenu value={3}>
               <MenuItem value={1} primaryText="All Broadcasts" />

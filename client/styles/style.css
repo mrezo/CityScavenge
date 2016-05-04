@@ -22,6 +22,11 @@ body, html {
 }
 
 #map {
-  height:500px;
+  height:800px;
   width:100%;
+}
+
+.bottom-toolbar {
+ position: fixed;
+ bottom: 0%; 
 }
