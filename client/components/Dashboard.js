@@ -21,26 +21,35 @@ const colors = styles.Colors;
 export class Dashboard extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false };
+    this.state = {
+      open: false,
+    };
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
-  handleToggle() { this.setState({ open: !this.state.open }); }
+  handleToggle(e) {
+    e.preventDefault();
+    this.setState({ open: !this.state.open });
+  }
 
-  handleClose() { this.setState({ open: false }); }
+  handleClose(e) {
+    e.preventDefault();
+    this.setState({ open: false });
+  }
 
 
   render() {
     return (
       <div>
         <LeftNav docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState({ open })}>
-          <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
+          <MenuItem onClick={this.handleToggle}>Logout</MenuItem>
         </LeftNav>
-        <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
+        <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onClick={this.handleToggle} onLeftIconButtonTouchTap={() => console.log('YO YO YO')} />
         <div className="dash-jumbotron">
-          <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>Avatar</Avatar>
+          <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>W</Avatar>
         </div>
         <Tabs>
-          <Tab label="Old Games" >
+          <Tab onClick={() => { alert(' TESTING'); }} label="Old Games" >
             <div>
               <Card>
                 <CardHeader
