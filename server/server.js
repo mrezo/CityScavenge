@@ -9,12 +9,6 @@ require('./config/routes.js')(app, express);
 
 var port = process.env.PORT || 1337;
 
-// http://passportjs.org/docs/google
-app.use(passport.initialize());
-
-// This must be declared after the Express session is declared
-app.use(passport.session());
-
 if(!module.parent){ 
   app.listen(port);
 }
