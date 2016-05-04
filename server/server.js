@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var passport = require('passport');
 
 var app = express();
 
@@ -11,7 +12,6 @@ var port = process.env.PORT || 1337;
 if(!module.parent){ 
   app.listen(port);
 }
-
 
 console.log(port + ' server started!');
 

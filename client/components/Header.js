@@ -14,7 +14,8 @@ export class Header extends React.Component {
   render() {
     return (
       <div>
-          <button type="button">Start Game</button>
+          <button type="button">Start Game
+          <a href='/auth/google'></a></button>
           <span className="user-name">Current User: { this.props.username } </span>
       </div>
     );
