@@ -81,7 +81,7 @@ module.exports = (function(req, res) {
         done();
       });
 
-    var queryRetrieveUser = client.query("SELECT * FROM users WHERE username = $1", [req.body.username]);
+    var queryRetrieveUser = client.query("SELECT * FROM users WHERE username = $1", [req.body.displayName]);
       var result = [];
       // Stream results back one row at a time
       queryRetrieveUser.on('row', function(row) {
