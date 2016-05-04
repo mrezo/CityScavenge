@@ -12,6 +12,8 @@ import Card from 'material-ui/lib/card/card';
 import CardHeader from 'material-ui/lib/card/card-header';
 import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
+// import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
+// injectTapEventPlugin();
 
 
 const colors = styles.Colors;
@@ -35,7 +37,7 @@ export class Dashboard extends React.Component {
         </LeftNav>
         <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
         <div className="dash-jumbotron">
-          <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>A</Avatar>
+          <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>Avatar</Avatar>
         </div>
         <Tabs>
           <Tab label="Old Games" >
