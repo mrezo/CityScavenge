@@ -6,8 +6,10 @@ CREATE DATABASE city_scavenge;
 
 CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY,
-  username VARCHAR(61) NOT NULL UNIQUE
+  displayname VARCHAR(63) NOT NULL UNIQUE,
+  google_id VARCHAR(255) NOT NULL UNIQUE,
+  name VARCHAR(63) NOT NULL
 );
 
 -- Dummy Data
-INSERT INTO users (username) VALUES ('Genevieve'), ('Michael'), ('Alexander');
+INSERT INTO users (displayname, google_id, name) VALUES ('Genevieve', '1734', 'Dolphin'), ('Michael', '254', 'Gray Whale'), ('Alexander', '2345', 'Manatee');
