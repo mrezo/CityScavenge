@@ -1,8 +1,16 @@
+/* Margin Reset
+==================================
+*/
+
 body, html {
   margin: 0;
   height: 100%;
   width: 100%;
 }
+
+/* Landing Page
+==================================
+*/
 .login-button {
   display: block;
 }
@@ -11,22 +19,41 @@ body, html {
   display: block;
 }
 
+/* Dashboard
+==================================
+*/
+
+.avatar {
+  margin: 0 auto;
+}
+
 .dash-jumbotron {
   height: 200px;
   padding-top: 50px;
   background: #FF4081;
 }
 
-.avatar {
-  margin: 0 auto;
-}
-
-#map {
-  height:800px;
-  width:100%;
-}
+/* Game Window
+==================================
+*/
 
 .bottom-toolbar {
  position: fixed;
  bottom: 0%; 
 }
+
+.game-wrapper {
+  display: flex;
+  min-height: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+#map {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
