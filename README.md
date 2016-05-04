@@ -105,10 +105,9 @@ Visit `localhost:1337` in the browser.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Testing
-
-TBD when complete
-
+```
+npm start
+```
 
 TBD:
 socket.io
-grunt

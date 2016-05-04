@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { HeaderContainer } from './Header';
 import { GameWindowContainer } from './GameWindow';
-import { mapStateToProps } from '../props';
+import { mapStateToProps, mapDispatchToProps } from '../props';
 
 export class App extends React.Component {
   constructor(props) {
@@ -32,24 +32,9 @@ export class App extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     game: {
-//       username: state.currentUser.username,
-//       image: state.currentUser.image,
-//     },
-//   };
-// }
-
-function mapDispatchToProps(dispatch) {
-  return {
-  };
-}
-// Temporary Dummy Data
-// ===================================
-window.dummyGameData = {
-  username: 'The Gray Animal',
-  image: 'http://www.hdiphonewallpaper.com/uploads/image/Animals/Gray%20animal%20wallpaper.jpg',
+// Prop validation throws an error if data you receive is invalid
+App.propTypes = {
+  username: PropTypes.string,
 };
 
 export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);

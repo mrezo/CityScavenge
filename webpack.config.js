@@ -20,6 +20,7 @@ module.exports = {
     publicPath: 'http://' + ip + ':8080/',
     filename: 'bundle.js',
   },
+  devtool: 'source-map',
   // externals: {
   //   "jquery": "$"
   // },

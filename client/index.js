@@ -25,7 +25,7 @@ import reducer from './reducers/reducers.js';
 // be mutated.  To change it's values you have to dispatch an action
 // which calls a reducer and returns a new state, which is set
 // to the current state.
-const initalState = {
+const initialState = {
   currentMap: 'http://www.codeproject.com/KB/custom-controls/Google-Maps-User-Control/SimpleMap.JPG',
   currentUser: {
     username: 'The Gray Animal',
@@ -33,7 +33,7 @@ const initalState = {
   },
   comments: [],
 };
-const store = createStore(reducer, initalState, applyMiddleware(thunk));
+const store = createStore(reducer, initialState, applyMiddleware(thunk));
 
 // Dispatch is a method on store and is the only way to trigger a state change
 // Here we dispatch a simple action which sets the state.  To see the
@@ -58,6 +58,11 @@ const store = createStore(reducer, initalState, applyMiddleware(thunk));
 
 // TODO remove below code
 // Anything that needs to run immediately upon page load goes below
+// There are three main methods on the store
+// 1. getState: retrieves the current state
+// 2. dispatch: dispatches an action to change the state of your appliction
+// 3. subscribe: lets you register a callback that the store will call any
+//   time an action has been dispatched
 // EXAMPLE
 // store.dispatch((dispatch) => {
 //   if (auth.isSignedIn()) {

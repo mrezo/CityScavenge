@@ -10,14 +10,14 @@ module.exports = function (grunt) {
     //   }
     // },
 
-    // mochaTest: {
-    //   options: {
-    //     timeout: 4000
-    //   },
-    //   test: {
-    //     src: ['test_server/**/*.js']
-    //   }
-    // },
+    mochaTest: {
+      options: {
+        timeout: 4000
+      },
+      test: {
+        src: ['test_server/**/*.js']
+      }
+    },
 
     watch: {
       scripts: {
@@ -65,10 +65,10 @@ module.exports = function (grunt) {
   // grunt.loadNpmTasks('grunt-mocha-casperjs');
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // grunt.registerTask('test', '', function() {
-  // var taskList = ['mochaTest', 'mocha_casperjs'];
-  //   grunt.task.run(taskList);
-  // });
+  grunt.registerTask('test', '', function () {
+  var taskList = ['mochaTest'];
+    grunt.task.run(taskList);
+  });
 
   grunt.registerTask('startserver', '', function () {
     var taskList = ['webpack', 'concurrent', 'nodemon', 'watch'];
