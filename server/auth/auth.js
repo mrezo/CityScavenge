@@ -45,8 +45,9 @@ passport.use(new GoogleStrategy.OAuth2Strategy({
   // Create a user if it is a new user, otherwise just get the user from the DB
   User
     .findOrCreate({
-        googleId: profile.id
-      },
+      googleId: profile.id
+    },
     function(err, user) {
       return done(err, user);
     });
+  }));

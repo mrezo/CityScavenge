@@ -14,8 +14,10 @@ module.exports = function (app, express) {
   app.get('/api/geo/gamestart', finishLineController.searchGoogle);
   app.post('/api/geo/distance', finishLineController.getDistance);
 
-  // auth routes
+  //google auth routes
   app.post('/api/login', auth.checkAuth);
+
+  app.post('/api/googleUser', userUtils.newGoogleUser);
 
   app.get('/auth/google', auth.handleGoogleLogin);
 

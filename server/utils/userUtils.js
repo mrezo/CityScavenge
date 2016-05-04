@@ -65,34 +65,35 @@ module.exports = (function(req, res) {
         });
       });
     },
-  };
   
   newGoogleUser: function(req, res) {
     //create a connection first
     pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if (err) {
-          done();
-          console.log(err);
-        }
-    }
+      // Handle connection errors
+      if (err) {
+        done();
+        console.log(err);
+      }
 
     //add a user
-    var queryAddUser = client.query("INSERT INTO users (username, googleName, google_id) VALUES ($1, $2, $3)", [req.body.username, /*whatever I call this in post request*/req.body.googleName, req.body.google_id]);
-            queryAddUser.on('end', function() {
-              done();
-            });
+    var queryAddUser = client.query("INSERT INTO users (username, googleName, google_id) VALUES ($1, $2, $3)", [req.body.displayName, req.body.name, req.body.google_id]);
+      queryAddUser.on('end', function() {
+        done();
+      });
 
     var queryRetrieveUser = client.query("SELECT * FROM users WHERE username = $1", [req.body.username]);
-            var result = [];
-            // Stream results back one row at a time
-            queryRetrieveUser.on('row', function(row) {
-              result.push(row);
-            });
-            queryRetrieveUser.on('end', function() {
-              done();
-              return res.json(result);
-            }
+      var result = [];
+      // Stream results back one row at a time
+      queryRetrieveUser.on('row', function(row) {
+        result.push(row);
+      });
+      queryRetrieveUser.on('end', function() {
+        done();
+        return res.json(result);
+      });
+    });
+  }
+};
 
   return userUtils;
 })();
