@@ -24,8 +24,7 @@ function signUpAttempt(state, action) {
 
 // TODO replace actions below with our requests
 // Below are examples of reducers being used
-module.exports = function (state, action) {
-  var state = state || [];
+export default (state = [], action) => {
   switch (action.type) {
     case 'CHANGE_USER_NAME':
       return [...state, {
