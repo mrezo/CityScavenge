@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import { GameWindow } from './components/GameWindow';
+import { LandingPage } from './components/LandingPage';
+import { Dashboard } from './components/Dashboard';
 import { AppContainer } from './components/App';
 
 // in ES6 you can assign variables from an object using
@@ -107,7 +110,9 @@ ReactDOM.render(
   (<Provider store={store}>
     <div>
       <Router history={hashHistory}>
-        <Route component={AppContainer} path="/" />
+        <Route component={LandingPage} path="/" />
+        <Route component={Dashboard} path="/dashboard" />
+        <Route component={GameWindow} path="/game" />
       </Router>
     </div>
   </Provider>),
