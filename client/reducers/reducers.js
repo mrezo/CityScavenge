@@ -1,3 +1,5 @@
+// import { initialState } from '../index.js';
+
 // Helper function for below
 function signInAttempt(state, action) {
   // ideally below I would somehow change the path to only show the encounter
@@ -24,14 +26,14 @@ function signUpAttempt(state, action) {
 
 // TODO replace actions below with our requests
 // Below are examples of reducers being used
-export default (state = [], action) => {
+export default (state = {}, action) => {
   switch (action.type) {
+    // the below is used for testing
+    // Do not delete
     case 'CHANGE_USER_NAME':
-      return [...state, {
-        user: {
-          username: action.username,
-        },
-      }];
+      return Object.assign({}, state, {
+        username: action.username,
+      });
     case 'SIGN_IN_ATTEMPT':
       return signInAttempt(state, action);
     case 'SIGN_UP_ATTEMPT':

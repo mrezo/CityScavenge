@@ -12,11 +12,11 @@ module.exports = function (grunt) {
 
     mochaTest: {
       options: {
-        timeout: 4000
+        timeout: 4000,
       },
       test: {
-        src: ['test_server/**/*.js']
-      }
+        src: ['test_server/**/*.js'],
+      },
     },
 
     watch: {
