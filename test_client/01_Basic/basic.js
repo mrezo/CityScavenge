@@ -18,11 +18,11 @@ import reducer from '../../client/reducers/reducers';
 
 describe('Reducer', () => {
   it('should return the initial state', () => {
-    const stateBefore = [];
+    const stateBefore = {};
     const action = {
       type: 'NEW_ACTION',
     };
-    const stateAfter = [];
+    const stateAfter = {};
 
     deepFreeze(stateBefore);
     deepFreeze(action);
