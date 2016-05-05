@@ -1,75 +1,54 @@
-import expect from 'expect';
-import * as actions from '../../client/TodoActions';
-import * as types from '../../constants/ActionTypes';
-import reducer from '../../reducers/todos';
+const expect = require('chai').expect;
+const deepFreeze = require('deep-freeze-node');
+// import * as actions from '../../client/TodoActions';
+// import * as types from '../../constants/ActionTypes';
+import reducer from '../../client/reducers/reducers';
 
-describe('actions', () => {
-  it('should create an action to add a todo', () => {
-    const text = 'Finish docs';
-    const expectedAction = {
-      type: types.ADD_TODO,
-      text,
-    };
-    expect(actions.addTodo(text)).toEqual(expectedAction);
-  });
-});
+// TODO example to test an action below
+// describe('actions', () => {
+//   it('should create an action to add a todo', () => {
+//     const text = 'Finish docs';
+//     const expectedAction = {
+//       type: types.ADD_TODO,
+//       text,
+//     };
+//     expect(actions.addTodo(text)).toEqual(expectedAction);
+//   });
+// });
 
-describe('todos reducer', () => {
+describe('Reducer', () => {
   it('should return the initial state', () => {
+    const stateBefore = [];
+    const action = {
+      type: 'NEW_ACTION',
+    };
+    const stateAfter = [];
+
+    deepFreeze(stateBefore);
+    deepFreeze(action);
+
     expect(
-      reducer(undefined, {})
-    ).toEqual([
-      {
-        text: 'Use Redux',
-        completed: false,
-        id: 0,
-      },
-    ]);
+      reducer(stateBefore, action)
+    ).to.eql(stateAfter);
   });
 
-  it('should handle ADD_TODO', () => {
-    expect(
-      reducer([], {
-        type: types.ADD_TODO,
-        text: 'Run the tests',
-      })
-    ).toEqual(
-      [
-        {
-          text: 'Run the tests',
-          completed: false,
-          id: 0,
-        },
-      ]
-    );
+  it('should return a modified username in state', () => {
+    const stateBefore = {
+      username: 'Alexander',
+    };
+    const action = {
+      type: 'CHANGE_USER_NAME',
+      username: 'Hao',
+    };
+    const stateAfter = {
+      username: 'Hao',
+    };
+
+    deepFreeze(stateBefore);
+    deepFreeze(action);
 
     expect(
-      reducer(
-        [
-          {
-            text: 'Use Redux',
-            completed: false,
-            id: 0,
-          },
-        ],
-        {
-          type: types.ADD_TODO,
-          text: 'Run the tests',
-        }
-      )
-    ).toEqual(
-      [
-        {
-          text: 'Run the tests',
-          completed: false,
-          id: 1,
-        },
-        {
-          text: 'Use Redux',
-          completed: false,
-          id: 0,
-        },
-      ]
-    );
+      reducer(stateBefore, action)
+    ).to.eql(stateAfter);
   });
 });
