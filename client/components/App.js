@@ -1,40 +1,17 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { HeaderContainer } from './Header';
-import { GameWindowContainer } from './GameWindow';
-import { mapStateToProps, mapDispatchToProps } from '../props';
+import React from 'react';
+import { GameWindow } from './GameWindow';
+import { LandingPage } from './LandingPage';
+import { Dashboard } from './Dashboard';
+import { Router, Route, hashHistory } from 'react-router';
 
-export class App extends React.Component {
-  constructor(props) {
-    super(props);
+const App = () => (
+  <div>
+    <Router history={hashHistory}>
+      <Route component={LandingPage} path="/" />
+      <Route component={Dashboard} path="/dashboard" />
+      <Route component={GameWindow} path="/game" />
+    </Router>
+  </div>
+);
 
-    // Current state of the app
-    // ===================================
-    // this.state = {
-    //   currentUser: props.game.username,
-    //   userImage: props.game.image,
-    // };
-  }
-
-  // Initial rendering of the app
-  // ===================================
-  render() {
-    return (
-      <div>
-        <div>
-          <HeaderContainer />
-        </div>
-        <div>
-          <GameWindowContainer user={this.props.username} />
-        </div>
-      </div>
-    );
-  }
-}
-
-// Prop validation throws an error if data you receive is invalid
-App.propTypes = {
-  username: PropTypes.string,
-};
-
-export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
