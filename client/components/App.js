@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { GameWindow } from './GameWindow';
 import { LandingPage } from './LandingPage';
 import { Dashboard } from './Dashboard';
@@ -13,10 +13,5 @@ const App = () => (
     </Router>
   </div>
 );
-
-// Prop validation throws an error if data you receive is invalid
-App.propTypes = {
-  username: PropTypes.string,
-};
 
 export default App;

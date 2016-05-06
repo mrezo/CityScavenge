@@ -11,7 +11,7 @@ function signUpAttempt(state, action) {
   return state;
 }
 
-export default (state = [], action) => {
+const auth = (state = [], action) => {
   switch (action.type) {
     case 'CHANGE_USER_NAME':
       return [...state, {
@@ -47,3 +47,4 @@ export default (state = [], action) => {
       return state;
   }
 };
+export default auth;

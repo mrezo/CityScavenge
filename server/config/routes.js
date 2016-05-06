@@ -11,8 +11,8 @@ module.exports = function (app, express) {
   app.get('/api/user/:id', userUtils.allUsers);
 
   // location routing
-  app.get('/api/geo/gamestart', auth.checkAuth, finishLineController.searchGoogle);
-  app.post('/api/geo/distance', auth.checkAuth, finishLineController.getDistance);
+  app.get('/api/geo/gamestart', finishLineController.searchGoogle);
+  app.post('/api/geo/distance', finishLineController.getDistance);
 
   // google auth routes
   app.post('/api/login', auth.checkAuth);
