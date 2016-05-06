@@ -5,7 +5,10 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import cityHunt from './reducers/index';
 
-const store = createStore(cityHunt);
+const store = createStore(cityHunt, {
+  auth: {},
+  leftNav: { visible: false },
+});
 
 ReactDOM.render(
   <Provider store={store}>
