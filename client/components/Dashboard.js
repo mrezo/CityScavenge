@@ -8,10 +8,8 @@ import LeftNav from 'material-ui/lib/left-nav';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import MenuItem from 'material-ui/lib/menus/menu-item';
-import Card from 'material-ui/lib/card/card';
-import CardHeader from 'material-ui/lib/card/card-header';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardTitle from 'material-ui/lib/card/card-title';
+import DashboardCard from './DashboardCard';
+
 // import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 // injectTapEventPlugin();
 
@@ -51,30 +49,8 @@ export class Dashboard extends React.Component {
         <Tabs>
           <Tab onClick={() => { alert(' TESTING'); }} label="Old Games" >
             <div>
-              <Card>
-                <CardHeader
-                  title="Retro Pub Hunt"
-                  subtitle="A stroll around SF's coolest retro pubs"
-                  avatar="http://lorempixel.com/100/100/nature/"
-                />
-                <CardMedia
-                  overlay={<CardTitle title="Ricky's Bar" subtitle="5th and Folsom" />}
-                >
-                  <img src="http://cdn.partyearth.com/photos/842716c040ac94a9187c2d969db6bb03/toronado_s345x230.jpg?1375037264" />
-                </CardMedia>
-              </Card>
-              <Card>
-                <CardHeader
-                  title="Retro Pub Hunt"
-                  subtitle="A stroll around SF's coolest retro pubs"
-                  avatar="http://lorempixel.com/100/100/nature/"
-                />
-                <CardMedia
-                  overlay={<CardTitle title="Ricky's Bar" subtitle="5th and Folsom" />}
-                >
-                  <img src="http://cdn.partyearth.com/photos/842716c040ac94a9187c2d969db6bb03/toronado_s345x230.jpg?1375037264" />
-                </CardMedia>
-              </Card>
+              <DashboardCard />
+              <DashboardCard />
             </div>
           </Tab>
           <Tab label="Current Games" >
