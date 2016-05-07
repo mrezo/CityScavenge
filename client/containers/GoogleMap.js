@@ -1,6 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision,placeFinishpoint, finishpointCollision } from '../actions/index';
+import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/index';
+// Genevieve Sublette [7:20 PM] 
+import fetch from 'isomorphic-fetch'
+
+export function startGame() {
+  return dispatch => {
+    fetch(`/api/geo/gamestart`, (response) => {
+      if(response.status == 200){
+       // Use a normal function to set the received state
+        dispatch(initializeMap(response.json)); 
+      }else { 
+        dispatch(someError)
+      }
+    })
+  }
+ }
+
+ function initializeMap(data) {
+  return { type: 'SET_MAP', data: data };
+ }
 
 const GoogleMap = () => {
   <div id="map"></div>;
@@ -16,27 +35,59 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // Places a marker on the user's location
-    placeMarker() {
-      // TODO place in reducer
-      // const userOptions = {
-      //   position: { lat: this.state.userLat, lng: this.state.userLng },
-      //   map: this.state.map,
-      //   title: 'user',
-      //   label: 'U',
-      // };
-      this.setState({
-        userMarker: new google.maps.Marker(userOptions),
-      });
-      dispatch(placeUserMarker('Michael', la));
+
+    placeCheckpoint: (map) => {
+
+      dispatch(placeCheckpoint());
     },
-    deleteMarker: () => {
+
+    checkpointCollision: () => {
+      dispatch(checkpointCollision());
+    },
+
+    createMap: () => {
+      // TODO
+      const mapOptions = {
+        center: { lat: 37.7836970, lng: -122.4089660 },
+        zoom: 15,
+      };
+
+      this.setState({
+        map: new google.maps.Map(document.getElementById('map'), mapOptions),
+      });
+
+      dispatch(createMap());
+    },
+
+    placeFinishPoint: (map) => {
+      // TODO
+      const endOptions = {
+        position: { lat: this.state.endLat, lng: this.state.endLng },
+        map: this.state.map,
+        title: 'Finish',
+        label: 'F',
+      };
+
+      this.setState({
+        endMarker: new google.maps.Marker(endOptions),
+      });
+
+      dispatch(placeFinishPoint(map));
+    },
+
+    finishPointCollision: () => {
+
+      dispatch(finishPointCollision());
+    },
+
+    // Places a marker on the user's location
+    placeMarker: (map, title, lat, lng) => {
+      dispatch(placeUserMarker(map, title, lat, lng));
+    },
+    deleteMarker: (title) => {
       // Necessary?
       // this.state.userMarker.setMap(null);
-      dispatch(deleteUserMarker('Michael'));
-    },
-    handleToggle: () => {
-      dispatch(toggleNav());
+      dispatch(deleteUserMarker(title));
     },
   };
 };
