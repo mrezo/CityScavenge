@@ -25,33 +25,45 @@ module.exports = (function(req, res) {
         });
       });
     },
-  
   newUser: function(req, res) {
-    //create a connection first
     pg.connect(connectionString, function(err, client, done) {
-      // Handle connection errors
       if (err) {
         done();
         console.log(err);
       }
-
-      //add a user
       var queryAddUser = client.query("INSERT INTO users (username, googleName, google_id) VALUES ($1, $2, $3)", [req.body.displayName, req.body.name, req.body.google_id]);
-      queryAddUser.on('end', function() {
+      queryAddUser.on('end', function () {
         done();
         var queryRetrieveUser = client.query("SELECT * FROM users WHERE username = $1", [req.body.displayName]);
         var result = [];
-        // Stream results back one row at a time
-        queryRetrieveUser.on('row', function(row) {
+        queryRetrieveUser.on('row', function (row) {
           result.push(row);
         });
-        queryRetrieveUser.on('end', function() {
+        queryRetrieveUser.on('end', function () {
           done();
           return res.json(result);
         });
       });
     });
-  }
+  },
+  findUser: function(field, value) {
+    pg.connect(connectionString, function(err, client, done) {
+      if (err) {
+        done();
+        console.log(err);
+      }
+        var queryRetrieveUser = client.query("SELECT * FROM users WHERE $1 = $2", [field, value]);
+        var result = [];
+        queryRetrieveUser.on('row', function (row) {
+          result.push(row);
+        });
+        queryRetrieveUser.on('end', function () {
+          done();
+          return JSON.stringify(result);
+        });
+      });
+    });
+  },
 };
 
   return userUtils;
