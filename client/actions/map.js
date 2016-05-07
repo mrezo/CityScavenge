@@ -1,10 +1,24 @@
-export const createMap = (lat, lng) => {
+export const createMap = (data) => {
   return {
     type: 'CREATE_MAP',
-    lat,
-    lng,
+    lat: data.lat,
+    lng: data.lng,
   };
 };
+
+export const startGame = () => {
+  return dispatch => {
+    fetch('/api/geo/gamestart', (response) => {
+      if (response.status === 200) {
+       // Use a normal function to set the received state
+        dispatch(createMap(response.json));
+      } else {
+        // TODO: error handling
+        console.log('oops in startGame');
+      }
+    });
+  };
+ };
 
 export const placeUserMarker = (map, title, lat, lng) => {
   return {
