@@ -1,16 +1,18 @@
-const user = (state, action) => {
+const user = (state = {}, action) => {
   switch (action.type) {
     case 'PLACE_USER_MARKER':
       if (state.title !== action.title) {
         return state;
       }
       const userOptions = {
-        position: { lat: state.lat, lng: state.lng },
-        map: state.map,
+        position: { lat: action.lat, lng: action.lng },
+        map: action.map,
         title: state.title,
         label: state.label,
       };
       return Object.assign({}, state, {
+        lat: action.lat,
+        lng: action.lng,
         marker: new google.maps.Marker(userOptions),
       });
     case 'DELETE_USER_MARKER':
@@ -25,7 +27,7 @@ const user = (state, action) => {
   }
 };
 
-const users = (state = {}, action) => {
+const users = (state = [], action) => {
   switch (action.type) {
     case 'PLACE_USER_MARKER':
       return state.map(u =>
