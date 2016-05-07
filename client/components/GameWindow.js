@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { mapStateToPropsWindow, mapDispatchToPropsWindow } from '../props';
-import AppBar from 'material-ui/lib/app-bar';
-import LeftNav from 'material-ui/lib/left-nav';
 import IconMenu from 'material-ui/lib/menus/icon-menu';
 import IconButton from 'material-ui/lib/icon-button';
 import FontIcon from 'material-ui/lib/font-icon';
@@ -14,6 +12,9 @@ import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
+import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
+import VisibleTopAppBar from '../containers/VisibleTopAppBar';
+import GoogleMap from '../containers/GoogleMap';
 
 export class GameWindow extends React.Component {
   constructor(props) {
@@ -123,10 +124,6 @@ export class GameWindow extends React.Component {
       userMarker: new google.maps.Marker(userOptions),
       endMarker: new google.maps.Marker(endOptions),
     });
-
-    this.state.map.addListener('click', (event) => {
-      this.addMarker(event.latLng);
-    });
   }
 
   // Places a marker on the user's location
@@ -151,11 +148,9 @@ export class GameWindow extends React.Component {
   render() {
     return (
       <div className="game-wrapper">
-        <LeftNav docked={false} width={200} open={this.state.open} onRequestChange={open => this.setState({ open })}>
-            <MenuItem onTouchTap={this.handleClose}>Logout</MenuItem>
-        </LeftNav>
-        <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onLeftIconButtonTouchTap={this.handleToggle} />
-        <div id="map"></div>
+      <VisibleDashboardLeftNav />
+      <VisibleTopAppBar />
+        <GoogleMap />
         <Toolbar className="bottom-toolbar">
           <ToolbarGroup firstChild={true} float="left">
             <DropDownMenu value={3}>
@@ -190,4 +185,3 @@ export class GameWindow extends React.Component {
   }
 }
 
-export const GameWindowContainer = connect(mapStateToPropsWindow, mapDispatchToPropsWindow)(GameWindow);
