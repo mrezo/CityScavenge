@@ -45,23 +45,25 @@ export class GameWindow extends React.Component {
           endLng: data.longitude,
         });
         // TODO dispatch to check collisions
+        // Basically if this ajax call returns true for a user, only then should
+        //   an action be dispatched to change the user's collison field in the state
         this.updateCoords();
         // TODO dispatch create map
+        // TODO how to place the map on page if the map that references
+        //   document.getElementByID('map') is in the state
         this.initMap();
         // Watch the user's position every minute or so
         navigator.geolocation.watchPosition((position) => {
-          // TODO dispatch user location action
+          // TODO save user's location temporarily
           this.setState({
             userLat: position.coords.latitude,
             userLng: position.coords.longitude,
           });
-          // Delete the current user marker
           // TODO dispatch delete user marker action
           this.deleteMarker();
           // Update the coordinates on the back-end and check for a collision
           this.updateCoords();
-          // TODO Add the new user marker
-          // dispatch place user marker action
+          // TODO dispatch place user marker action
           this.placeMarker();
         }, () => {
           console.log('Geolocation error!');
@@ -91,7 +93,7 @@ export class GameWindow extends React.Component {
       }),
       dataType: 'json',
       success: (data) => {
-        // dispatch finish point collision action
+        // dispatch finish point collision action if data === true
         this.setState({
           collision: data,
         });
