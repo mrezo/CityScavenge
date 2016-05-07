@@ -31,8 +31,10 @@ const store = createStore(cityHunt, {
     },
   ],
   finishPoint: {
+    title: 'Finish',
     lat: 0,
     lng: 0,
+    label: 'F',
     marker: 0,
     users: [
       {
