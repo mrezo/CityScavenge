@@ -35,49 +35,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
-    placeCheckpoint: (map) => {
-
-      dispatch(placeCheckpoint());
-    },
-
-    checkpointCollision: () => {
-      dispatch(checkpointCollision());
-    },
-
-    createMap: () => {
-      // TODO
-      const mapOptions = {
-        center: { lat: 37.7836970, lng: -122.4089660 },
-        zoom: 15,
-      };
-
-      this.setState({
-        map: new google.maps.Map(document.getElementById('map'), mapOptions),
-      });
-
-      dispatch(createMap());
-    },
-
-    placeFinishPoint: (map) => {
-      // TODO
-      const endOptions = {
-        position: { lat: this.state.endLat, lng: this.state.endLng },
-        map: this.state.map,
-        title: 'Finish',
-        label: 'F',
-      };
-
-      this.setState({
-        endMarker: new google.maps.Marker(endOptions),
-      });
-
-      dispatch(placeFinishPoint(map));
-    },
-
-    finishPointCollision: () => {
-
-      dispatch(finishPointCollision());
+    createMap: (lat, lng) => {
+      dispatch(createMap(lat, lng));
     },
 
     // Places a marker on the user's location
@@ -88,6 +47,20 @@ const mapDispatchToProps = (dispatch) => {
       // Necessary?
       // this.state.userMarker.setMap(null);
       dispatch(deleteUserMarker(title));
+    },
+
+    placeCheckpoint: (map, title, lat, lng) => {
+      dispatch(placeCheckpoint(map, title, lat, lng));
+    },
+    checkpointCollision: (locTitle, userTitle) => {
+      dispatch(checkpointCollision(locTitle, userTitle));
+    },
+
+    placeFinishPoint: (map, lat, lng) => {
+      dispatch(placeFinishPoint(map, lat, lng));
+    },
+    finishPointCollision: (userTitle, timeIn, locTitle) => {
+      dispatch(finishPointCollision(userTitle, timeIn, locTitle));
     },
   };
 };
