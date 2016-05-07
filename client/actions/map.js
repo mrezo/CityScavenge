@@ -6,9 +6,10 @@ export const createMap = (lat, lng) => {
   };
 };
 
-export const placeUserMarker = (title, lat, lng) => {
+export const placeUserMarker = (map, title, lat, lng) => {
   return {
     type: 'PLACE_USER_MARKER',
+    map,
     title,
     lat,
     lng,
@@ -22,9 +23,10 @@ export const deleteUserMarker = (title) => {
   };
 };
 
-export const placeCheckpoint = (title, lat, lng) => {
+export const placeCheckpoint = (map, title, lat, lng) => {
   return {
     type: 'PLACE_CHECKPOINT',
+    map,
     title,
     lat,
     lng,
@@ -40,9 +42,10 @@ export const checkpointCollision = (locTitle, userTitle) => {
   };
 };
 
-export const placeFinishpoint = (lat, lng) => {
+export const placeFinishPoint = (map, lat, lng) => {
   return {
     type: 'PLACE_FINISHPOINT',
+    map,
     lat,
     lng,
   };
@@ -50,7 +53,7 @@ export const placeFinishpoint = (lat, lng) => {
 
 // Modifies the user's collision boolean in the finishpoint's user list
 // After it has checked all the checkpoint's user collisions
-export const finishpointCollision = (locTitle, userTitle) => {
+export const finishPointCollision = (locTitle, userTitle) => {
   return {
     type: 'FINISHPOINT_COLLISION',
     locTitle,
