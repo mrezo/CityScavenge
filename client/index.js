@@ -20,6 +20,7 @@ const store = createStore(cityHunt, {
       title: 'Fun',
       lat: 0,
       lng: 0,
+      marker: 0,
       users: [
         {
           title: 'Michael',
@@ -32,6 +33,7 @@ const store = createStore(cityHunt, {
   finishPoint: {
     lat: 0,
     lng: 0,
+    marker: 0,
     users: [
       {
         title: 'Michael',
@@ -46,7 +48,6 @@ const store = createStore(cityHunt, {
       google_id: '1',
       lat: 0,
       lng: 0,
-      map: 0,
       label: 'U',
       marker: 0,
     },
