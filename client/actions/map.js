@@ -53,10 +53,11 @@ export const placeFinishPoint = (map, lat, lng) => {
 
 // Modifies the user's collision boolean in the finishpoint's user list
 // After it has checked all the checkpoint's user collisions
-export const finishPointCollision = (locTitle, userTitle) => {
+export const finishPointCollision = (userTitle, timeIn, locTitle) => {
   return {
     type: 'FINISHPOINT_COLLISION',
-    locTitle,
     userTitle,
+    timeIn,
+    locTitle,
   };
 };
