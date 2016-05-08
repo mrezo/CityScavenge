@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import cityHunt from './reducers/index';
+import { startGame } from './actions/map.js';
 
 const store = createStore(cityHunt, {
   auth: {},
@@ -54,7 +56,11 @@ const store = createStore(cityHunt, {
       marker: 0,
     },
   ],
-});
+},
+applyMiddleware(thunkMiddleware)
+);
+
+store.dispatch(startGame());
 
 ReactDOM.render(
   <Provider store={store}>
