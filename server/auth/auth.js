@@ -6,11 +6,6 @@ var port = process.env.PORT || 1337;
 var callbackServer = '';
 
 if (process.env.SERVER === 'LIVE') {
-  callbackServer = 'http://faunadex.willfulbard.com';
-  if (port !== 80) {
-    callbackServer += ':' + port;
-  }
-} else {
   callbackServer = 'http://localhost';
   if (port !== 80) {
     callbackServer += ':' + port;
@@ -48,8 +43,10 @@ passport.deserializeUser(function (user, done) {
   if (user) {
     User.findUser('google_id', user.id, function (err, user) {
       if (err) {
+        console.log('google error: ', err);
         return done(err);
       }
+      console.log('google done');
       done(err, user);
     });
   }
@@ -58,10 +55,15 @@ passport.deserializeUser(function (user, done) {
 passport.use(new GoogleStrategy({
   clientID: googleKey.CLIENT_ID,
   clientSecret: googleKey.CLIENT_SECRET,
-  callbackURL: callbackServer + '/auth/google/callback',
+  callbackURL: '/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
   // Create a user if it is a new user, otherwise just get the user from the DB
   User.findUser('google_id', profile.id, function (err, user) {
-    return done(err, user);
+    console.log(user);
+    if (!user[0]) {
+      User.createUser(profile.displayName, profile.id, profile.name.givenName, function (err, user) {
+        return done(err, user);
+      });
+    }
   });
 }));
