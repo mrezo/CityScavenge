@@ -10,25 +10,31 @@ export const createMap = (data) => {
   };
 };
 
-export const startGame = () => {
-  return dispatch => {
-    fetch('api/geo/gamestart', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    }).then((response) => {
-      if (response.status === 200) {
-        console.log('this is the response', response);
-       // Use a normal function to set the received state
-        dispatch(createMap(response));
-      } else {
-        // TODO: error handling
-        console.log('oops in startGame');
-      }
-    });
-  };
+export const startGame = (callback) => {
+  fetch('api/geo/gamestart', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      console.log('Server error', response);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log('HOPE THIS IS THE RIGHT DATA', data);
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error', error);
+    return;
+  });
 };
+
+//dispatch(createMap(response.json()));
 
 export const placeUserMarker = (data) => {
   return {
