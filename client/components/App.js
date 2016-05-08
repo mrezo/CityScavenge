@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameWindow } from './GameWindow';
+import GameWindow from './GameWindow';
 import { LandingPage } from './LandingPage';
 import Dashboard from './Dashboard';
 import { Router, Route, hashHistory } from 'react-router';
