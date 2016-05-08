@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/index';
+import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
 
-const GoogleMap = () => {
-  <div id="map"></div>;
-};
+const GoogleMap = () => (
+  <div id="map"></div>
+);
 
 const mapStateToProps = (state) => {
   return {
-    lat: state.finishLine.lat,
-    lng: state.finishLine.lng,
+    lat: state.finishPoint.lat,
+    lng: state.finishPoint.lng,
   };
 };
 
@@ -49,8 +50,6 @@ const mapDispatchToProps = (dispatch) => {
 const GoogleMapContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(GameWindow);
+)(GoogleMap);
 
 export default GoogleMapContainer;
-export default GoogleMap;
-
