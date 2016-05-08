@@ -21,11 +21,11 @@ module.exports = function (app, express) {
 
   app.get('/auth/google', auth.handleGoogleLogin);
 
-  app.get('/auth/google/callback', auth.authenticateGoogleLogin,
-    function (req, res) {
-      res.redirect('/home');
-    }
-  );
+  // app.get('/auth/google/callback', auth.authenticateGoogleLogin,
+  //   function (req, res) {
+  //     res.redirect('/home');
+  //   }
+  // );
 
   // // rentME!
   // app.get('/auth/google', passport.authenticate('google', {
@@ -44,8 +44,8 @@ module.exports = function (app, express) {
   );
 
   app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', { failureRedirect: '/' }),
     function (req, res) {
-      res.redirect('/');
+      res.redirect('/dashboard');
     });
 };
