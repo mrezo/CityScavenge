@@ -21,31 +21,9 @@ module.exports = function (app, express) {
 
   app.get('/auth/google', auth.handleGoogleLogin);
 
-  // app.get('/auth/google/callback', auth.authenticateGoogleLogin,
-  //   function (req, res) {
-  //     res.redirect('/home');
-  //   }
-  // );
-
-  // // rentME!
-  // app.get('/auth/google', passport.authenticate('google', {
-  //   scope: [
-  //     'https://www.googleapis.com/auth/userinfo.profile',
-  //     'https://www.googleapis.com/auth/userinfo.email',
-  //   ],
-  // }));
-
-  app.get('/auth/google',
-    passport.authenticate('google', {
-      scope: [
-        'https://www.googleapis.com/auth/plus.login',
-      ],
-    })
-  );
-
-  app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/' }),
+  app.get('/auth/google/callback', auth.authenticateGoogleLogin,
     function (req, res) {
-      res.redirect('/dashboard');
-    });
+      res.redirect('#/dashboard');
+    }
+  );
 };
