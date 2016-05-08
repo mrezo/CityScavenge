@@ -60,12 +60,24 @@ module.exports = {
       }
       client.query("SELECT * FROM users WHERE "
       + "google_id = '114510016389042396254'", [], function (err, result) {
+        if (err) {
+          done();
+          return cb(err, null);
+        }
         if (!result.rows[0]) {
           client.query('INSERT INTO users '
           + '(displayname, google_id, name) '
           + 'VALUES ($1, $2, $3)', [displayname, googleid, name], function (err, results) {
+            if (err) {
+              done();
+              return cb(err, null);
+            }
             client.query("SELECT * FROM users WHERE "
             + "google_id = '114510016389042396254'", [], function (err, user) {
+              if (err) {
+                done();
+                return cb(err, null);
+              }
               done();
               return cb(null, user.rows[0]);
             });
