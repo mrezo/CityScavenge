@@ -1,7 +1,9 @@
 var path = require('path');
+var passport = require('passport');
 var userUtils = require(path.join(__dirname, '../utils/userUtils'));
 var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 var auth = require(__dirname + '/../auth/auth.js');
+var User = require('./models/userModel.js');
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
@@ -25,13 +27,25 @@ module.exports = function (app, express) {
     }
   );
 
-  app.get('/auth/logout', function (req, res) {
-    req.session.destroy(function () {
+  // // rentME!
+  // app.get('/auth/google', passport.authenticate('google', {
+  //   scope: [
+  //     'https://www.googleapis.com/auth/userinfo.profile',
+  //     'https://www.googleapis.com/auth/userinfo.email',
+  //   ],
+  // }));
+
+  app.get('/auth/google',
+    passport.authenticate('google', {
+      scope: [
+        'https://www.googleapis.com/auth/plus.login',
+      ],
+    })
+  );
+  
+  app.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function (req, res) {
       res.redirect('/');
     });
-  }
-    // req.logout();
-    // res.redirect('/')
-  );
-
 };
