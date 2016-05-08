@@ -56,7 +56,7 @@ module.exports = {
     pg.connect(connectionString, function (err, client, done) {
       if (err) {
         done();
-        console.log('createUser error: ', err);
+        console.log('findOrCreate error: ', err);
       }
       client.query("SELECT * FROM users WHERE "
       + "google_id = '114510016389042396254'", [], function (err, result) {
