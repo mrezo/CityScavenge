@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import cityHunt from './reducers/index';
 import { startGame } from './actions/map.js';
+import fetch from 'isomorphic-fetch';
+
 
 const store = createStore(cityHunt, {
   auth: {},
@@ -61,6 +63,23 @@ applyMiddleware(thunkMiddleware)
 );
 
 store.dispatch(startGame());
+  // console.log('store is dispatching');
+  // return dispatch => {
+  //   fetch('api/geo/gamestart', {
+  //     method: 'GET',
+  //     headers: {
+  //       Accept: 'application/json',
+  //     },
+  //   }).then((response) => {
+  //     console.log('this is the response in index.js', response);
+  //     if (response.status === 200) {
+  //       console.log('this is the response', response);
+  //     } else {
+  //       // TODO: error handling
+  //       console.log('oops in startGame');
+  //     }
+  //   });
+  // };
 
 ReactDOM.render(
   <Provider store={store}>
