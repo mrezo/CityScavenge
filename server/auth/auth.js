@@ -1,7 +1,7 @@
 var googleKey = require(__dirname + '/../config/googlemaps.js');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var User = require('./models/userModel.js');
+var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
 var callbackServer = '';
 
