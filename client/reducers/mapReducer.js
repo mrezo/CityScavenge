@@ -1,5 +1,4 @@
 const mapReducer = (state = {}, action) => {
-  console.log(state);
   switch (action.type) {
     case 'CREATE_MAP':
       const mapOptions = {

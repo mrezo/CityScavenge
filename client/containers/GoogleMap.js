@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/index';
 import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
-import { getUserLocationAndWatchID, stopWatching} from '../lib/locationController';
+import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
 
 class GoogleMap extends Component {
-  // = ({dispatch}) => (
+
   componentDidMount() {
-    getUserLocationAndWatchID();
-    createMap(userLat, userLng);
+    this.props.initialPos();
   }
 
   render() {
@@ -17,9 +16,10 @@ class GoogleMap extends Component {
       <div id="map"></div>
     );
   }
-};
+}
 
 GoogleMap.propTypes = {
+  initialPos: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -64,6 +64,11 @@ const mapDispatchToProps = (dispatch) => {
     },
     watchUser: () => {
       getUserLocationAndWatchID(dispatch);
+    },
+    initialPos: () => {
+      initialPosition(dispatch, (positionData) => {
+        dispatch(placeUserMarker(this.props.map, 'Michael', positionData));
+      });
     },
   };
 };
