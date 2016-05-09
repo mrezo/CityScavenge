@@ -19,15 +19,18 @@ exports.checkAuth = function (req, res, next) {
 exports.handleGoogleLogin = passport.authenticate('google', {
   scope: [
     'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email',
   ],
 });
 
 exports.authenticateGoogleLogin = passport.authenticate('google', {
-  successRedirect: '/#/dashboard',
   failureRedirect: '/',
 });
 
+// TODO implement logout
 exports.logout = function (req, res) {
+  console.log('logout');
   req.logout();
   res.redirect('/');
 };
@@ -49,18 +52,22 @@ rather than via login credentials.
 */
 
 passport.serializeUser(function (user, done) {
+  console.log('serialize: ', user);
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
+  console.log('deserializeUser: ', user);
   if (user) {
-    User.findUser('google_id', user.id, function (err, result) {
+    User.findUser('google_id', user.google_id, function (err, result) {
       if (err) {
         console.log('google error: ', err);
         return done(err);
       } else if (!result[0]) {
         done(err, null);
       } else {
+        console.log('result[0]: ', result[0]);
+        console.log('there');
         done(err, result[0]);
       }
     });
