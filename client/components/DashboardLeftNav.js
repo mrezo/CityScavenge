@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import LeftNav from 'material-ui/lib/left-nav';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import { Link } from 'react-router';
 
 const DashboardLeftNav = ({ handleToggle, visible }) => (
   <div>
@@ -8,7 +9,11 @@ const DashboardLeftNav = ({ handleToggle, visible }) => (
       <MenuItem onClick={e => {
         e.preventDefault();
         handleToggle();
-      }}>Logout</MenuItem>
+      }}>
+        <Link to="/">
+          Logout
+        </Link>
+      </MenuItem>
     </LeftNav>
   </div>
 );
