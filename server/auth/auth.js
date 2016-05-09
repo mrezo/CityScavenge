@@ -52,12 +52,10 @@ rather than via login credentials.
 */
 
 passport.serializeUser(function (user, done) {
-  console.log('serialize: ', user);
   done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-  console.log('deserializeUser: ', user);
   if (user) {
     User.findUser('google_id', user.google_id, function (err, result) {
       if (err) {
@@ -66,8 +64,6 @@ passport.deserializeUser(function (user, done) {
       } else if (!result[0]) {
         done(err, null);
       } else {
-        console.log('result[0]: ', result[0]);
-        console.log('there');
         done(err, result[0]);
       }
     });
