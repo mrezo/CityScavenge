@@ -18,7 +18,7 @@ export const getUserLocationAndWatchID = (dispatch) => {
       longitude: position.coords.longitude,
     };
     // TODO: Pass Map as argument
-    dispatch(placeUserMarker('Michael', currentLocation));
+    dispatch(placeUserMarker(0, 'Michael', currentLocation));
     return currentLocation;
   };
 
