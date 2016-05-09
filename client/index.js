@@ -8,9 +8,9 @@ import cityHunt from './reducers/index';
 import { startGame } from './actions/map.js';
 import fetch from 'isomorphic-fetch';
 import createMap from './actions/map.js';
+import { getUserLocationAndWatchID, stopWatching} from './lib/locationController';
 
-
-const store = createStore(cityHunt, {
+const initialStore = {
   auth: {},
   leftNav: { visible: false },
   mapReducer: {
@@ -59,9 +59,15 @@ const store = createStore(cityHunt, {
       marker: 0,
     },
   ],
-},
-applyMiddleware(thunkMiddleware)
-);
+};
+
+const store = createStore(cityHunt, initialStore, applyMiddleware(thunkMiddleware));
+
+store.dispatch((dispatch) => {
+  getUserLocationAndWatchID(dispatch);
+  // dispatch(createMap());
+  // startGame(dispatch);
+});
 
 // store.dispatch( () => {
 //   createMap(data);

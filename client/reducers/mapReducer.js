@@ -1,4 +1,5 @@
 const mapReducer = (state = {}, action) => {
+  console.log(state);
   switch (action.type) {
     case 'CREATE_MAP':
       const mapOptions = {
@@ -7,8 +8,8 @@ const mapReducer = (state = {}, action) => {
       };
       return Object.assign({}, state, {
         map: new google.maps.Map(document.getElementById('map'), mapOptions),
-        lat: action.lat,
-        lng: action.lng,
+        centerLat: action.lat,
+        centerLng: action.lng,
       });
     default:
       return state;

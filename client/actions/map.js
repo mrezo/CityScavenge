@@ -9,7 +9,7 @@ export const createMap = (data) => {
   };
 };
 
-export const startGame = (callback) => {
+export const startGame = (dispatch) => {
   fetch('api/geo/gamestart', {
     method: 'GET',
     headers: {
@@ -25,7 +25,7 @@ export const startGame = (callback) => {
   })
   .then((data) => {
     console.log('HOPE THIS IS THE RIGHT DATA', data);
-    callback(data);
+    dispatch(createMap(data));
   })
   .catch((error) => {
     console.log('Error', error);
@@ -33,15 +33,23 @@ export const startGame = (callback) => {
   });
 };
 
-//dispatch(createMap(response.json()));
+// dispatch(createMap(response.json()));
 
-export const placeUserMarker = (data) => {
+export const getUserCoords = (lat, lng) => {
   return {
-    type: 'PLACE_USER_MARKER',
-    map,
-    title,
+    type: 'GET_USER_COORDS',
     lat,
     lng,
+  };
+};
+
+export const placeUserMarker = (map, title, data) => {
+  return {
+    type: 'PLACE_USER_MARKER',
+    map: state.mapReducer.map,
+    title,
+    lat: data.latitude,
+    lng: data.longitude,
   };
 };
 

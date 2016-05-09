@@ -5,6 +5,9 @@ import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
 
 const GoogleMap = () => (
+  // componentDidMount (){
+  //   createMap()
+  // }
   <div id="map"></div>
 );
 

@@ -1,4 +1,4 @@
-const checkpoints = (state = {}, action) => {
+const checkpoints = (state = [], action) => {
   switch (action.type) {
     case 'PLACE_CHECKPOINT':
       return {};
