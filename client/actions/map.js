@@ -1,7 +1,6 @@
 import 'isomorphic-fetch';
 
 export const createMap = (data) => {
-  console.log('createmap data', data);
   return {
     type: 'CREATE_MAP',
     lat: data.latitude,

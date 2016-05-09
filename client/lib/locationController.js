@@ -47,7 +47,6 @@ export const initialPosition = (dispatch, cb) => {
   let currentLocation;
 
   let showLocation = (position) => {
-    console.log('First Position', position);
     currentLocation =
     {
       latitude: position.coords.latitude,
