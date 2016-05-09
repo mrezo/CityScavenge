@@ -17,15 +17,6 @@ module.exports = {
         done();
         return cb(null, result.rows);
       });
-      var results = [];
-      // Stream results back one row at a time
-      queryFindUser.on('row', function (row) {
-        results.push(row);
-      });
-      queryFindUser.on('end', function () {
-        done();
-        return cb(null, results);
-      });
     });
   },
   createUser: function (displayname, googleid, name, cb) {
@@ -59,8 +50,8 @@ module.exports = {
         console.log('findOrCreate error: ', err);
       }
 
-      client.query('SELECT * FROM users '
-      + 'WHERE google_id = $1', [googleid], function(err, result) {
+      var queryFindUserString = "SELECT * FROM users WHERE google_id = '" + googleid + "'";
+      client.query(queryFindUserString, [], function(err, result) {
         if (err) {
           done();
           return cb(err, null);
@@ -83,9 +74,10 @@ module.exports = {
               return cb(null, user.rows[0]);
             });
           });
+        } else {
+          done();
+          return cb(null, result.rows[0]);
         }
-        done();
-        return cb(null, result.rows[0]);
       });
     });
   },
