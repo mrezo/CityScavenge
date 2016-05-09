@@ -14,9 +14,48 @@ import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
-import GoogleMap from '../containers/GoogleMap';
+import GoogleMapContainer from '../containers/GoogleMap';
+import fetch from 'isomorphic-fetch';
 
-export class GameWindow extends React.Component {
+const GameWindow = () => (
+  <div className="game-wrapper">
+  <VisibleDashboardLeftNav />
+  <VisibleTopAppBar />
+    <GoogleMapContainer />
+    <Toolbar className="bottom-toolbar">
+      <ToolbarGroup firstChild={true} float="left">
+        <DropDownMenu value={3}>
+          <MenuItem value={1} primaryText="All Broadcasts" />
+          <MenuItem value={2} primaryText="All Voice" />
+          <MenuItem value={3} primaryText="All Text" />
+          <MenuItem value={4} primaryText="Complete Voice" />
+          <MenuItem value={5} primaryText="Complete Text" />
+          <MenuItem value={6} primaryText="Active Voice" />
+          <MenuItem value={7} primaryText="Active Text" />
+        </DropDownMenu>
+      </ToolbarGroup>
+      <ToolbarGroup float="right">
+        <ToolbarTitle text="Options" />
+        <FontIcon className="muidocs-icon-custom-sort" />
+        <IconMenu
+          iconButtonElement={
+            <IconButton touch={true}>
+              <NavigationExpandMoreIcon />
+            </IconButton>
+          }
+        >
+          <MenuItem primaryText="Download" />
+          <MenuItem primaryText="More Info" />
+        </IconMenu>
+        <ToolbarSeparator />
+        <RaisedButton label="Create Broadcast" primary={true} />
+      </ToolbarGroup>
+    </Toolbar>
+  </div>
+);
+
+export default GameWindow;
+//}
   // constructor(props) {
   //   super(props);
 
@@ -32,80 +71,80 @@ export class GameWindow extends React.Component {
   //   };
   // }
 
-  componentDidMount() {
-    $.ajax({
-      type: 'GET',
-      url: '/api/geo/gamestart',
-      contentType: 'application/json',
-      dataType: 'json',
-      success: (data) => {
-        // TODO dispatch place finish point action
-        this.setState({
-          endLat: data.latitude,
-          endLng: data.longitude,
-        });
-        // TODO dispatch to check collisions
-        // Basically if this ajax call returns true for a user, only then should
-        //   an action be dispatched to change the user's collison field in the state
-        this.updateCoords();
-        // TODO dispatch create map
-        // TODO how to place the map on page if the map that references
-        //   document.getElementByID('map') is in the state
-        this.initMap();
-        // Watch the user's position every minute or so
-        navigator.geolocation.watchPosition((position) => {
-          // TODO save user's location temporarily
-          this.setState({
-            userLat: position.coords.latitude,
-            userLng: position.coords.longitude,
-          });
-          // TODO dispatch delete user marker action
-          this.deleteMarker();
-          // Update the coordinates on the back-end and check for a collision
-          this.updateCoords();
-          // TODO dispatch place user marker action
-          this.placeMarker();
-        }, () => {
-          console.log('Geolocation error!');
-        }, {
-          enableHighAccuracy: true,
-          maximumAge: 30000,
-          timeout: 27000,
-        });
-      },
-      error: (error) => {
-        console.log('error', error);
-      },
-    });
-  }
+  //componentDidMount() {
+    
+    // $.ajax({
+    //   type: 'GET',
+    //   url: '/api/geo/gamestart',
+    //   contentType: 'application/json',
+    //   dataType: 'json',
+    //   success: (data) => {
+    //     // TODO dispatch place finish point action
+    //     this.setState({
+    //       endLat: data.latitude,
+    //       endLng: data.longitude,
+    //     });
+    //     // TODO dispatch to check collisions
+    //     this.updateCoords();
+    //     // TODO dispatch create map
+    //     this.initMap();
+    //     // Watch the user's position every minute or so
+    //     navigator.geolocation.watchPosition((position) => {
+    //       // TODO dispatch user location action
+    //       this.setState({
+    //         userLat: position.coords.latitude,
+    //         userLng: position.coords.longitude,
+    //       });
+    //       // Delete the current user marker
+    //       // TODO dispatch delete user marker action
+    //       this.deleteMarker();
+    //       // Update the coordinates on the back-end and check for a collision
+    //       this.updateCoords();
+    //       // TODO Add the new user marker
+    //       // dispatch place user marker action
+    //       this.placeMarker();
+    //     }, () => {
+    //       console.log('Geolocation error!');
+    //     }, {
+    //       enableHighAccuracy: true,
+    //       maximumAge: 30000,
+    //       timeout: 27000,
+    //     });
+    //   },
+    //   error: (error) => {
+    //     console.log('error', error);
+    //   },
+    // });
+    // }
 
   // Updates the coordinates on the back-end and checks for a collision
-  updateCoords() {
-    $.ajax({
-      type: 'POST',
-      url: '/api/geo/distance',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        userLatitude: this.state.userLat,
-        userLongitude: this.state.userLng,
-        endpointLatitude: this.state.endLat,
-        endpointLongitude: this.state.endLng,
-      }),
-      dataType: 'json',
-      success: (data) => {
-        // dispatch finish point collision action if data === true
-        this.setState({
-          collision: data,
-        });
-      },
-      error: (error) => {
-        console.log('error', error);
-      },
-    });
-  }
+
+  // updateCoords() {
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/api/geo/distance',
+  //     contentType: 'application/json',
+  //     data: JSON.stringify({
+  //       userLatitude: this.state.userLat,
+  //       userLongitude: this.state.userLng,
+  //       endpointLatitude: this.state.endLat,
+  //       endpointLongitude: this.state.endLng,
+  //     }),
+  //     dataType: 'json',
+  //     success: (data) => {
+  //       // dispatch finish point collision action
+  //       this.setState({
+  //         collision: data,
+  //       });
+  //     },
+  //     error: (error) => {
+  //       console.log('error', error);
+  //     },
+  //   });
+  // }
 
   // Initializes the map
-  initMap() {
+  //initMap() {
     // const mapOptions = {
     //   center: { lat: 37.7836970, lng: -122.4089660 },
     //   zoom: 15,
@@ -133,7 +172,7 @@ export class GameWindow extends React.Component {
     //   userMarker: new google.maps.Marker(userOptions),
     //   endMarker: new google.maps.Marker(endOptions),
     // });
-  }
+  //}
 
   // Places a marker on the user's location
   // placeMarker() {
@@ -153,44 +192,3 @@ export class GameWindow extends React.Component {
   //   this.state.userMarker.setMap(null);
   //   this.setState({ userMarker: 0 });
   // }
-
-  render() {
-    return (
-      <div className="game-wrapper">
-      <VisibleDashboardLeftNav />
-      <VisibleTopAppBar />
-        <GoogleMap />
-        <Toolbar className="bottom-toolbar">
-          <ToolbarGroup firstChild={true} float="left">
-            <DropDownMenu value={3}>
-              <MenuItem value={1} primaryText="All Broadcasts" />
-              <MenuItem value={2} primaryText="All Voice" />
-              <MenuItem value={3} primaryText="All Text" />
-              <MenuItem value={4} primaryText="Complete Voice" />
-              <MenuItem value={5} primaryText="Complete Text" />
-              <MenuItem value={6} primaryText="Active Voice" />
-              <MenuItem value={7} primaryText="Active Text" />
-            </DropDownMenu>
-          </ToolbarGroup>
-          <ToolbarGroup float="right">
-            <ToolbarTitle text="Options" />
-            <FontIcon className="muidocs-icon-custom-sort" />
-            <IconMenu
-              iconButtonElement={
-                <IconButton touch={true}>
-                  <NavigationExpandMoreIcon />
-                </IconButton>
-              }
-            >
-              <MenuItem primaryText="Download" />
-              <MenuItem primaryText="More Info" />
-            </IconMenu>
-            <ToolbarSeparator />
-            <RaisedButton label="Create Broadcast" primary={true} />
-          </ToolbarGroup>
-        </Toolbar>
-      </div>
-    );
-  }
-}
-

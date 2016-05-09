@@ -9,7 +9,7 @@ require('./config/routes.js')(app, express);
 
 var port = process.env.PORT || 1337;
 
-if(!module.parent){ 
+if (!module.parent){
   app.listen(port);
 }
 

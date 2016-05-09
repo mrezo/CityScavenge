@@ -1,35 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/index';
-// Genevieve Sublette [7:20 PM] 
-import fetch from 'isomorphic-fetch'
+import GameWindow from '../components/GameWindow';
+import fetch from 'isomorphic-fetch';
 
-export function startGame() {
-  return dispatch => {
-    fetch(`/api/geo/gamestart`, (response) => {
-      if(response.status == 200){
-       // Use a normal function to set the received state
-        dispatch(initializeMap(response.json)); 
-      }else { 
-        dispatch(someError)
-      }
-    })
-  }
- }
-
- function initializeMap(data) {
-  return { type: 'SET_MAP', data: data };
- }
-
-const GoogleMap = () => {
-  <div id="map"></div>;
-};
-
-export default GoogleMap;
+const GoogleMap = () => (
+  <div id="map"></div>
+);
 
 const mapStateToProps = (state) => {
   return {
-    visible: state.leftNav.visible,
+    lat: state.finishPoint.lat,
+    lng: state.finishPoint.lng,
   };
 };
 

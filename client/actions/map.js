@@ -1,12 +1,41 @@
-export const createMap = (lat, lng) => {
+import 'isomorphic-fetch';
+
+export const createMap = (data) => {
+  console.log('createmap data', data);
   return {
     type: 'CREATE_MAP',
-    lat,
-    lng,
+    lat: data.latitude,
+    lng: data.longitude,
   };
 };
 
-export const placeUserMarker = (map, title, lat, lng) => {
+export const startGame = (callback) => {
+  fetch('api/geo/gamestart', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      console.log('Server error', response);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log('HOPE THIS IS THE RIGHT DATA', data);
+    callback(data);
+  })
+  .catch((error) => {
+    console.log('Error', error);
+    return;
+  });
+};
+
+//dispatch(createMap(response.json()));
+
+export const placeUserMarker = (data) => {
   return {
     type: 'PLACE_USER_MARKER',
     map,
@@ -15,6 +44,30 @@ export const placeUserMarker = (map, title, lat, lng) => {
     lng,
   };
 };
+
+  // updateCoords() {
+  //   $.ajax({
+  //     type: 'POST',
+  //     url: '/api/geo/distance',
+  //     contentType: 'application/json',
+  //     data: JSON.stringify({
+  //       userLatitude: this.state.userLat,
+  //       userLongitude: this.state.userLng,
+  //       endpointLatitude: this.state.endLat,
+  //       endpointLongitude: this.state.endLng,
+  //     }),
+  //     dataType: 'json',
+  //     success: (data) => {
+  //       // dispatch finish point collision action
+  //       this.setState({
+  //         collision: data,
+  //       });
+  //     },
+  //     error: (error) => {
+  //       console.log('error', error);
+  //     },
+  //   });
+  // }
 
 export const deleteUserMarker = (title) => {
   return {

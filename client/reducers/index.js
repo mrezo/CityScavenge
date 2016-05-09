@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import auth from './auth';
 import mapReducer from './mapReducer';
 import users from './users';
-import checkpoints from './checkpoint';
+import checkpoints from './checkpoints';
 import finishPoint from './finishPoint';
 import leftNav from './leftNav';
 
