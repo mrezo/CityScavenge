@@ -64,7 +64,7 @@ const initialStore = {
 const store = createStore(cityHunt, initialStore, applyMiddleware(thunkMiddleware));
 
 store.dispatch((dispatch) => {
-  getUserLocationAndWatchID(dispatch);
+  // getUserLocationAndWatchID(dispatch);
   // dispatch(createMap());
   // startGame(dispatch);
 });
