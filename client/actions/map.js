@@ -9,7 +9,7 @@ export const createMap = (data) => {
   };
 };
 
-export const startGame = (callback) => {
+export const startGame = (dispatch) => {
   fetch('api/geo/gamestart', {
     method: 'GET',
     headers: {
@@ -25,7 +25,7 @@ export const startGame = (callback) => {
   })
   .then((data) => {
     console.log('HOPE THIS IS THE RIGHT DATA', data);
-    callback(data);
+    dispatch(createMap(data));
   })
   .catch((error) => {
     console.log('Error', error);
