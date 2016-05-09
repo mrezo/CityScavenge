@@ -10,13 +10,13 @@ module.exports = {
         done();
         console.log('findUser error: ', err);
       }
-      var values = '' + value;
       // SQL Query > Retrieve data
-      var queryFindUser = client.query("SELECT * FROM users WHERE google_id = '114510016389042396254'");
-      // var queryAddUser = client.query('SELECT * FROM users '
-      //   + "WHERE $1 = '" + values "'", [field], function(err, result) {
-      //     console.log('yiss: ', result.row[0]);
-      //   });
+      var queryFindUserString = "SELECT * FROM users WHERE " + field + " = '" + value + "'";
+      // var queryFindUser = client.query("SELECT * FROM users WHERE google_id = '114510016389042396254'");
+      var queryFindUser = client.query(queryFindUserString, [], function (err, result) {
+        done();
+        return cb(null, result.rows);
+      });
       var results = [];
       // Stream results back one row at a time
       queryFindUser.on('row', function (row) {
@@ -58,8 +58,9 @@ module.exports = {
         done();
         console.log('findOrCreate error: ', err);
       }
-      client.query("SELECT * FROM users WHERE "
-      + "google_id = '114510016389042396254'", [], function (err, result) {
+
+      client.query('SELECT * FROM users '
+      + 'WHERE google_id = $1', [googleid], function(err, result) {
         if (err) {
           done();
           return cb(err, null);
@@ -72,8 +73,8 @@ module.exports = {
               done();
               return cb(err, null);
             }
-            client.query("SELECT * FROM users WHERE "
-            + "google_id = '114510016389042396254'", [], function (err, user) {
+            client.query('SELECT * FROM users '
+            + 'WHERE google_id = $1', [googleid], function (err, user) {
               if (err) {
                 done();
                 return cb(err, null);
