@@ -21,7 +21,7 @@ const GameWindow = () => (
   <div className="game-wrapper">
   <VisibleDashboardLeftNav />
   <VisibleTopAppBar />
-    <GoogleMapContainer />
+  <GoogleMapContainer />
     <Toolbar className="bottom-toolbar">
       <ToolbarGroup firstChild={true} float="left">
         <DropDownMenu value={3}>

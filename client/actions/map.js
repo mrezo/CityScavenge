@@ -33,15 +33,23 @@ export const startGame = (dispatch) => {
   });
 };
 
-//dispatch(createMap(response.json()));
+// dispatch(createMap(response.json()));
 
-export const placeUserMarker = (data) => {
+export const getUserCoords = (lat, lng) => {
   return {
-    type: 'PLACE_USER_MARKER',
-    map,
-    title,
+    type: 'GET_USER_COORDS',
     lat,
     lng,
+  };
+};
+
+export const placeUserMarker = (map, title, data) => {
+  return {
+    type: 'PLACE_USER_MARKER',
+    map: state.mapReducer.map,
+    title,
+    lat: data.latitude,
+    lng: data.longitude,
   };
 };
 
