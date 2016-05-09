@@ -7,6 +7,7 @@ import App from './components/App';
 import cityHunt from './reducers/index';
 import { startGame } from './actions/map.js';
 import fetch from 'isomorphic-fetch';
+import createMap from './actions/map.js';
 
 
 const store = createStore(cityHunt, {
@@ -62,7 +63,9 @@ const store = createStore(cityHunt, {
 applyMiddleware(thunkMiddleware)
 );
 
-store.dispatch(startGame());
+// store.dispatch( () => {
+//   createMap(data);
+// });
   // console.log('store is dispatching');
   // return dispatch => {
   //   fetch('api/geo/gamestart', {
