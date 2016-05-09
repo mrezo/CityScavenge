@@ -27,6 +27,11 @@ exports.authenticateGoogleLogin = passport.authenticate('google', {
   failureRedirect: '/',
 });
 
+exports.logout = function (req, res) {
+  req.logout();
+  res.redirect('/');
+};
+
 passport.use(new GoogleStrategy({
   clientID: googleKey.CLIENT_ID,
   clientSecret: googleKey.CLIENT_SECRET,
