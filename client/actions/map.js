@@ -1,4 +1,3 @@
-//import fetch from 'isomorphic-fetch';
 import 'isomorphic-fetch';
 
 export const createMap = (data) => {
