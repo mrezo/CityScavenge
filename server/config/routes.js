@@ -24,7 +24,7 @@ module.exports = function (app, express) {
   app.get('/auth/google/callback', auth.authenticateGoogleLogin,
     function (req, res) {
       console.log('redirect on /auth/google/callback');
-      res.redirect('#/dashboard');
+      res.redirect('http://localhost:1337/#/dashboard');
     }
   );
 };
