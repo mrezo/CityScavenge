@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/index';
+import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/map';
 import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
 import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
@@ -9,6 +9,10 @@ class GoogleMap extends Component {
 
   componentDidMount() {
     this.props.initialPos();
+    // this.props.placeMarker(this.props.map, this.props.userTitle, {
+    //   latitude: this.props.userLat,
+    //   longitude: this.props.userLng,
+    // });
   }
 
   render() {
@@ -20,6 +24,13 @@ class GoogleMap extends Component {
 
 GoogleMap.propTypes = {
   initialPos: PropTypes.func.isRequired,
+  placeMarker: PropTypes.func.isRequired,
+  // map: PropTypes.string.isRequired,
+  userTitle: PropTypes.string.isRequired,
+  userLat: PropTypes.number.isRequired,
+  userLng: PropTypes.number.isRequired,
+  finishLat: PropTypes.number.isRequired,
+  finishLng: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -28,15 +39,15 @@ const mapStateToProps = (state) => {
     userTitle: state.users[0].title,
     userLat: state.users[0].lat,
     userLng: state.users[0].lng,
-    lat: state.finishPoint.lat,
-    lng: state.finishPoint.lng,
+    finishLat: state.finishPoint.lat,
+    finishLng: state.finishPoint.lng,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createMap: (lat, lng) => {
-      dispatch(createMap({lat, lng}));
+      dispatch(createMap({ lat, lng }));
     },
 
     // Places a marker on the user's location
@@ -67,7 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     initialPos: () => {
       initialPosition(dispatch, (positionData) => {
-        dispatch(placeUserMarker(this.props.map, 'Michael', positionData));
+        console.log('map: ', map);
+        console.log('loc: ', positionData);
+        dispatch(placeUserMarker(map, 'Michael', positionData));
       });
     },
   };

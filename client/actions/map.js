@@ -45,7 +45,7 @@ export const getUserCoords = (lat, lng) => {
 export const placeUserMarker = (map, title, data) => {
   return {
     type: 'PLACE_USER_MARKER',
-    map: state.mapReducer.map,
+    map,
     title,
     lat: data.latitude,
     lng: data.longitude,
