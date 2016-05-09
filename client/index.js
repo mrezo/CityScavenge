@@ -9,8 +9,7 @@ import { startGame } from './actions/map.js';
 import fetch from 'isomorphic-fetch';
 import createMap from './actions/map.js';
 
-
-const store = createStore(cityHunt, {
+const initialStore = {
   auth: {},
   leftNav: { visible: false },
   mapReducer: {
@@ -59,9 +58,11 @@ const store = createStore(cityHunt, {
       marker: 0,
     },
   ],
-},
-applyMiddleware(thunkMiddleware)
-);
+};
+
+const store = createStore(cityHunt, initialStore, applyMiddleware(thunkMiddleware));
+
+store.dispatch((dispatch) => { startGame(dispatch); });
 
 // store.dispatch( () => {
 //   createMap(data);
