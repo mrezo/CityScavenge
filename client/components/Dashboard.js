@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { mapStateToPropsWindow } from '../props';
-import Avatar from 'material-ui/lib/avatar';
-import styles from 'material-ui/lib/styles';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import DashboardCard from './DashboardCard';
@@ -11,9 +9,6 @@ import VisibleTopAppBar from '../containers/VisibleTopAppBar';
 
 // import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 // injectTapEventPlugin();
-
-
-const colors = styles.Colors;
 
 const Dashboard = () => (
   <div>
