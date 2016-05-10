@@ -15,7 +15,6 @@ import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
 import GoogleMapContainer from '../containers/GoogleMap';
-import fetch from 'isomorphic-fetch';
 
 const GameWindow = () => (
   <div className="game-wrapper">
@@ -23,10 +22,9 @@ const GameWindow = () => (
   <VisibleTopAppBar />
   <GoogleMapContainer />
     <Toolbar className="bottom-toolbar">
-      <ToolbarGroup float="right">
-        <FontIcon className="muidocs-icon-custom-sort" />
-        <ToolbarSeparator />
+      <ToolbarGroup >
         <RaisedButton label="Check In" primary={true} />
+        <RaisedButton label="End Game" />
       </ToolbarGroup>
     </Toolbar>
   </div>
