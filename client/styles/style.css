@@ -33,6 +33,10 @@ body, html {
   background: #FF4081;
 }
 
+.main-image {
+  max-width: 100%;
+}
+
 /* Game Window
 ==================================
 */
