@@ -23,21 +23,8 @@ const GameWindow = () => (
   <VisibleTopAppBar />
   <GoogleMapContainer />
     <Toolbar className="bottom-toolbar">
-      <ToolbarGroup firstChild={true} float="left">
-      </ToolbarGroup>
       <ToolbarGroup float="right">
-        <ToolbarTitle text="Options" />
         <FontIcon className="muidocs-icon-custom-sort" />
-        <IconMenu
-          iconButtonElement={
-            <IconButton touch={true}>
-              <NavigationExpandMoreIcon />
-            </IconButton>
-          }
-        >
-          <MenuItem primaryText="Download" />
-          <MenuItem primaryText="More Info" />
-        </IconMenu>
         <ToolbarSeparator />
         <RaisedButton label="Check In" primary={true} />
       </ToolbarGroup>
