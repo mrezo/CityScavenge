@@ -19,8 +19,8 @@ const Dashboard = () => (
   <div>
     <VisibleDashboardLeftNav />
     <VisibleTopAppBar />
-    <div className="dash-jumbotron">
-      <Avatar style={{ display: 'block', margin: '0 auto' }} color={colors.deepOrange300} backgroundColor={colors.purple500} size={150}>W</Avatar>
+    <div>
+      <img className="main-image" src={'https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg'} />
     </div>
     <Tabs>
       <Tab onClick={() => { alert(' TESTING'); }} label="Old Games" >
