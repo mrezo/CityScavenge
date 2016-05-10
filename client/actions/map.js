@@ -1,8 +1,9 @@
 import 'isomorphic-fetch';
 
-export const createMap = (data) => {
+export const createMap = (googleMap, data) => {
   return {
     type: 'CREATE_MAP',
+    googleMap,
     lat: data.latitude,
     lng: data.longitude,
   };
@@ -30,8 +31,6 @@ export const startGame = (dispatch, googleMap) => {
     return;
   });
 };
-
-// dispatch(createMap(response.json()));
 
 export const getUserCoords = (lat, lng) => {
   return {
