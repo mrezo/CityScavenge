@@ -24,7 +24,7 @@ CREATE TABLE game (
   id_task INTEGER NULL DEFAULT NULL
 );
    
-CREATE TABLE location (
+CREATE TABLE checkpoint (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
   id_game INTEGER REFERENCES game,
   latitude DECIMAL NOT NULL DEFAULT 0.0,
@@ -39,7 +39,7 @@ CREATE TABLE task (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
   source_user INTEGER REFERENCES users,
   receiver_user INTEGER REFERENCES users,
-  id_location INTEGER REFERENCES location,
+  id_checkpoint INTEGER REFERENCES checkpoint,
   action VARCHAR(63) NULL DEFAULT NULL,
   picture VARCHAR(255) NULL DEFAULT NULL
 );
@@ -58,9 +58,9 @@ INSERT INTO users (displayname, google_id, name) VALUES ('Genevieve', '1734', 'D
 -- ('','','','','','','','');
 -- INSERT INTO `game` (`id`,`winner`,`duration`,`start_time`,`finish_time`,`id_task`) VALUES
 -- ('','','','','','');
--- INSERT INTO `task` (`id`,`source_user`,`receiver_user`,`id_location`,`action`,`picture`) VALUES
+-- INSERT INTO `task` (`id`,`source_user`,`receiver_user`,`id_checkpoint`,`action`,`picture`) VALUES
 -- ('','','','','','');
--- INSERT INTO `location` (`id`,`id_game`,`id_user`,`latitude`,`longitude`,`name`,`picture`,`collision`,`is_finish_point`) VALUES
+-- INSERT INTO `checkpoint` (`id`,`id_game`,`id_user`,`latitude`,`longitude`,`name`,`picture`,`collision`,`is_finish_point`) VALUES
 -- ('','','','','','','','','');
 -- INSERT INTO `game_user` (`id`,`id_user`,`id_game`) VALUES
 -- ('','','');

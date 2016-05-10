@@ -91,7 +91,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="399" y="218" name="task">
+<table x="397" y="218" name="task">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -103,9 +103,9 @@
 <datatype>VARCHAR</datatype>
 <default>NULL</default><relation table="user" row="id" />
 </row>
-<row name="id_location" null="1" autoincrement="0">
+<row name="id_checkpoint" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="location" row="id" />
+<default>NULL</default><relation table="checkpoint" row="id" />
 </row>
 <row name="action" null="1" autoincrement="0">
 <datatype>VARCHAR(63)</datatype>
@@ -117,7 +117,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="579" y="286" name="location">
+<table x="535" y="288" name="checkpoint">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
