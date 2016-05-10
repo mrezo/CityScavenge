@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="291" y="35" name="user">
+</datatypes><table x="104" y="53" name="user">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -66,31 +66,88 @@
 <part>id</part>
 </key>
 </table>
-<table x="483" y="208" name="game">
+<table x="590" y="103" name="game">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="winning_user" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<relation table="user" row="id" />
+</row>
+<row name="duration" null="1" autoincrement="0">
+<datatype>TIME</datatype>
+<default>NULL</default></row>
+<row name="start_time" null="1" autoincrement="0">
+<datatype>TIME</datatype>
+<default>NULL</default></row>
+<row name="finish_time" null="1" autoincrement="0">
+<datatype>TIME</datatype>
+<default>NULL</default></row>
+<row name="id_task" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="task" row="id" />
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="399" y="218" name="task">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="source_user" null="0" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<relation table="user" row="id" />
+</row>
+<row name="receiver_user" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default><relation table="user" row="id" />
+</row>
+<row name="id_location" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="location" row="id" />
+</row>
+<row name="action" null="1" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<default>NULL</default></row>
+<row name="picture" null="1" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="577" y="323" name="task">
+<table x="579" y="286" name="location">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
+<row name="id_game" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="game" row="id" />
+</row>
+<row name="latitude" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>0.0</default></row>
+<row name="longitude" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>0.0</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<default>NULL</default></row>
+<row name="picture" null="1" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<default>NULL</default></row>
+<row name="collision" null="0" autoincrement="0">
+<datatype>VARCHAR(7)</datatype>
+<default>'False'</default></row>
+<row name="is_finish_point" null="0" autoincrement="0">
+<datatype>BINARY</datatype>
+<default>'0'</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="269" y="357" name="location">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="619" y="41" name="game_user">
+<table x="412" y="15" name="game_user">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
