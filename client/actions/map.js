@@ -51,30 +51,6 @@ export const placeUserMarker = (map, title, data) => {
   };
 };
 
-  // updateCoords() {
-  //   $.ajax({
-  //     type: 'POST',
-  //     url: '/api/geo/distance',
-  //     contentType: 'application/json',
-  //     data: JSON.stringify({
-  //       userLatitude: this.state.userLat,
-  //       userLongitude: this.state.userLng,
-  //       endpointLatitude: this.state.endLat,
-  //       endpointLongitude: this.state.endLng,
-  //     }),
-  //     dataType: 'json',
-  //     success: (data) => {
-  //       // dispatch finish point collision action
-  //       this.setState({
-  //         collision: data,
-  //       });
-  //     },
-  //     error: (error) => {
-  //       console.log('error', error);
-  //     },
-  //   });
-  // }
-
 export const deleteUserMarker = (title) => {
   return {
     type: 'DELETE_USER_MARKER',
