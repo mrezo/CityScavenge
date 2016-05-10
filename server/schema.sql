@@ -8,11 +8,11 @@ CREATE TABLE users (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
   displayname VARCHAR(63) NOT NULL UNIQUE,
   google_id VARCHAR(255) NOT NULL UNIQUE,
-  name VARCHAR(63) NOT NULL
-  avatar VARCHAR(63) NOT NULL,
+  name VARCHAR(63) NOT NULL,
+  avatar VARCHAR(63) NOT NULL DEFAULT '',
   total_places_visited INTEGER NOT NULL DEFAULT 0,
-  total_distance DOUBLE NOT NULL DEFAULT 0.00,
-  games_played INTEGER NOT NULL DEFAULT 0,
+  total_distance DOUBLE PRECISION NOT NULL DEFAULT 0.00,
+  games_played INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE game (
@@ -21,16 +21,7 @@ CREATE TABLE game (
   duration TIME NULL DEFAULT NULL,
   start_time TIME NULL DEFAULT NULL,
   finish_time TIME NULL DEFAULT NULL,
-  id_task INTEGER NULL DEFAULT NULL,
-);
-   
-CREATE TABLE task (
-  id SERIAL NOT NULL PRIMARY KEY UNIQUE,
-  source_user INTEGER REFERENCES users,
-  receiver_user INTEGER REFERENCES users,
-  id_location INTEGER REFERENCES location,
-  action VARCHAR(63) NULL DEFAULT NULL,
-  picture VARCHAR(255) NULL DEFAULT NULL,
+  id_task INTEGER NULL DEFAULT NULL
 );
    
 CREATE TABLE location (
@@ -41,13 +32,22 @@ CREATE TABLE location (
   name VARCHAR(63) NULL DEFAULT NULL,
   picture VARCHAR(63) NULL DEFAULT NULL,
   collision BOOLEAN NOT NULL DEFAULT false,
-  is_finish_point BOOLEAN NOT NULL DEFAULT false,
+  is_finish_point BOOLEAN NOT NULL DEFAULT false
 );
     
+CREATE TABLE task (
+  id SERIAL NOT NULL PRIMARY KEY UNIQUE,
+  source_user INTEGER REFERENCES users,
+  receiver_user INTEGER REFERENCES users,
+  id_location INTEGER REFERENCES location,
+  action VARCHAR(63) NULL DEFAULT NULL,
+  picture VARCHAR(255) NULL DEFAULT NULL
+);
+   
 CREATE TABLE game_user (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
   id_user INTEGER REFERENCES users,
-  id_game INTEGER REFERENCES game,
+  id_game INTEGER REFERENCES game
 );
 
 
