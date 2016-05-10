@@ -6,6 +6,7 @@ import Tab from 'material-ui/lib/tabs/tab';
 import DashboardCard from './DashboardCard';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
+import { Link } from 'react-router';
 
 // import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 // injectTapEventPlugin();
@@ -24,12 +25,7 @@ const Dashboard = () => (
           <DashboardCard />
         </div>
       </Tab>
-      <Tab label="Current Games" >
-        <div>
-          <h2>Currently Available Games</h2>
-          <p>Here we can put a whole list of games that are available to begin playing.</p>
-        </div>
-      </Tab>
+      <Tab label="Create Game" containerElement={<Link to="/game" />} />
       <Tab label="Stats" >
         <div>
           <h2>Tab Three</h2>
