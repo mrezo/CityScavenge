@@ -49,6 +49,10 @@ const LandingPage = () => (
       <CardMedia overlay={<CardTitle title="City Hunt" subtitle="Explore your city" style={style.card_title} />}><img src={'https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg'} /></CardMedia>
       <div className="button-group">
         <RaisedButton label="Login with Google" backgroundColor={colors.red500} primary={true} />
+        <form action="http://www.dodgers.com">
+          <input type="file" name="pic" accept="image/*" />
+          <input type="submit" />
+        </form>
       </div>
     </card>
   </div>
