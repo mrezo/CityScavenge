@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/map';
+import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision, startGame } from '../actions/map';
 import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
 import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
@@ -78,9 +78,14 @@ const mapDispatchToProps = (dispatch) => {
     },
     initialPos: () => {
       initialPosition(dispatch, (positionData) => {
-        console.log('map: ', map);
-        console.log('loc: ', positionData);
-        dispatch(placeUserMarker(map, 'Michael', positionData));
+        const mapOptions = {
+          center: { lat: positionData.latitude, lng: positionData.longitude },
+          zoom: 15,
+        };
+        const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
+        dispatch(placeUserMarker(googleMap, 'Michael', positionData));
+        startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
+        getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
       });
     },
   };
