@@ -5,9 +5,9 @@
 // this value can be used in tandem with clearPosition() to stop watching the user’s location
 // the return valu
 
-import { placeUserMarker, createMap } from '../actions/map';
+import { placeUserMarker, deleteUserMarker, createMap } from '../actions/map';
 
-export const getUserLocationAndWatchID = (dispatch) => {
+export const getUserLocationAndWatchID = (dispatch, googleMap, title) => {
   let currentLocation = {};
 
   let showLocation = (position) => {
@@ -18,7 +18,8 @@ export const getUserLocationAndWatchID = (dispatch) => {
       longitude: position.coords.longitude,
     };
     // TODO: Pass Map as argument
-    dispatch(placeUserMarker(0, 'Michael', currentLocation));
+    dispatch(deleteUserMarker(title));
+    dispatch(placeUserMarker(googleMap, title, currentLocation));
     return currentLocation;
   };
 
