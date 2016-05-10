@@ -1,7 +1,9 @@
 var path = require('path');
+var passport = require('passport');
 var userUtils = require(path.join(__dirname, '../utils/userUtils'));
 var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 var auth = require(__dirname + '/../auth/auth.js');
+var User = require('../models/userModel.js');
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
@@ -18,20 +20,10 @@ module.exports = function (app, express) {
   app.post('/api/login', auth.checkAuth);
 
   app.get('/auth/google', auth.handleGoogleLogin);
-
+  app.get('/logout', auth.logout);
   app.get('/auth/google/callback', auth.authenticateGoogleLogin,
     function (req, res) {
-      res.redirect('/home');
+      res.redirect('http://localhost:1337/#/dashboard');
     }
   );
-
-  app.get('/auth/logout', function (req, res) {
-    req.session.destroy(function () {
-      res.redirect('/');
-    });
-  }
-    // req.logout();
-    // res.redirect('/')
-  );
-
 };
