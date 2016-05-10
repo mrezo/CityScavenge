@@ -20,7 +20,7 @@ const user = (state = {}, action) => {
         return state;
       }
       return Object.assign({}, state, {
-        marker: null,
+        marker: state.marker.setMap(null),
       });
     default:
       return state;
