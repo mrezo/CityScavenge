@@ -8,7 +8,7 @@ export const createMap = (data) => {
   };
 };
 
-export const startGame = (dispatch) => {
+export const startGame = (dispatch, googleMap) => {
   fetch('api/geo/gamestart', {
     method: 'GET',
     headers: {
@@ -23,8 +23,7 @@ export const startGame = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    console.log('HOPE THIS IS THE RIGHT DATA', data);
-    dispatch(createMap(data));
+    dispatch(placeFinishPoint(googleMap, data.latitude, data.longitude));
   })
   .catch((error) => {
     console.log('Error', error);
