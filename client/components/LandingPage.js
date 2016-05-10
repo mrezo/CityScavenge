@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { mapStateToPropsWindow } from '../props';
 import styles from 'material-ui/lib/styles';
 import card from 'material-ui/lib/card';
+import CardHeader from 'material-ui/lib/card/card-header';
 import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 
