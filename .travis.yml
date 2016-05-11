@@ -4,4 +4,7 @@ node_js:
 services:
   - postgresql
 before_script:
-  - node server/server.js & psql -f server/schema.sql && postgres://postgres@localhost:5432/city_scavenge
+  - psql -f server/schema.sql
+  - psql -c 'CREAT DATABASE travis;' -U postgres
+  - node server/server.js &
+  - postgres://postgres@localhost:5432/city_scavenge
