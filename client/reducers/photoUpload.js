@@ -1,4 +1,4 @@
-const photoUpload = (state = [], action) => {
+const photoUpload = (state = {}, action) => {
   switch (action.type) {
     case 'PHOTO_UPLOAD_START':
       return Object.assign({}, state, {
