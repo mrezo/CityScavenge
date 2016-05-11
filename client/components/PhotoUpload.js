@@ -3,6 +3,8 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 
+//TODO: add "action: " to form componenet with post request to DB
+
 const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
     <RaisedButton 
@@ -16,10 +18,13 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
       open={open}
       modal={false}
     >
-      The actions in this window come from an HTML form, but they can also be passed in as an array of React objects.
-      <form action="http://www.dodgers.com">
+      <form>
         <input type="file" name="pic" accept="image/*" />
-        <input type="submit" />
+        <input type="submit"
+          onClick={() => {
+            photoSubmit(lat, lng, open);
+          }}
+        />
       </form>
     </Dialog>
   </div>
