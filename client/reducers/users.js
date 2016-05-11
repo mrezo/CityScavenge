@@ -28,29 +28,18 @@ const user = (state = {}, action) => {
 };
 
 const users = (state = [], action) => {
+  console.log('Inside the reducer', action);
   switch (action.type) {
     case 'CREATE_USER':
-    console.log('USERS Reducer', state);
-    console.log('NEW USER', [
-        ...state,
-        {
-          title: action.title,
-          google_id: action.title,
-          lat: 0,
-          lng: 0,
-          label: action.title[0],
-          marker: 0,
-        },
-      ]);
       return [
         ...state,
         {
           title: action.title,
-          google_id: action.title,
-          lat: 0,
-          lng: 0,
-          label: action.title[0],
-          marker: 0,
+          google_id: action.google_id,
+          lat: action.lat,
+          lng: action.lng,
+          label: action.label,
+          marker: action.marker,
         },
       ];
     case 'PLACE_USER_MARKER':
