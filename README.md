@@ -38,7 +38,7 @@ On the client side, the state of the app is maintained in a Redux store. We rend
 
 #### Schema
 User data and saved places are managed in a Postgres database called `city_scavenge`.
-![Schema design](http://i.imgur.com/F1wv2A9.png)
+![Schema design](http://i.imgur.com/mKSBOoh.png)
 
 ## Usage
 You'll need API keys for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key), [Google Maps Geolocation](https://developers.google.com/maps/documentation/geolocation/get-api-key), and for ??[Google Places](https://developers.google.com/places/web-service/get-api-key)??. Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
