@@ -11,7 +11,7 @@ module.exports = {
       }
       client.query(obj.text, obj.values, function (err, result) {
         done();
-        cb(err, result.rows);
+        cb(err, result);
       });
     });
   },
