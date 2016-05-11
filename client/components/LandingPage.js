@@ -6,7 +6,6 @@ import styles from 'material-ui/lib/styles';
 import card from 'material-ui/lib/card';
 import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
-import ReduxModal from 'react-redux-modal';
 
 const colors = styles.Colors;
 
@@ -53,7 +52,6 @@ const LandingPage = () => (
           <input type="file" name="pic" accept="image/*" />
           <input type="submit" />
         </form>
-        <ReduxModal />
       </div>
     </card>
   </div>
