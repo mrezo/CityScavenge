@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PhotoUpload from '../components/PhotoUpload';
+import { photoUploadStart, photoSubmit } from '../actions/map';
 
 PhotoUpload.propTypes = {
   lat: PropTypes.number.isRequired,
