@@ -71,3 +71,36 @@ export const initialPosition = (dispatch, cb) => {
   const watchID = getWatchID();
   return { currentLocation, watchID };
 }
+
+// For new connected users through sockets
+// ================================================
+
+export const newUserPosition = (callback) => {
+  let currentLocation;
+
+
+  let showLocation = (position) => {
+    currentLocation =
+    {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    };
+    callback(currentLocation);
+  };
+
+  const geoError = () => {
+    console.log('Finding geolocation failed.');
+  };
+
+  const geoOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000,
+  };
+
+  const getWatchID = () => navigator.geolocation.getCurrentPosition(showLocation, geoError, geoOptions);
+  const watchID = getWatchID();
+  return { currentLocation, watchID };
+};
+
+
