@@ -106,7 +106,15 @@ module.exports = {
     db.query({
       text: "INSERT INTO users (google_id, name, displayname, avatar, total_places_visited, total_distance, games_played) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
       values: [req.body.google_id, req.body.name, req.body.displayname, req.body.avatar, req.body.total_places_visited, req.body.total_distance, req.body.games_played],
-    }, function(err, data) {
+    }, function (err, data) {
+      return res.json(data[0]);
+    });
+  },
+  deleteUser: function (req, res) {
+    db.query({
+      text: "DELETE FROM users WHERE google_id = $1 RETURNING *",
+      values: [req.body.google_id],
+    }, function (err, data) {
       return res.json(data[0]);
     });
   },
