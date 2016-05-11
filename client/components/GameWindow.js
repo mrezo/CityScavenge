@@ -1,13 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { mapStateToPropsWindow, mapDispatchToPropsWindow } from '../props';
-import RaisedButton from 'material-ui/lib/raised-button';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
 import GoogleMapContainer from '../containers/GoogleMap';
-import PhotoUpload from './PhotoUpload';
+import PhotoSubmitContainer from '../containers/PhotoSubmit';
 
 const GameWindow = () => (
   <div className="game-wrapper">
@@ -16,7 +15,7 @@ const GameWindow = () => (
   <GoogleMapContainer />
     <Toolbar className="bottom-toolbar">
       <ToolbarGroup >
-        <PhotoUpload />
+        <PhotoSubmitContainer />
       </ToolbarGroup>
     </Toolbar>
   </div>
