@@ -1,6 +1,6 @@
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/lib/dialog';
+import FlatButton from 'material-ui/lib/flat-button';
+import RaisedButton from 'material-ui/lib/raised-button';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -13,7 +13,19 @@ const PhotoUpload = () => (
     <RaisedButton label="Check In" onTouchTap={this.handleOpen} />
     <Dialog
       title="Dialog With Actions"
-      actions={actions}
+      actions={[
+        <FlatButton
+          label="Cancel"
+          primary={true}
+          onTouchTap={this.handleClose}
+        />,
+        <FlatButton
+          label="Submit"
+          primary={true}
+          keyboardFocused={true}
+          onTouchTap={this.handleClose}
+        />,
+      ]}
       modal={false}
       open={this.state.open}
       onRequestClose={this.handleClose}
