@@ -1,0 +1,3 @@
+language: node_js
+before_script:
+  - node script/server.js postgres://postgres@localhost:5432/city_scavenge
