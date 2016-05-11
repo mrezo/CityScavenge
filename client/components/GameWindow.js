@@ -16,7 +16,9 @@ const GameWindow = () => (
   <GoogleMapContainer />
     <Toolbar className="bottom-toolbar">
       <ToolbarGroup >
-        <PhotoUpload />
+        <RaisedButton>
+          <PhotoUpload />
+        </RaisedButton>
       </ToolbarGroup>
     </Toolbar>
   </div>
