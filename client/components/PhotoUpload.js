@@ -3,16 +3,14 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 
-const submitForm = () => (
-  <form action="http://www.dodgers.com">
-    <input type="file" name="pic" accept="image/*" />
-    <input type="submit" />
-  </form>
-);
-
-const PhotoUpload = ({open}) => (
+const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
-    <RaisedButton label="Check In" primary={true} />
+    <RaisedButton 
+      label="Check In"
+      onClick={() => {
+        photoUploadStart(lat, lng, open);
+      }}
+      primary={true} />
     <Dialog
       title="Check in with a photo"
       open={open}
@@ -28,7 +26,11 @@ const PhotoUpload = ({open}) => (
 );
 
 PhotoUpload.propTypes = {
+  lat: PropTypes.number.isRequired,
+  lng: PropTypes.number.isRequired,
   open: PropTypes.bool.isRequired,
+  photoUploadStart: PropTypes.func.isRequired,
+  photoSubmit: PropTypes.func.isRequired,
 };
 
 /* const PhotoUpload = () => (
