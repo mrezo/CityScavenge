@@ -1,9 +1,9 @@
-const sockets = require('socket.io');
+const socket = require('socket.io');
 
 module.exports = function(server) {
 
   var counter = 1;
-  var io = sockets(server);
+  var io = socket(server);
 
   var createUser = function (socket) {
     console.log('user connected');
@@ -13,4 +13,5 @@ module.exports = function(server) {
   };
 
   io.on('connection', createUser);
+  // io.on('connection', createUser);
 };
