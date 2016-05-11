@@ -1,8 +1,13 @@
-var googleKey = require(__dirname + '/../config/googlemaps.js');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
+
+var googleKey = process.env.GOOGLE_KEY;
+
+if (!process.env.TRAVIS) {
+  googleKey = require(__dirname + '/../config/googlemaps.js');
+}
 
 // Middleware for checking whether the user is logged in
 exports.checkAuth = function (req, res, next) {
