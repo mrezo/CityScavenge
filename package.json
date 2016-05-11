@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "grunt test && mocha ./test_client/01_basic --compilers js:babel-register",
+    "test": "mocha ./test_server/01_Basic && mocha ./test_client/01_Basic --compilers js:babel-register",
     "start": "grunt startserver",
     "start-backend": "nodemon server/server.js",
     "start-dev-server": "webpack-dev-server --host 0.0.0.0 --port 8080 --hot --inline"
