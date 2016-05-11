@@ -4,4 +4,4 @@ node_js:
 services:
   - postgresql
 before_script:
-  - node script/server.js postgres://postgres@localhost:5432/city_scavenge
+  - node server/server.js postgres://postgres@localhost:5432/city_scavenge
