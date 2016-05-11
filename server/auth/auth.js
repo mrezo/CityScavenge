@@ -3,7 +3,10 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
 
-var googleKey = process.env.GOOGLE_KEY;
+var googleKey = {
+  CLIENT_ID: process.env.GOOGLE_KEY,
+  CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+};
 
 if (!process.env.TRAVIS) {
   googleKey = require(__dirname + '/../config/googlemaps.js');
