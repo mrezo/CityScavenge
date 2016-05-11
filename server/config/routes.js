@@ -10,6 +10,7 @@ module.exports = function (app, express) {
   // user routing
   app.post('/api/v1/user', User.newUser);
   app.get('/api/v1/user/:id', User.allUsers);
+  app.delete('/api/v1/user', User.deleteUser);
 
   // location routing
   app.get('/api/v1/geo/gamestart', finishLineController.searchGoogle);
