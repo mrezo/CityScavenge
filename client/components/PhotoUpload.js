@@ -2,31 +2,26 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 
-/**
- * Dialog with action buttons. The actions are passed in as an array of React objects,
- * in this example [FlatButtons](/#/components/flat-button).
- *
- * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
- */
+const submitForm = () => (
+  <form action="http://www.dodgers.com">
+    <input type="file" name="pic" accept="image/*" />
+    <input type="submit" />
+  </form>
+);
+
 const PhotoUpload = () => (
   <div>
-    <RaisedButton label="Check In" onClick={() => { alert(' TESTING'); }} primary={true}/>
+    <RaisedButton label="Check In" onClick={() => { alert(' TESTING'); }} primary={true} />
     <Dialog
-      title="Dialog With Actions"
-      actions={[
-        <FlatButton
-          label="Cancel"
-          primary={true}
-        />,
-        <FlatButton
-          label="Submit"
-          primary={true}
-          keyboardFocused={true}
-        />,
-      ]}
+      title="Check in with a photo"
+      open={true}
       modal={false}
     >
-      The actions in this window were passed in as an array of React objects.
+      The actions in this window come from an HTML form, but they can also be passed in as an array of React objects.
+      <form action="http://www.dodgers.com">
+        <input type="file" name="pic" accept="image/*" />
+        <input type="submit" />
+      </form>
     </Dialog>
   </div>
 );
