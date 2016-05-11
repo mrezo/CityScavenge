@@ -95,3 +95,11 @@ export const finishPointCollision = (userTitle, timeIn, locTitle) => {
     locTitle,
   };
 };
+
+export const uploadPhoto = (lat, lng) => {
+  return {
+    type: 'PHOTO_UPLOAD',
+    lat,
+    lng,
+  };
+};
