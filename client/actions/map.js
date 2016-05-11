@@ -32,13 +32,6 @@ export const startGame = (dispatch, googleMap) => {
   });
 };
 
-export const createUser = (title) => {
-  return {
-    type: 'CREATE_USER',
-    title,
-  };
-};
-
 export const getUserCoords = (lat, lng) => {
   return {
     type: 'GET_USER_COORDS',
