@@ -49,6 +49,11 @@ const initialStore = {
       },
     ],
   },
+  photoUpload: {
+    lat: 0,
+    lng: 0,
+    open: false,
+  },
   users: [
     {
       title: 'Michael',
