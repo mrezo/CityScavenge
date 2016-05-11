@@ -1,3 +1,4 @@
+import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
@@ -9,12 +10,12 @@ const submitForm = () => (
   </form>
 );
 
-const PhotoUpload = () => (
+const PhotoUpload = ({open}) => (
   <div>
-    <RaisedButton label="Check In" onClick={() => { alert(' TESTING'); }} primary={true} />
+    <RaisedButton label="Check In" primary={true} />
     <Dialog
       title="Check in with a photo"
-      open={true}
+      open={open}
       modal={false}
     >
       The actions in this window come from an HTML form, but they can also be passed in as an array of React objects.
@@ -25,6 +26,10 @@ const PhotoUpload = () => (
     </Dialog>
   </div>
 );
+
+PhotoUpload.propTypes = {
+  open: PropTypes.bool.isRequired,
+};
 
 /* const PhotoUpload = () => (
   <div>
