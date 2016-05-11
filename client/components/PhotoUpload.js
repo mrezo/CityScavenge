@@ -3,7 +3,7 @@ import Dialog from 'material-ui/lib/dialog';
 import FlatButton from 'material-ui/lib/flat-button';
 import RaisedButton from 'material-ui/lib/raised-button';
 
-//TODO: add "action: " to form componenet with post request to DB
+// TODO: add "action: " to form component with post request to DB
 
 const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
@@ -38,66 +38,4 @@ PhotoUpload.propTypes = {
   photoSubmit: PropTypes.func.isRequired,
 };
 
-/* const PhotoUpload = () => (
-  <div>
-    <RaisedButton label="Check In" onTouchTap={this.handleOpen} />
-    <Dialog
-      title="Dialog With Actions"
-      actions={[
-        <FlatButton
-          label="Cancel"
-          primary={true}
-          onTouchTap={this.handleClose}
-        />,
-        <FlatButton
-          label="Submit"
-          primary={true}
-          keyboardFocused={true}
-          onTouchTap={this.handleClose}
-        />,
-      ]}
-      modal={false}
-      open={this.state.open}
-      onRequestClose={this.handleClose}
-    >
-      The actions in this window were passed in as an array of React objects.
-    </Dialog>
-  </div>
-);
-*/ 
-
 export default PhotoUpload;
-
-/*
-
-class DialogExampleSimple extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
-
-  render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleClose}
-      />,
-    ];
-  }
-}
-
-*/
