@@ -96,10 +96,20 @@ export const finishPointCollision = (userTitle, timeIn, locTitle) => {
   };
 };
 
-export const uploadPhoto = (lat, lng) => {
+export const photoUploadStart = (lat, lng) => {
   return {
-    type: 'PHOTO_UPLOAD',
+    type: 'PHOTO_UPLOAD_START',
     lat,
     lng,
+    open,
+  };
+};
+
+export const photoSubmit = (lat, lng) => {
+  return {
+    type: 'PHOTO_SUBMIT',
+    lat,
+    lng,
+    open,
   };
 };
