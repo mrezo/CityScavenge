@@ -1,7 +1,11 @@
-var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var urlParser = require('url');
 var rp = require('request-promise');
 // var userLocation = require('./locationController');
+var GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+
+if (!process.env.TRAVIS) {
+  GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
+}
 
 var endpoint = {
   latitude: 0,
