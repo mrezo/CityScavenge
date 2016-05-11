@@ -6,4 +6,3 @@ services:
 before_script:
   - psql -c 'CREATE DATABASE travis;' -U postgres
   - psql -f server/schema.sql
-  - postgres://postgres@localhost:5432/city_scavenge
