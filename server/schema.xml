@@ -37,7 +37,7 @@
     <type label="SET" length="1" sql="SET" quote=""/>
     <type label="Bit" length="0" sql="bit" quote=""/>
   </group>
-</datatypes><table x="104" y="53" name="user">
+</datatypes><table x="121" y="154" name="users">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -47,7 +47,7 @@
 <row name="name" null="0" autoincrement="0">
 <datatype>VARCHAR(63)</datatype>
 </row>
-<row name="display_name" null="0" autoincrement="0">
+<row name="displayname" null="0" autoincrement="0">
 <datatype>VARCHAR(63)</datatype>
 </row>
 <row name="avatar" null="0" autoincrement="0">
@@ -72,10 +72,10 @@
 <default>NULL</default></row>
 <row name="winning_user" null="0" autoincrement="0">
 <datatype>INTEGER</datatype>
-<relation table="user" row="id" />
+<relation table="users" row="id" />
 </row>
 <row name="duration" null="1" autoincrement="0">
-<datatype>TIME</datatype>
+<datatype>DECIMAL</datatype>
 <default>NULL</default></row>
 <row name="start_time" null="1" autoincrement="0">
 <datatype>TIME</datatype>
@@ -83,25 +83,21 @@
 <row name="finish_time" null="1" autoincrement="0">
 <datatype>TIME</datatype>
 <default>NULL</default></row>
-<row name="id_task" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="task" row="id" />
-</row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="397" y="218" name="task">
+<table x="403" y="239" name="task">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="source_user" null="0" autoincrement="0">
 <datatype>VARCHAR(63)</datatype>
-<relation table="user" row="id" />
+<relation table="users" row="id" />
 </row>
 <row name="receiver_user" null="1" autoincrement="0">
 <datatype>VARCHAR</datatype>
-<default>NULL</default><relation table="user" row="id" />
+<default>NULL</default><relation table="users" row="id" />
 </row>
 <row name="id_checkpoint" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -117,7 +113,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="535" y="288" name="checkpoint">
+<table x="566" y="260" name="checkpoint">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -125,21 +121,24 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="game" row="id" />
 </row>
+<row name="name" null="1" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<default>NULL</default></row>
+<row name="address" null="0" autoincrement="0">
+<datatype>VARCHAR(255)</datatype>
+<default>''''</default></row>
+<row name="google_place_id" null="0" autoincrement="0">
+<datatype>VARCHAR(63)</datatype>
+<default>''''</default></row>
 <row name="latitude" null="0" autoincrement="0">
 <datatype>DECIMAL</datatype>
 <default>0.0</default></row>
 <row name="longitude" null="0" autoincrement="0">
 <datatype>DECIMAL</datatype>
 <default>0.0</default></row>
-<row name="name" null="1" autoincrement="0">
-<datatype>VARCHAR(63)</datatype>
-<default>NULL</default></row>
 <row name="picture" null="1" autoincrement="0">
 <datatype>VARCHAR(63)</datatype>
 <default>NULL</default></row>
-<row name="collision" null="0" autoincrement="0">
-<datatype>VARCHAR(7)</datatype>
-<default>'False'</default></row>
 <row name="is_finish_point" null="0" autoincrement="0">
 <datatype>BINARY</datatype>
 <default>'0'</default></row>
@@ -151,14 +150,33 @@
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="id_user" null="1" autoincrement="0">
+<row name="id_users" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="user" row="id" />
+<default>NULL</default><relation table="users" row="id" />
 </row>
 <row name="id_game" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="game" row="id" />
 </row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="339" y="452" name="checkpoint_users">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="id_users" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="id_checkpoint" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="checkpoint" row="id" />
+</row>
+<row name="collision" null="0" autoincrement="0">
+<datatype>bit</datatype>
+<default>false</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
