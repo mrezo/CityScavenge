@@ -1,4 +1,4 @@
-var GOOGLE_PLACES_API_KEY = require(__dirname + '../config/googleplaces.js');
+var GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
 var urlParser = require('url');
 var rp = require('request-promise'); 
 // var userLocation = require('./locationController');
