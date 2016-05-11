@@ -1,13 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PhotoUpload from '../components/PhotoUpload';
-import { photoUploadStart, photoSubmit } from '../actions/map';
-
-PhotoUpload.propTypes = {
-  lat: PropTypes.number.isRequired,
-  lng: PropTypes.number.isRequired,
-  open: PropTypes.boolean.isRequired,
-};
+import { photoUploadStart, photoSubmit } from '../actions/photos';
 
 const mapStateToProps = (state) => {
   return {
