@@ -1,16 +1,15 @@
 var path = require('path');
 var passport = require('passport');
-var userUtils = require(path.join(__dirname, '../utils/userUtils'));
 var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 var auth = require(__dirname + '/../auth/auth.js');
-var User = require('../models/userModel.js');
+var User = require(path.join(__dirname, '../models/userModel.js'));
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
 
   // user routing
-  app.post('/api/v1/user', userUtils.newUser);
-  app.get('/api/v1/user/:id', userUtils.allUsers);
+  app.post('/api/v1/user', User.newUser);
+  app.get('/api/v1/user/:id', User.allUsers);
 
   // location routing
   app.get('/api/v1/geo/gamestart', finishLineController.searchGoogle);
