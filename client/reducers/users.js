@@ -29,6 +29,30 @@ const user = (state = {}, action) => {
 
 const users = (state = [], action) => {
   switch (action.type) {
+    case 'CREATE_USER':
+    console.log('USERS Reducer', state);
+    console.log('NEW USER', [
+        ...state,
+        {
+          title: action.title,
+          google_id: action.title,
+          lat: 0,
+          lng: 0,
+          label: action.title[0],
+          marker: 0,
+        },
+      ]);
+      return [
+        ...state,
+        {
+          title: action.title,
+          google_id: action.title,
+          lat: 0,
+          lng: 0,
+          label: action.title[0],
+          marker: 0,
+        },
+      ];
     case 'PLACE_USER_MARKER':
       return state.map(u =>
         user(u, action)
