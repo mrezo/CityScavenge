@@ -10,6 +10,29 @@ import RaisedButton from 'material-ui/lib/raised-button';
  */
 const PhotoUpload = () => (
   <div>
+    <RaisedButton label="Check In" onClick={() => { alert(' TESTING'); }} primary={true}/>
+    <Dialog
+      title="Dialog With Actions"
+      actions={[
+        <FlatButton
+          label="Cancel"
+          primary={true}
+        />,
+        <FlatButton
+          label="Submit"
+          primary={true}
+          keyboardFocused={true}
+        />,
+      ]}
+      modal={false}
+    >
+      The actions in this window were passed in as an array of React objects.
+    </Dialog>
+  </div>
+);
+
+/* const PhotoUpload = () => (
+  <div>
     <RaisedButton label="Check In" onTouchTap={this.handleOpen} />
     <Dialog
       title="Dialog With Actions"
@@ -34,6 +57,7 @@ const PhotoUpload = () => (
     </Dialog>
   </div>
 );
+*/ 
 
 export default PhotoUpload;
 
