@@ -9,10 +9,6 @@ class GoogleMap extends Component {
 
   componentDidMount() {
     this.props.initialPos();
-    // this.props.placeMarker(this.props.map, this.props.userTitle, {
-    //   latitude: this.props.userLat,
-    //   longitude: this.props.userLng,
-    // });
   }
 
   render() {
@@ -25,7 +21,6 @@ class GoogleMap extends Component {
 GoogleMap.propTypes = {
   initialPos: PropTypes.func.isRequired,
   placeMarker: PropTypes.func.isRequired,
-  // map: PropTypes.string.isRequired,
   userTitle: PropTypes.string.isRequired,
   userLat: PropTypes.number.isRequired,
   userLng: PropTypes.number.isRequired,
@@ -55,8 +50,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(placeUserMarker(map, title, lat, lng));
     },
     deleteMarker: (title) => {
-      // Necessary?
-      // this.state.userMarker.setMap(null);
       dispatch(deleteUserMarker(title));
     },
 
@@ -77,15 +70,21 @@ const mapDispatchToProps = (dispatch) => {
       getUserLocationAndWatchID(dispatch);
     },
     initialPos: () => {
+      // Gets player initial location
       initialPosition(dispatch, (positionData) => {
         const mapOptions = {
           center: { lat: positionData.latitude, lng: positionData.longitude },
           zoom: 15,
         };
+        // create a google map
         const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-        dispatch(placeUserMarker(googleMap, 'Michael', positionData));
+        
+      //dispatch(placeUserMarker(googleMap, 'Michael', positionData));
+      
+        // get's the final location by calling gamestart and dispatches placefinish point in action
         startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
-        getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
+        
+      //getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
       });
     },
   };
