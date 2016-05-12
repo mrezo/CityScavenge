@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { mapStateToPropsWindow } from '../props';
 import Tabs from 'material-ui/lib/tabs/tabs';
 import Tab from 'material-ui/lib/tabs/tab';
 import DashboardCard from './DashboardCard';

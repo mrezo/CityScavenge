@@ -38,28 +38,43 @@ describe('Basic Server Functions', function () {
         json: data,
       }, callback);
     };
+    var makeDELETE = function (endpoint, data, callback) {
+      return requestWithSession({
+        method: 'DELETE',
+        followAllRedirects: true,
+        uri: serverURL + endpoint,
+        json: data,
+      }, callback);
+    };
 
-    it('will respond to GET /api/user/:id', function (done) {
-      makeGET('/api/user/1', function(error, res, body) {
+    it('will respond to GET /api/v1/user/:id', function (done) {
+      makeGET('/api/v1/user', function (error, res, body) {
         expect(error).to.equal(null);
         expect(res.statusCode).to.equal(200);
         done();
       });
     });
 
-    it('will respond to POST /api/user', function(done) {
-      makePOST('/api/user',
+    it('will respond to POST /api/v1/user', function (done) {
+      makePOST('/api/v1/user',
         {
-          username: 'Test',
+          google_id: '34623572452',
+          name: 'Thomas Ingalls',
+          displayname: 'Thomas',
         },
-        function(error, res, body) {
+        function (error, res, body) {
           expect(error).to.equal(null);
           expect(res.statusCode).to.equal(200);
           done();
-        });
+        }
+      );
+      makeDELETE('/api/v1/user',
+        {
+          google_id: '34623572452',
+        },
+        function (error, res, body) {
+        }
+      );
     });
-
   }); // END describe('Basic REST API endpoints' function () {
-
 }); // END describe('Basic Server Functions', function () {
-

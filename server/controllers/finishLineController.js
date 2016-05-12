@@ -1,7 +1,11 @@
-var GOOGLE_PLACES_API_KEY = require(__dirname + './../config/googleplaces.js');
 var urlParser = require('url');
-var rp = require('request-promise'); 
+var rp = require('request-promise');
 // var userLocation = require('./locationController');
+var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
+
+if (!process.env.TRAVIS) {
+  GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
+}
 
 var endpoint = {
   latitude: 0,
@@ -9,12 +13,12 @@ var endpoint = {
 };
 
 // Dummy data
-userLocation = {
+var userLocation = {
   latitude: 37.7837731,
   longitude: -122.4090172,
 };
 
-var PlacesObj = function(googlePlacesData) {
+var PlacesObj = function (googlePlacesData) {
   return {
     name: googlePlacesData.name,
     address: googlePlacesData['formatted_address'],
@@ -28,8 +32,7 @@ var PlacesObj = function(googlePlacesData) {
 };
 
 
-module.exports.searchGoogle = function(req, res) {
-
+module.exports.searchGoogle = function (req, res) {
   var responseBody = {};
   responseBody.places = [];
 
@@ -39,7 +42,7 @@ module.exports.searchGoogle = function(req, res) {
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
-    .then(function(body){
+    .then(function (body) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
@@ -49,15 +52,15 @@ module.exports.searchGoogle = function(req, res) {
         return data.results[rand];
       }
     })
-    .catch(function(err){
+    .catch(function (err) {
       console.log('google places API call failure', err);
     })
-    .then(function(place) {
+    .then(function (place) {
         rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
                 + 'key=' + GOOGLE_PLACES_API_KEY
                 + '&placeid=' + place.place_id
               )
-              .then(function(locationData){
+              .then(function (locationData) {
                 var formattedLocation = JSON.parse(locationData).result;
                 var placesObj = PlacesObj(formattedLocation);
                 endpoint.latitude = formattedLocation.geometry.location.lat;
@@ -75,7 +78,7 @@ module.exports.getDistance = function(req, res) {
     + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
     + '&key=' + GOOGLE_PLACES_API_KEY
   )
-  .catch(function(err){
+  .catch(function (err) {
     console.log('Google Distance Matrix API call failure', err);
   })
   .then(function (body) {

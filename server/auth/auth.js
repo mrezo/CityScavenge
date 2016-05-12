@@ -1,8 +1,16 @@
-var googleKey = require(__dirname + '/../config/googlemaps.js');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
+
+var googleKey = {
+  CLIENTID: process.env.GOOGLEKEY,
+  CLIENTSECRET: process.env.GOOGLECLIENTSECRET,
+};
+
+if (!process.env.TRAVIS) {
+  googleKey = require(__dirname + '/../config/googlemaps.js');
+}
 
 // Middleware for checking whether the user is logged in
 exports.checkAuth = function (req, res, next) {
@@ -35,9 +43,9 @@ exports.logout = function (req, res, next) {
 };
 
 passport.use(new GoogleStrategy({
-  clientID: googleKey.CLIENT_ID,
-  clientSecret: googleKey.CLIENT_SECRET,
-  callbackURL: 'http://localhost:1337/auth/google/callback',
+  clientID: googleKey.CLIENTID,
+  clientSecret: googleKey.CLIENTSECRET,
+  callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
   User.findOrCreate(profile.displayName, profile.id, profile.name.givenName, function (err, user) {
     return done(err, user);

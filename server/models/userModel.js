@@ -1,6 +1,7 @@
 var path = require('path');
 var pg = require('pg');
 var connectionString = require(path.join(__dirname, '../config/dbconfig'));
+var db = require(path.join(__dirname, '../utils/utils'));
 
 module.exports = {
   findUser: function(field, value, cb) {
@@ -79,6 +80,46 @@ module.exports = {
           return cb(null, result.rows[0]);
         }
       });
+    });
+  },
+  allUsers: function(req, res) {
+    db.query({
+      text: "SELECT * FROM users",
+      values: [],
+    }, function (err, data) {
+      return res.json(data.rows);
+    });
+  },
+  newUser: function(req, res) {
+    if (!req.body.avatar) {
+      req.body.avatar = '';
+    }
+    if (!req.body.total_places_visited) {
+      req.body.total_places_visited = 0;
+    }
+    if (!req.body.total_distance) {
+      req.body.total_distance = 0.00;
+    }
+    if (!req.body.games_played) {
+      req.body.games_played = 0;
+    }
+    db.query({
+      text: "INSERT INTO users (google_id, name, displayname, avatar, total_places_visited, total_distance, games_played) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+      values: [req.body.google_id, req.body.name, req.body.displayname, req.body.avatar, req.body.total_places_visited, req.body.total_distance, req.body.games_played],
+    }, function (err, data) {
+      if (data) {
+        return res.json(data.rows[0]);
+      } else {
+        return res.json('No Data');
+      }
+    });
+  },
+  deleteUser: function (req, res) {
+    db.query({
+      text: "DELETE FROM users WHERE google_id = $1 RETURNING *",
+      values: [req.body.google_id],
+    }, function (err, data) {
+      return res.json(data[0]);
     });
   },
 };

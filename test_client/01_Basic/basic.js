@@ -2,7 +2,8 @@ const expect = require('chai').expect;
 const deepFreeze = require('deep-freeze-node');
 // import * as actions from '../../client/TodoActions';
 // import * as types from '../../constants/ActionTypes';
-import reducer from '../../client/reducers/reducers';
+import users from '../../client/reducers/users';
+import leftNav from '../../client/reducers/leftNav';
 
 // TODO example to test an action below
 // describe('actions', () => {
@@ -28,27 +29,26 @@ describe('Reducer', () => {
     deepFreeze(action);
 
     expect(
-      reducer(stateBefore, action)
+      users(stateBefore, action)
     ).to.eql(stateAfter);
   });
 
-  it('should return a modified username in state', () => {
+  it('should return a modified visible in state', () => {
     const stateBefore = {
-      username: 'Alexander',
+      visible: false,
     };
     const action = {
-      type: 'CHANGE_USER_NAME',
-      username: 'Hao',
+      type: 'TOGGLE_NAV',
     };
     const stateAfter = {
-      username: 'Hao',
+      visible: true,
     };
 
     deepFreeze(stateBefore);
     deepFreeze(action);
 
     expect(
-      reducer(stateBefore, action)
+      leftNav(stateBefore, action)
     ).to.eql(stateAfter);
   });
 });
