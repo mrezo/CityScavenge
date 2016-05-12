@@ -66,8 +66,6 @@ const initialStore = {
 const store = createStore(cityHunt, initialStore, compose(applyMiddleware(thunkMiddleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f));
 
-console.log(store.getState());
-
 socketIO(store);
 
 ReactDOM.render(
