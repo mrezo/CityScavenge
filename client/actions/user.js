@@ -1,5 +1,5 @@
-export const createUser = (title, coords) => {
-  console.log('Inside create user action', title, coords);
+export const createUser = (title, coords, socketId) => {
+  console.log('Inside create user action', title, coords, socketId);
   return {
     type: 'CREATE_USER',
     title,
@@ -8,5 +8,6 @@ export const createUser = (title, coords) => {
     lng: coords.longitude,
     label: title,
     marker: title,
+    socketId,
   };
 };
