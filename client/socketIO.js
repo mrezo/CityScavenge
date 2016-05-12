@@ -20,15 +20,6 @@ export default function (store) {
     store.dispatch(createUser(data.title, data.coords));
   });
 
-
-    // =================================================
-    // Gets the user coordinates
-    // =================================================
-
-
-    // update user with coords
-    // socket.emit()
-
     // =================================================
     // Updates the user coordinates
     // =================================================
