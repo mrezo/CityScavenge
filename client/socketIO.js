@@ -10,9 +10,17 @@ export default function (store) {
   socket.on('createUser', (data) => {
     // get initial coords of user
     newUserPosition((currentLocation) => {
-      console.log('I HAS ACCESS TO INITCOORDS', currentLocation);
       store.dispatch(createUser(data.title, currentLocation));
+      socket.emit('newUser', { title: data.title, coords: currentLocation });
     });
+  });
+
+  socket.on('newUser', (data) => {
+    console.log('Made it back from the server to add user to state', data);
+    store.dispatch(createUser(data.title, data.coords));
+  });
+
+
     // =================================================
     // Gets the user coordinates
     // =================================================
@@ -59,6 +67,5 @@ export default function (store) {
 
     // store.dispatch(placeUserMarker(store.getState().mapReducer.map, data.title, coords.currentLocation));
     // getUserLocationAndWatchID(store.getState().mapReducer.map, data.title);
-  });
 }
 
