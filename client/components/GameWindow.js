@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { mapStateToPropsWindow, mapDispatchToPropsWindow } from '../props';
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
