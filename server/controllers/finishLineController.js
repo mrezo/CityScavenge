@@ -1,7 +1,7 @@
 var urlParser = require('url');
 var rp = require('request-promise');
 // var userLocation = require('./locationController');
-var GOOGLE_PLACES_API_KEY = process.env.GOOGLE_PLACES_API_KEY;
+var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
 
 if (!process.env.TRAVIS) {
   GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');

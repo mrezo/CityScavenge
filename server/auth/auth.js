@@ -4,8 +4,8 @@ var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
 
 var googleKey = {
-  CLIENTID: process.env.GOOGLE_KEY,
-  CLIENTSECRET: process.env.GOOGLE_CLIENT_SECRET,
+  CLIENTID: process.env.GOOGLEKEY,
+  CLIENTSECRET: process.env.GOOGLECLIENTSECRET,
 };
 
 if (!process.env.TRAVIS) {
