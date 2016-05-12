@@ -5,10 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import cityHunt from './reducers/index';
-import { startGame } from './actions/map.js';
-import fetch from 'isomorphic-fetch';
-import createMap from './actions/map.js';
-import { getUserLocationAndWatchID, stopWatching} from './lib/locationController';
 
 const initialStore = {
   auth: {},
@@ -67,33 +63,6 @@ const initialStore = {
 };
 
 const store = createStore(cityHunt, initialStore, applyMiddleware(thunkMiddleware));
-
-store.dispatch((dispatch) => {
-  // getUserLocationAndWatchID(dispatch);
-  // dispatch(createMap());
-  // startGame(dispatch);
-});
-
-// store.dispatch( () => {
-//   createMap(data);
-// });
-  // console.log('store is dispatching');
-  // return dispatch => {
-  //   fetch('api/geo/gamestart', {
-  //     method: 'GET',
-  //     headers: {
-  //       Accept: 'application/json',
-  //     },
-  //   }).then((response) => {
-  //     console.log('this is the response in index.js', response);
-  //     if (response.status === 200) {
-  //       console.log('this is the response', response);
-  //     } else {
-  //       // TODO: error handling
-  //       console.log('oops in startGame');
-  //     }
-  //   });
-  // };
 
 ReactDOM.render(
   <Provider store={store}>
