@@ -10,7 +10,6 @@ const App = () => (
       <Route component={LandingPage} path="/" />
       <Route component={Dashboard} path="/dashboard" />
       <Route component={GameWindow} path="/game" />
-      <Route component={Dashboard} path="/gamestart" />
     </Router>
   </div>
 );
