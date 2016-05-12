@@ -4,8 +4,8 @@ var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
 
 var googleKey = {
-  CLIENT_ID: process.env.GOOGLE_KEY,
-  CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  CLIENTID: process.env.GOOGLE_KEY,
+  CLIENTSECRET: process.env.GOOGLE_CLIENT_SECRET,
 };
 
 if (!process.env.TRAVIS) {
@@ -43,8 +43,8 @@ exports.logout = function (req, res, next) {
 };
 
 passport.use(new GoogleStrategy({
-  clientID: googleKey.CLIENT_ID,
-  clientSecret: googleKey.CLIENT_SECRET,
+  clientID: googleKey.CLIENTID,
+  clientSecret: googleKey.CLIENTSECRET,
   callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
   User.findOrCreate(profile.displayName, profile.id, profile.name.givenName, function (err, user) {
