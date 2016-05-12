@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/FuturisticSalamander/CityScavenge.svg?branch=master)](http://travis-ci.org/FuturisticSalamander/CityScavenge)
+
 # City Scavenge
 
 City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to find a croissant before your competition does. It utilizes the Google Maps API to find your current location and place a croissant at a random interest area within two miles. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
