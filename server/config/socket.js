@@ -2,17 +2,19 @@ const socket = require('socket.io');
 
 module.exports = function(server) {
 
+  var players = [];
   var counter = 1;
   var io = socket(server);
 
   io.on('connection', function(socket) {
+    console.log('User connected with socket id: ', socket.id);
+    players.push(socket.id);
+    console.log('List of Players', players);
 
-    console.log('user connected');
-
-    socket.emit('createUser', { title: ++counter });
+    io.to(socket.id).emit('createUser', { title: counter, socketId: socket.id, });
 
     socket.on('newUser', function(data) {
-      io.emit('newUser', data);
+      socket.broadcast.emit('newUser', data);
     });
   });
 };
