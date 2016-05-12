@@ -5,21 +5,31 @@ import { createUser } from './actions/user';
 
 export const socket = io();
 
+let currentUser = null;
+
 export default function (store) {
   // On user connection create with lat and long
   socket.on('createUser', (data) => {
     // get initial coords of user
+    currentUser = data.socketId;
+    console.log('HERE IS MY SOCKET ID', currentUser);
     newUserPosition((currentLocation) => {
-      store.dispatch(createUser(data.title, currentLocation));
-      socket.emit('newUser', { title: data.title, coords: currentLocation });
+      store.dispatch(createUser(data.title, currentLocation, currentUser));
+      socket.emit('newUser', { title: data.title, coords: currentLocation, socketId: currentUser});
     });
   });
 
   socket.on('newUser', (data) => {
     console.log('Made it back from the server to add user to state', data);
-    store.dispatch(createUser(data.title, data.coords));
+    store.dispatch(createUser(data.title, data.coords, data.socketId));
   });
 
+  // setInterval(socket.emit('updateUserPosition', {title: 'Dude'}), 3000);
+
+  socket.on('updateUserPosition', data => {
+    store.dispatch(deleteUserMarker(data.map, data.title, data.coords));
+    store.dispatch(placeUserMarker(data.map, data.title, data.coords));
+  });
     // =================================================
     // Updates the user coordinates
     // =================================================
