@@ -8,7 +8,7 @@ const LandingPage = () => (
     <h3 className="app-title">City Hunt</h3>
     <span>Explore your city</span>
     <div className="button-group">
-      <RaisedButton label="Login with Google" primary={true} linkButton={true} href="/auth/google" />
+      <RaisedButton label="Login with Google" primary={true} linkButton={true} href="api/v1/auth/google" />
     </div>
   </div>
 );
