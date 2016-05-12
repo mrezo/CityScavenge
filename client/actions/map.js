@@ -10,8 +10,8 @@ export const createMap = (googleMap, data) => {
 };
 
 export const startGame = (dispatch, googleMap) => {
-  fetch('api/v1/geo/gamestart', {
-    method: 'GET',
+  fetch('api/v1/game', {
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',

@@ -13,6 +13,11 @@ const LandingPage = () => (
         <RaisedButton label="Login with Google" backgroundColor={styles.Colors.red500} primary={true} />
       </div>
     </card>
+    <h3 className="app-title">City Scavenge</h3>
+    <span>Explore your city</span>
+    <div className="button-group">
+      <RaisedButton label="Login with Google" primary={true} linkButton={true} href="api/v1/auth/google" />
+    </div>
   </div>
 );
 
