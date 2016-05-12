@@ -28,7 +28,7 @@ const user = (state = {}, action) => {
 };
 
 const users = (state = [], action) => {
-  console.log('Inside the reducer', action);
+  console.log('THIS IS THE USER ACTION', action);
   switch (action.type) {
     case 'CREATE_USER':
       return [
@@ -40,6 +40,7 @@ const users = (state = [], action) => {
           lng: action.lng,
           label: action.label,
           marker: action.marker,
+          socketId: action.socketId,
         },
       ];
     case 'PLACE_USER_MARKER':
