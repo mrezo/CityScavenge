@@ -11,6 +11,12 @@ body, html {
 /* Landing Page
 ==================================
 */
+.card-title: {
+  font-weight: 100,
+  font-size: 20,
+  line-height: '24px',
+}
+
 .login-button {
   display: block;
 }
@@ -31,6 +37,10 @@ body, html {
   height: 200px;
   padding-top: 50px;
   background: #FF4081;
+}
+
+.main-image {
+  max-width: 100%;
 }
 
 /* Game Window
@@ -56,4 +66,3 @@ body, html {
   top: 0;
   bottom: 0;
 }
-
