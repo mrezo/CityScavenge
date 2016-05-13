@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 import { Tabs, Tab } from 'material-ui/lib/tabs/index';
 import DashboardCard from './DashboardCard';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
-import { Link } from 'react-router';
-import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
+import UserProfile from '../components/UserProfile';
+
 injectTapEventPlugin();
 
 const Dashboard = () => (
@@ -24,11 +26,7 @@ const Dashboard = () => (
       <Tab label="Create Game" containerElement={<Link to="/game" />} />
       <Tab label="Stats" >
         <div onClick={() => { alert('Test'); }} >
-          <DashboardCard />
-          <h2>Tab Three</h2>
-          <p>
-            Here was can have a table with icons of all the stats. w00t w00t
-          </p>
+          <UserProfile />
         </div>
       </Tab>
     </Tabs>
