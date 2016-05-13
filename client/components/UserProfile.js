@@ -1,6 +1,8 @@
 import React from 'react';
 import Badge from 'material-ui/lib/badge';
 import IconButton from 'material-ui/lib/icon-button';
+import Card from 'material-ui/lib/card/card';
+import CardText from 'material-ui/lib/card/card-text';
 
 // icons
 import HardwareVideogameAsset from 'material-ui/lib/svg-icons/hardware/videogame-asset';
@@ -39,9 +41,9 @@ const stats = [
     text: '',
   },
   {
-    title: "Total Distance Traveled",
+    title: "Total Distance Traveled (mi)",
     icon: <DirectionsRun />,
-    badgeContent: '15mi',
+    badgeContent: '15',
     text: '',
   },
   {
@@ -50,6 +52,9 @@ const stats = [
     badgeContent: 11,
     text: '',
   },
+];
+
+const peopleStats = [
   {
     title: "Nemesis",
     icon: <Lightning />,
@@ -57,13 +62,13 @@ const stats = [
     text: ': Michael',
   },
   {
-    title: "Favorite User",
+    title: "Ally",
     icon: <Mood />,
     badgeContent: '',
     text: ': Genevieve',
   },
   {
-    title: "Least Favorite User",
+    title: "Enemy",
     icon: <MoodBad />,
     badgeContent: '',
     text: ': Alexander',
@@ -74,20 +79,38 @@ const UserProfile = () => (
   <div className="stats">
     {stats.map(stat =>
       <div>
-        <Badge
-          badgeContent={ stat.badgeContent }
-          secondary={true}
-          badgeStyle={{ top: 12, right: 12 }}
-        >
-          <IconButton tooltip={ stat.title }>
-            { stat.icon }
-          </IconButton>
-        </Badge>
-        <Badge
-          badgeStyle={{ fontSize: 20 }}
-        >
-          { stat.title } { stat.text }
-        </Badge>
+        <Card>
+          <CardText>
+            <Badge
+              badgeContent={ stat.badgeContent }
+              secondary={true}
+              badgeStyle={{ top: 12, right: 12 }}
+            >
+              <IconButton tooltip={ stat.title }>
+                { stat.icon }
+              </IconButton>
+            </Badge>
+            { stat.title } { stat.text }
+          </CardText>
+        </Card>
+      </div>
+    )}
+    {peopleStats.map(stat =>
+      <div>
+        <Card>
+          <CardText>
+            <Badge
+              className="person"
+              primary={true}
+              badgeStyle={{ top: 12, right: 12 }}
+            >
+              <IconButton tooltip={ stat.title }>
+                { stat.icon }
+              </IconButton>
+            </Badge>
+            { stat.title } { stat.text }
+          </CardText>
+        </Card>
       </div>
     )}
   </div>
