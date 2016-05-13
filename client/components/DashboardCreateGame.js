@@ -1,5 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/lib/TextField';
+import RaisedButton from 'material-ui/lib/raised-button';
+import styles from 'material-ui/lib/styles';
 
 const DashboardCreateGame = () => (
   <div>
@@ -23,6 +25,7 @@ const DashboardCreateGame = () => (
       multiLine={true}
       rows={2}
     /><br />
+    <RaisedButton label="Create Game" backgroundColor={styles.Colors.red500} primary={true} linkButton={true} href="/#/game" />
   </div>
 );
 

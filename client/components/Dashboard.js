@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 import { Tabs, Tab } from 'material-ui/lib/tabs/index';
 import DashboardCard from './DashboardCard';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
+import DashboardCreateGame from '../components/DashboardCreateGame';
 import UserProfile from '../components/UserProfile';
 
 injectTapEventPlugin();
@@ -23,7 +23,11 @@ const Dashboard = () => (
           <DashboardCard />
         </div>
       </Tab>
-      <Tab label="Create Game" containerElement={<Link to="/game" />} />
+      <Tab label="Create Game">
+        <div>
+          <DashboardCreateGame />
+        </div>
+      </Tab>
       <Tab label="Stats" >
         <div>
           <UserProfile />
