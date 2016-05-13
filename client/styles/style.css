@@ -66,3 +66,16 @@ body, html {
   top: 0;
   bottom: 0;
 }
+
+/* User Profile
+==================================
+*/
+.stats {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats>div {
+  display: flex;
+  justify-content: center;
+}

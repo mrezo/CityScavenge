@@ -53,13 +53,13 @@ const stats = [
 ];
 
 const UserProfile = () => (
-  <div>
+  <div className="stats">
     {stats.map(stat =>
       <div>
         <Badge
           badgeContent={10}
           secondary={true}
-          badgeStyle={{top: 12, right: 12}}
+          badgeStyle={{ top: 12, right: 12 }}
         >
           <IconButton tooltip={ stat.title }>
             { stat.icon }
