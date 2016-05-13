@@ -18,46 +18,55 @@ const stats = [
     title: "Total Games Played",
     icon: <HardwareVideogameAsset />,
     badgeContent: 10,
+    text: '',
   },
   {
     title: "Total Games Won",
     icon: <Star />,
     badgeContent: 5,
+    text: '',
   },
   {
     title: "Total Games Finished",
     icon: <DoubleCheck />,
     badgeContent: 5,
+    text: '',
   },
   {
     title: "Total Places Visited",
     icon: <AddLocation />,
     badgeContent: 19,
+    text: '',
   },
   {
     title: "Total Distance Traveled",
     icon: <DirectionsRun />,
     badgeContent: '15mi',
+    text: '',
   },
   {
     title: "# of Actions Used",
     icon: <Flare />,
     badgeContent: 11,
+    text: '',
   },
   {
     title: "Nemesis",
     icon: <Lightning />,
-    badgeContent: 'Michael',
+    badgeContent: '',
+    text: ': Michael',
   },
   {
     title: "Favorite User",
     icon: <Mood />,
-    badgeContent: 'Genevieve',
+    badgeContent: '',
+    text: ': Genevieve',
   },
   {
     title: "Least Favorite User",
     icon: <MoodBad />,
-    badgeContent: 'Alexander',
+    badgeContent: '',
+    text: ': Alexander',
   },
 ];
 
@@ -77,7 +86,7 @@ const UserProfile = () => (
         <Badge
           badgeStyle={{ fontSize: 20 }}
         >
-          { stat.title }
+          { stat.title } { stat.text }
         </Badge>
       </div>
     )}
