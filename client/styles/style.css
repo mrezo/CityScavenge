@@ -70,12 +70,16 @@ body, html {
 /* User Profile
 ==================================
 */
-.stats {
+.stats, .stats>div {
   display: flex;
+  justify-content: flex-end;
+}
+
+.stats {
   flex-direction: column;
 }
 
 .stats>div {
-  display: flex;
-  justify-content: center;
+  width: 40%;
+  padding-right: 0px;
 }
