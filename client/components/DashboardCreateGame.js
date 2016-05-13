@@ -25,7 +25,7 @@ const DashboardCreateGame = () => (
       multiLine={true}
       rows={2}
     /><br />
-    <RaisedButton label="Create Game" backgroundColor={styles.Colors.red500} primary={true} linkButton={true} href="/#/game" />
+    <RaisedButton label="Create Game" backgroundColor={styles.Colors.pink400} primary={true} linkButton={true} href="/#/game" />
   </div>
 );
 
