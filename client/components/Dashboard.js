@@ -25,7 +25,7 @@ const Dashboard = () => (
       </Tab>
       <Tab label="Create Game" containerElement={<Link to="/game" />} />
       <Tab label="Stats" >
-        <div onClick={() => { alert('Test'); }} >
+        <div>
           <UserProfile />
         </div>
       </Tab>
