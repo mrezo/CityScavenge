@@ -43,12 +43,6 @@ body, html {
   max-width: 100%;
 }
 
-.createGame {
-  background-color: #4DD0E1 !important;
-  height: 0px !important;
-  text-align: center;
-}
-
 /* Game Window
 ==================================
 */
