@@ -4,8 +4,7 @@ const checkpoints = (state = [], action) => {
       const checkpointOptions = {
         position: { lat: action.lat, lng: action.lng },
         map: action.map,
-        title: state.title,
-        label: state.label,
+        label: 'C',
       };
       return [...state, {
         checkpoint: {
