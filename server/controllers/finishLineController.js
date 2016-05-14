@@ -18,8 +18,6 @@ var userLocation = {
   longitude: -122.4090172,
 };
 
-var radius = 3200;
-
 var PlacesObj = function (googlePlacesData) {
   return {
     name: googlePlacesData.name,
@@ -40,7 +38,7 @@ module.exports.searchGoogle = function (req, res) {
 
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + userLocation.latitude + ',' + userLocation.longitude
-      + '&radius=' + radius
+      + '&radius=' +  3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
