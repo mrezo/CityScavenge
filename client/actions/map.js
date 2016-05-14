@@ -19,8 +19,8 @@ export const setFinishPoint = (lat, lng) => {
 };
 
 export const getFinishPoint = (dispatch) => {
-  fetch('api/geo/gamestart', {
-    method: 'GET',
+  fetch('api/v1/game', {
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
