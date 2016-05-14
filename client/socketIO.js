@@ -7,12 +7,13 @@ export const socket = io();
 
 let currentUser = null;
 
-export default function (store) {
+export default (store) => {
   // On user connection create with lat and long
   socket.on('createUser', (data) => {
     // get initial coords of user
     currentUser = data.socketId;
     console.log('HERE IS MY SOCKET ID', currentUser);
+    console.log('THIS IS THE STORE', store.getState())
     newUserPosition((currentLocation) => {
       store.dispatch(createUser(data.title, currentLocation, currentUser));
       socket.emit('newUser', { title: data.title, coords: currentLocation, socketId: currentUser});
@@ -24,12 +25,31 @@ export default function (store) {
     store.dispatch(createUser(data.title, data.coords, data.socketId));
   });
 
-  // setInterval(socket.emit('updateUserPosition', {title: 'Dude'}), 3000);
+  // const emitFinishPoint = () => {
+  //   socket.emit('placeFinishPoint', {googleMap: googleMap, lat: data.latitude, lng: data.longitude });
+  // };
+
+
+  setInterval( () => {
+    if (store.getState().finishPoint.lat !== 0) {
+      socket.emit('updateFinishPoint', {marker: store.getState().finishPoint.marker, lat: store.getState().finishPoint.lat, lng: store.getState().finishPoint.lng });
+    }
+  }, 3000);
+
+  socket.on('placeFinishPoint', (data) => {
+    console.log('Finish point received for the game', data);
+    store.dispatch(updateFinishPoint(data.marker, data.lat, data.lng));
+  });
+
+  socket.on('error', (err)=> {
+    console.log(err);
+  });
 
   socket.on('updateUserPosition', data => {
     store.dispatch(deleteUserMarker(data.map, data.title, data.coords));
     store.dispatch(placeUserMarker(data.map, data.title, data.coords));
   });
+
     // =================================================
     // Updates the user coordinates
     // =================================================
