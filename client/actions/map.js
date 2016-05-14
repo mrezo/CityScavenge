@@ -36,6 +36,8 @@ export const getFinishPoint = (dispatch) => {
     socket.setFinishPoint(data.latitude, data.longitude);
     dispatch(setFinishPoint(data.latitude, data.longitude));
     //iterate over checkpoints array and dispatch action for each
+    // dispatch placeFinishPoint for first object
+    // dispatch placeCheckpoint for rest of objects
     for (var i = 0; i < data.length; i ++) {
       dispatch(placeFinishPoint(googleMap, data[i].latitude, data[i].longitude));
     }
@@ -71,11 +73,10 @@ export const deleteUserMarker = (title) => {
   };
 };
 
-export const placeCheckpoint = (map, title, lat, lng) => {
+export const placeCheckpoint = (map, lat, lng) => {
   return {
     type: 'PLACE_CHECKPOINT',
     map,
-    title,
     lat,
     lng,
   };
