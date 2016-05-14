@@ -31,6 +31,12 @@ const finishPoint = (state = {}, action) => {
       return state.users.map(u =>
         user(u, action)
       );
+    case 'UPDATE_FINISHPOINT':
+      return Object.assign({}, state, {
+        marker: action.marker,
+        lat: action.lat,
+        lng: action.lng,
+      });
     default:
       return state;
   }
