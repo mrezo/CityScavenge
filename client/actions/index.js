@@ -4,6 +4,18 @@ export const toggleNav = () => {
   };
 };
 
+export const assignGameName = () => {
+  return {
+    type: 'ASSIGN_GAME_NAME',
+  };
+};
+
+export const assignGameRadius = () => {
+  return {
+    type: 'ASSIGN_GAME_RADIUS',
+  };
+};
+
 export const logout = (dispatch) => {
   fetch('api/v1/logout', {
     method: 'GET',
