@@ -48,10 +48,14 @@ module.exports.searchGoogle = function (req, res) {
       if (data.results && data.results.length > 3) {
         // randomly pick a location
         var allCheckpoints = [];
+        var storeValues = {};
         while (allCheckpoints.length < 4) {
           var rand = Math.floor(Math.random() * data.results.length);
+          if (!storeValues[rand]) {
+            storeValues[rand] = 1;
           // TODO: remove duplicates
-          allCheckpoints.push(PlacesObj(data.results[rand]));
+            allCheckpoints.push(PlacesObj(data.results[rand]));
+          }
         }
         endpoint.latitude = allCheckpoints[0].latitude;
         endpoint.longitude = allCheckpoints[0].longitude;
