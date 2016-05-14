@@ -48,6 +48,7 @@ export const initialPosition = (dispatch, cb) => {
   let currentLocation;
 
   let showLocation = (position) => {
+    console.log('WHY', position);
     currentLocation =
     {
       latitude: position.coords.latitude,
@@ -70,7 +71,7 @@ export const initialPosition = (dispatch, cb) => {
 
   const watchID = getWatchID();
   return { currentLocation, watchID };
-}
+};
 
 // For new connected users through sockets
 // ================================================
