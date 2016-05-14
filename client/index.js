@@ -37,7 +37,6 @@ const initialStore = {
     lat: 0,
     lng: 0,
     label: 'F',
-    marker: 0,
     users: [
       {
         title: 'Michael',
@@ -58,7 +57,6 @@ const initialStore = {
       lat: 0,
       lng: 0,
       label: 'U',
-      marker: 0,
     },
   ],
 };
