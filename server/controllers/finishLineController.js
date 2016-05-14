@@ -24,16 +24,12 @@ var radius = 3200;
 var PlacesObj = function (googlePlacesData) {
   return {
     name: googlePlacesData.name,
-    address: googlePlacesData['formatted_address'],
     googlePlaceId: googlePlacesData['place_id'],
     latitude: googlePlacesData['geometry']['location']['lat'],
     longitude: googlePlacesData['geometry']['location']['lng'],
-    url: '',
     rating: Math.round(googlePlacesData.rating),
-    numberOfReviews: googlePlacesData.reviews.length,
   };
 };
-
 
 module.exports.searchGoogle = function (req, res) {
   var responseBody = {};
@@ -41,7 +37,7 @@ module.exports.searchGoogle = function (req, res) {
 
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
       + '&location=' + userLocation.latitude + ',' + userLocation.longitude
-      + '&radius=' + radius
+      + '&radius=' +  3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
     )
@@ -52,41 +48,19 @@ module.exports.searchGoogle = function (req, res) {
       if (data.results && data.results.length > 3) {
         // randomly pick a location
         var allCheckpoints = [];
-        while (allCheckpoints.length < 3) {
+        while (allCheckpoints.length < 4) {
           var rand = Math.floor(Math.random() * data.results.length);
-          allCheckpoints.push(data.results[rand]);
+          // TODO: remove duplicates
+          allCheckpoints.push(PlacesObj(data.results[rand]));
         }
-        return allCheckpoints;
+        endpoint.latitude = allCheckpoints[0].latitude;
+        endpoint.longitude = allCheckpoints[0].longitude;
+        res.json(allCheckpoints);
       }
     })
     .catch(function (err) {
       console.log('google places API call failure', err);
     })
-    .then(function (places) {
-      // places will be an array of four objects that represent each checkpoint
-      var allPlacesObjects = [];
-      for (var i = 0; i < places.length; i++) {
-        var currentPlaceObject = rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
-          + 'key=' + GOOGLE_PLACES_API_KEY
-          + '&placeid=' + places[i].place_id
-        );
-        allPlacesObjects.push(currentPlaceObject);
-      }
-      return allPlacesObjects;
-    })
-    .then(function (locationData) {
-      // locationData is an array of four objects
-      //console.log(locationData.result, 'this is location data.result');
-      var formattedLocationsToSendBack = [];
-      for (var i = 0; i < locationData.length; i++) {
-        var formattedLocation = JSON.parse(locationData[i]).result;
-        formattedLocationsToSendBack.push(PlacesObj(formattedLocation));
-      }
-      endpoint.latitude = formattedLocationsToSendBack[0].geometry.location.lat;
-      endpoint.longitude = formattedLocationsToSendBack[0].geometry.location.lng;
-      res.json(formattedLocationsToSendBack);
-    }
-    );
 };
 
 module.exports.getDistance = function (req, res) {
