@@ -16,5 +16,10 @@ module.exports = function(server) {
     socket.on('newUser', function(data) {
       socket.broadcast.emit('newUser', data);
     });
+
+    socket.on('updateFinishPoint', function(data) {
+      console.log('BROADCAST FINISHPOINT', data);
+      socket.broadcast.emit('placeFinishPoint', data);
+    })
   });
 };
