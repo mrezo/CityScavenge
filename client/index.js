@@ -57,6 +57,8 @@ const initialStore = {
       lat: 0,
       lng: 0,
       label: 'U',
+      marker: 0,
+      gameName: '',
     },
   ],
 };
