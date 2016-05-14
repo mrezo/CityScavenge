@@ -15,6 +15,11 @@ const user = (state = {}, action) => {
 
 const finishPoint = (state = {}, action) => {
   switch (action.type) {
+    case 'SET_FINISHPOINT':
+      return Object.assign({}, state, {
+        lat: action.lat,
+        lng: action.lng,
+      });
     case 'PLACE_FINISHPOINT':
       const finishPointOptions = {
         position: { lat: action.lat, lng: action.lng },
