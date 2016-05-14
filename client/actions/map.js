@@ -1,17 +1,26 @@
 import 'isomorphic-fetch';
+import { socket } from '../socketIO';
 
-export const createMap = (googleMap, data) => {
+export const createMap = (googleMap, lat, lng) => {
   return {
     type: 'CREATE_MAP',
     googleMap,
-    lat: data.latitude,
-    lng: data.longitude,
+    lat,
+    lng,
   };
 };
 
-export const startGame = (dispatch, googleMap) => {
-  fetch('api/v1/game', {
-    method: 'POST',
+export const setFinishPoint = (lat, lng) => {
+  return {
+    type: 'SET_FINISHPOINT',
+    lat,
+    lng,
+  };
+};
+
+export const getFinishPoint = (dispatch) => {
+  fetch('api/geo/gamestart', {
+    method: 'GET',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -24,7 +33,8 @@ export const startGame = (dispatch, googleMap) => {
     return response.json();
   })
   .then((data) => {
-    dispatch(placeFinishPoint(googleMap, data.latitude, data.longitude));
+    socket.setFinishPoint(data.latitude, data.longtitude);
+    dispatch(setFinishPoint(data.latitude, data.longitude));
   })
   .catch((error) => {
     console.log('Error', error);
