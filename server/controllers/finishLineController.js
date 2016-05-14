@@ -82,8 +82,8 @@ module.exports.searchGoogle = function (req, res) {
         var formattedLocation = JSON.parse(locationData[i]).result;
         formattedLocationsToSendBack.push(PlacesObj(formattedLocation));
       }
-      endpoint.latitude = formattedLocation[0].geometry.location.lat;
-      endpoint.longitude = formattedLocation[0].geometry.location.lng;
+      endpoint.latitude = formattedLocationsToSendBack[0].geometry.location.lat;
+      endpoint.longitude = formattedLocationsToSendBack[0].geometry.location.lng;
       res.json(formattedLocationsToSendBack);
     }
     );
