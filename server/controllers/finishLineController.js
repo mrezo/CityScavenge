@@ -48,10 +48,14 @@ module.exports.searchGoogle = function (req, res) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
-      if (data.results && data.results.length > 0) {
+      if (data.results && data.results.length > 3) {
         // randomly pick a location
-        var rand = Math.floor(Math.random() * data.results.length);
-        return data.results[rand];
+        var allCheckpoints = [];
+        while (allCheckpoints.length < 3) {
+          var rand = Math.floor(Math.random() * data.results.length);
+          allCheckpoints.push(data.results[rand]);
+        }
+        return allCheckpoints;
       }
     })
     .catch(function (err) {
