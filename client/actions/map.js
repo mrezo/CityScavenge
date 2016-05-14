@@ -39,7 +39,9 @@ export const getFinishPoint = (dispatch) => {
     // dispatch placeFinishPoint for first object
     // dispatch placeCheckpoint for rest of objects
     for (var i = 0; i < data.length; i ++) {
-      dispatch(placeFinishPoint(googleMap, data[i].latitude, data[i].longitude));
+      dispatch(placeFinishPoint(googleMap, data[0].latitude, data[0].longitude));
+    for (var i = 1; i < data.length; i ++) {
+      dispatch(placeCheckpoint(googleMap, data[i].latitude, data[i].longitude));
     }
   })
   .catch((error) => {
