@@ -32,7 +32,6 @@ const Dashboard = ({ createFinishPoint }) => (
       >
         <div>
           <DashboardCreateGame />
-          <div id="map"></div>
           <h2>Currently Available Games</h2>
           <p>Here we can put a whole list of games that are available to begin playing.</p>
         </div>
