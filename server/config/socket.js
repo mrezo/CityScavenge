@@ -11,15 +11,20 @@ module.exports = function(server) {
     players.push(socket.id);
     console.log('List of Players', players);
 
-    io.to(socket.id).emit('createUser', { title: counter, socketId: socket.id, });
+    io.to(socket.id).emit('createUser', { title: ++counter, socketId: socket.id, });
 
     socket.on('newUser', function(data) {
       socket.broadcast.emit('newUser', data);
     });
 
-    socket.on('updateFinishPoint', function(data) {
-      console.log('BROADCAST FINISHPOINT', data);
+    socket.on('test', function(data) {
+      console.log(data);
+      io.sockets.emit('test', data);
+    });
+
+    socket.on('setFinishPoint', function(data) {
+      console.log('BROADCASTING FINISHPOINT TO SOCKETS', data);
       socket.broadcast.emit('placeFinishPoint', data);
-    })
+    });
   });
 };
