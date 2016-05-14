@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision, startGame } from '../actions/map';
+import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision, getFinishPoint } from '../actions/map';
 import GameWindow from '../components/GameWindow';
 import fetch from 'isomorphic-fetch';
 import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
@@ -8,7 +8,7 @@ import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/
 class GoogleMap extends Component {
 
   componentDidMount() {
-    // this.props.initialPos();
+    this.props.generateMap();
   }
 
   render() {
@@ -19,7 +19,7 @@ class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  //initialPos: PropTypes.func.isRequired,
+  generateMap: PropTypes.func.isRequired,
   placeMarker: PropTypes.func.isRequired,
   userTitle: PropTypes.string.isRequired,
   userLat: PropTypes.number.isRequired,
@@ -27,6 +27,7 @@ GoogleMap.propTypes = {
   finishLat: PropTypes.number.isRequired,
   finishLng: PropTypes.number.isRequired,
 };
+
 
 const mapStateToProps = (state) => {
   return {
@@ -41,10 +42,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createMap: (lat, lng) => {
-      dispatch(createMap({ lat, lng }));
+    generateMap: () => {
+      const mapOptions = {
+        center: { lat: 37.7749, lng: 122.4194 },
+        zoom: 15,
+      };
+      const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
+      dispatch(createMap(googleMap, 37.7749, 122.4194));
     },
-
     // Places a marker on the user's location
     placeMarker: (map, title, lat, lng) => {
       dispatch(placeUserMarker(map, title, lat, lng));
@@ -69,26 +74,9 @@ const mapDispatchToProps = (dispatch) => {
     watchUser: () => {
       getUserLocationAndWatchID(dispatch);
     },
-    // initialPos: () => {
-    //   // Gets player initial location
-    //   initialPosition(dispatch, (positionData) => {
-    //     const mapOptions = {
-    //       center: { lat: positionData.latitude, lng: positionData.longitude },
-    //       zoom: 15,
-    //     };
-    //     // create a google map
-    //     const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-        
-    //   //dispatch(placeUserMarker(googleMap, 'Michael', positionData));
-      
-    //     // get's the final location by calling gamestart and dispatches placefinish point in action
-    //     startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
-        
-    //   //getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
-    //   });
-    // },
   };
 };
+
 
 const GoogleMapContainer = connect(
   mapStateToProps,
