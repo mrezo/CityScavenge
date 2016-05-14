@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
-    <RaisedButton 
+    <RaisedButton
       label="Check In"
       onClick={() => {
         photoUploadStart(lat, lng, open);
