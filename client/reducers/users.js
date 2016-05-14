@@ -28,7 +28,6 @@ const user = (state = {}, action) => {
 };
 
 const users = (state = [], action) => {
-  console.log('THIS IS THE USER ACTION', action);
   switch (action.type) {
     case 'CREATE_USER':
       return [
