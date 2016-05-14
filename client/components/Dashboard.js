@@ -11,7 +11,7 @@ import UserProfile from '../components/UserProfile';
 
 injectTapEventPlugin();
 
-const Dashboard = ({ getFinishPoint }) => (
+const Dashboard = ({ createFinishPoint }) => (
   <div>
     <VisibleDashboardLeftNav />
     <VisibleTopAppBar />
@@ -27,7 +27,7 @@ const Dashboard = ({ getFinishPoint }) => (
       </Tab>
       <Tab label="Create Game" onClick={e => {
         e.preventDefault();
-        getFinishPoint();
+        createFinishPoint();
       }}
       >
         <div>
@@ -47,7 +47,7 @@ const Dashboard = ({ getFinishPoint }) => (
 );
 
 Dashboard.propTypes = {
-  getFinishPoint: PropTypes.func.isRequired,
+  createFinishPoint: PropTypes.func.isRequired,
 };
 
 export default Dashboard;
