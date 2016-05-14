@@ -45,7 +45,7 @@ module.exports.searchGoogle = function (req, res) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
-      if (data.results && data.results.length > 3) {
+      if (data.results && data.results.length > 4) {
         // randomly pick a location
         var allCheckpoints = [];
         var storeValues = {};
@@ -53,7 +53,6 @@ module.exports.searchGoogle = function (req, res) {
           var rand = Math.floor(Math.random() * data.results.length);
           if (!storeValues[rand]) {
             storeValues[rand] = 1;
-          // TODO: remove duplicates
             allCheckpoints.push(PlacesObj(data.results[rand]));
           }
         }
