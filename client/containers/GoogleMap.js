@@ -8,7 +8,7 @@ import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/
 class GoogleMap extends Component {
 
   componentDidMount() {
-    this.props.initialPos();
+    // this.props.initialPos();
   }
 
   render() {
@@ -19,7 +19,7 @@ class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  initialPos: PropTypes.func.isRequired,
+  //initialPos: PropTypes.func.isRequired,
   placeMarker: PropTypes.func.isRequired,
   userTitle: PropTypes.string.isRequired,
   userLat: PropTypes.number.isRequired,
@@ -69,24 +69,24 @@ const mapDispatchToProps = (dispatch) => {
     watchUser: () => {
       getUserLocationAndWatchID(dispatch);
     },
-    initialPos: () => {
-      // Gets player initial location
-      initialPosition(dispatch, (positionData) => {
-        const mapOptions = {
-          center: { lat: positionData.latitude, lng: positionData.longitude },
-          zoom: 15,
-        };
-        // create a google map
-        const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
+    // initialPos: () => {
+    //   // Gets player initial location
+    //   initialPosition(dispatch, (positionData) => {
+    //     const mapOptions = {
+    //       center: { lat: positionData.latitude, lng: positionData.longitude },
+    //       zoom: 15,
+    //     };
+    //     // create a google map
+    //     const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
         
-      //dispatch(placeUserMarker(googleMap, 'Michael', positionData));
+    //   //dispatch(placeUserMarker(googleMap, 'Michael', positionData));
       
-        // get's the final location by calling gamestart and dispatches placefinish point in action
-        startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
+    //     // get's the final location by calling gamestart and dispatches placefinish point in action
+    //     startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
         
-      //getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
-      });
-    },
+    //   //getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
+    //   });
+    // },
   };
 };
 
