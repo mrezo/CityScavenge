@@ -135,8 +135,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteUserMarker(title));
     },
 
-    placeCheckpoint: (map, title, lat, lng) => {
-      dispatch(placeCheckpoint(map, title, lat, lng));
+    placeCheckpoint: (map, lat, lng) => {
+      dispatch(placeCheckpoint(map, lat, lng));
     },
     checkpointCollision: (locTitle, userTitle) => {
       dispatch(checkpointCollision(locTitle, userTitle));
