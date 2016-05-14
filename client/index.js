@@ -31,10 +31,10 @@ const initialStore = {
   },
   checkpoints: [
     {
-      id: 0,
-      title: 'Fun',
+      title: 'Checkpoint',
       lat: 0,
       lng: 0,
+      label: 'C',
       marker: 0,
       users: [
         {
