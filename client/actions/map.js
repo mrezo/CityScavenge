@@ -35,6 +35,10 @@ export const getFinishPoint = (dispatch) => {
   .then((data) => {
     socket.setFinishPoint(data.latitude, data.longitude);
     dispatch(setFinishPoint(data.latitude, data.longitude));
+    //iterate over checkpoints array and dispatch action for each
+    for (var i = 0; i < data.length; i ++) {
+      dispatch(placeFinishPoint(googleMap, data[i].latitude, data[i].longitude));
+    }
   })
   .catch((error) => {
     console.log('Error', error);
