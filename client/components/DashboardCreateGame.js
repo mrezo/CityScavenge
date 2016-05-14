@@ -3,9 +3,7 @@ import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
 
-var gameRadius = 0;
-
-const DashboardCreateGame = ({ gameName, submitGame, handleChange }) => (
+const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChange }) => (
   <div>
     <TextField
       hintText="Time to Type!"

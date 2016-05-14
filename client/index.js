@@ -59,6 +59,7 @@ const initialStore = {
       label: 'U',
       marker: 0,
       gameName: '',
+      gameRadius: '',
     },
   ],
 };
