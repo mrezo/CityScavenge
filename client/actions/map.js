@@ -33,7 +33,7 @@ export const getFinishPoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    socket.setFinishPoint(data.latitude, data.longtitude);
+    socket.setFinishPoint(data.latitude, data.longitude);
     dispatch(setFinishPoint(data.latitude, data.longitude));
   })
   .catch((error) => {
