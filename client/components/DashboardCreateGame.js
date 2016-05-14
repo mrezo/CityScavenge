@@ -6,24 +6,18 @@ import styles from 'material-ui/lib/styles';
 const DashboardCreateGame = () => (
   <div>
     <TextField
-      hintText="Hint Text"
-      errorText="This field is required"
+      hintText="time to type!"
+      floatingLabelText="Game Name"
+      multiLine={true}
+      rows={2}
     /><br />
     <TextField
-      hintText="Hint Text"
-      errorText="The error text can be as long as you want, it will wrap."
-    /><br />
-    <TextField
-      hintText="Hint Text"
-      errorText="This field is required"
-      floatingLabelText="Floating Label Text"
+      hintText="time to type!"
+      floatingLabelText="Game ID"
     /><br />
     <TextField
       hintText="Message Field"
-      errorText="This field is required."
-      floatingLabelText="MultiLine and FloatingLabel"
-      multiLine={true}
-      rows={2}
+      floatingLabelText="Game Radius"
     /><br />
     <RaisedButton label="Create Game" backgroundColor={styles.Colors.pink400} primary={true} linkButton={true} href="/#/game" />
   </div>
