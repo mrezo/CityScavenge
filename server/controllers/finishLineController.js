@@ -2,6 +2,7 @@ var urlParser = require('url');
 var rp = require('request-promise');
 // var userLocation = require('./locationController');
 var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
+var _ = require('underscore');
 
 if (!process.env.TRAVIS) {
   GOOGLE_PLACES_API_KEY = require(__dirname + '/../config/googleplaces.js');
@@ -61,23 +62,34 @@ module.exports.searchGoogle = function (req, res) {
     .catch(function (err) {
       console.log('google places API call failure', err);
     })
-    .then(function (place) {
-        rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
-                + 'key=' + GOOGLE_PLACES_API_KEY
-                + '&placeid=' + place.place_id
-              )
-              .then(function (locationData) {
-                var formattedLocation = JSON.parse(locationData).result;
-                var placesObj = PlacesObj(formattedLocation);
-                endpoint.latitude = formattedLocation.geometry.location.lat;
-                endpoint.longitude = formattedLocation.geometry.location.lng;
-                res.json(placesObj);
-              }
-              );
-    });
+    .then(function (places) {
+      // places will be an array of four objects that represent each checkpoint
+      var allPlacesObjects = [];
+      for (var i = 0; i < places.length; i++) {
+        var currentPlaceObject = rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
+          + 'key=' + GOOGLE_PLACES_API_KEY
+          + '&placeid=' + places[i].place_id
+        );
+        allPlacesObjects.push(currentPlaceObject);
+      }
+      return allPlacesObjects;
+    })
+    .then(function (locationData) {
+      // locationData is an array of four objects
+      //console.log(locationData.result, 'this is location data.result');
+      var formattedLocationsToSendBack = [];
+      for (var i = 0; i < locationData.length; i++) {
+        var formattedLocation = JSON.parse(locationData[i]).result;
+        formattedLocationsToSendBack.push(PlacesObj(formattedLocation));
+      }
+      endpoint.latitude = formattedLocation[0].geometry.location.lat;
+      endpoint.longitude = formattedLocation[0].geometry.location.lng;
+      res.json(formattedLocationsToSendBack);
+    }
+    );
 };
 
-module.exports.getDistance = function(req, res) {
+module.exports.getDistance = function (req, res) {
   rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
     + 'units=imperial'
     + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
