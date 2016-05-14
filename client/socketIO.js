@@ -12,7 +12,7 @@ socket.on('test', (data) => {
 });
 
 socket.setFinishPoint = (lat, lng) => {
-  console.log('Setting Finish Point');
+  console.log('Setting Finish Point', lat, lng);
   socket.emit('setFinishPoint', { lat, lng });
 };
 
