@@ -67,6 +67,15 @@ export const placeCheckpoint = (map, title, lat, lng) => {
   };
 };
 
+export const updateFinishPoint = (marker, lat, lng) => {
+  return {
+    type: 'UPDATE_FINISHPOINT',
+    marker,
+    lat,
+    lng,
+  };
+};
+
 // Modifies the user's collision boolean in the checkpoint's user list
 export const checkpointCollision = (locTitle, userTitle) => {
   return {
