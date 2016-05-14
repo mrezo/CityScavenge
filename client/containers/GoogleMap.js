@@ -8,7 +8,11 @@ import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/
 class GoogleMap extends Component {
 
   componentDidMount() {
-    this.props.generateMap();
+    var context = this;
+    var users = this.props.users;
+    var finishPoint = this.props.finishPoint;
+    this.props.placeAllMarkers(users, finishPoint);
+    // this.props.generateMap();
   }
 
   render() {
@@ -19,13 +23,10 @@ class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  generateMap: PropTypes.func.isRequired,
+  // generateMap: PropTypes.func.isRequired,
+  placeAllMarkers: PropTypes.func.isRequired,
   placeMarker: PropTypes.func.isRequired,
   userTitle: PropTypes.string.isRequired,
-  userLat: PropTypes.number.isRequired,
-  userLng: PropTypes.number.isRequired,
-  finishLat: PropTypes.number.isRequired,
-  finishLng: PropTypes.number.isRequired,
 };
 
 
@@ -33,22 +34,44 @@ const mapStateToProps = (state) => {
   return {
     map: state.mapReducer.map,
     userTitle: state.users[0].title,
-    userLat: state.users[0].lat,
-    userLng: state.users[0].lng,
-    finishLat: state.finishPoint.lat,
-    finishLng: state.finishPoint.lng,
+    users: state.users,
+    finishPoint: state.finishPoint,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    generateMap: () => {
+    // generateMap: () => {
+    //   const mapOptions = {
+    //     center: { lat: 37.7749, lng: -122.4194 },
+    //     zoom: 12,
+    //   };
+    //   const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
+    //   //dispatch(createMap(googleMap, 37.7749, -122.4194));
+    // },
+    placeAllMarkers: (users, finishPoint) => {
       const mapOptions = {
-        center: { lat: 37.7749, lng: 122.4194 },
-        zoom: 15,
+        center: { lat: 37.7749, lng: -122.4194 },
+        zoom: 12,
       };
-      const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-      dispatch(createMap(googleMap, 37.7749, 122.4194));
+      const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      let marker = null;
+
+      marker = new google.maps.Marker({
+          position: new google.maps.LatLng(finishPoint.lat, finishPoint.lng),
+          map,
+          label: finishPoint.label,
+          animation: google.maps.Animation.DROP,
+        });
+
+      for (let i = 0; i < users.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(users[i].lat, users[i].lng),
+          map,
+          label: users[i].label,
+          animation: google.maps.Animation.DROP,
+        });
+      }
     },
     // Places a marker on the user's location
     placeMarker: (map, title, lat, lng) => {
