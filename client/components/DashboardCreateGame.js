@@ -3,15 +3,15 @@ import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
 
-const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChange }) => (
+const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius }) => (
   <div>
     <TextField
       hintText="Time to Type!"
       floatingLabelText="Game Name"
       value={ gameName }
-      onChange={ handleChange }
+      onChange={ handleChangeName }
       id="text-field-controlled"
-      onChange={ handleChange }
+      onChange={ handleChangeName }
       multiLine={true}
       rows={2}
     /><br />
@@ -20,7 +20,7 @@ const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChange })
       // id="text-field-controlled"
       floatingLabelText="Game Radius"
       value={ gameRadius }
-      onChange={ handleChange }
+      onChange={ handleChangeRadius }
     /><br />
     <RaisedButton
       label="Create Game"

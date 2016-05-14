@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DashboardCreateGame from '../components/DashboardCreateGame';
+import { assignGameRadius, assignGameName } from '../actions/index';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,9 +14,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submitGame: (gameName, gameRadius) => {
       console.log('This is it: ', gameName, gameRadius);
+      dispatch(assignGameRadius);
     },
-    handleChange: (event) => {
+    handleChangeRadius: (event) => {
       console.log('change', event.target.value);
+      dispatch(assignGameName);
+    },
+    handleChangeName: (event) => {
+      console.log('change', event.target.value);
+      console.log(this.gameRadius);
     },
     // watchUser: () => {
     //   getUserLocationAndWatchID(dispatch);
