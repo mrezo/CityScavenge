@@ -1,16 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import DashboardCreateGame from '../components/DashboardCreateGame';
-import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
 
 const mapStateToProps = (state) => {
   return {
-    gameName: state.users.gameName,
+    gameName: state.users[0].gameName,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    submitGame: (gameName, gameRadius) => {
+      console.log('This is it: ', gameName, gameRadius);
+    },
+    handleChange: () => {
+      console.log('change');
+    },
     // watchUser: () => {
     //   getUserLocationAndWatchID(dispatch);
     // },
