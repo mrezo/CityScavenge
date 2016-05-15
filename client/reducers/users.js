@@ -29,6 +29,19 @@ const user = (state = {}, action) => {
 
 const users = (state = [], action) => {
   switch (action.type) {
+    case 'CREATE_USER':
+      return [
+        ...state,
+        {
+          title: action.title,
+          google_id: action.google_id,
+          lat: action.lat,
+          lng: action.lng,
+          label: action.label,
+          marker: action.marker,
+          socketId: action.socketId,
+        },
+      ];
     case 'PLACE_USER_MARKER':
       return state.map(u =>
         user(u, action)

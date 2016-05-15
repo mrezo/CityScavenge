@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import thunkMiddleware from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import App from './components/App';
 import cityHunt from './reducers/index';
+import socketIO from './socketIO.js';
 
 const initialStore = {
   auth: {},
@@ -36,7 +37,6 @@ const initialStore = {
     lat: 0,
     lng: 0,
     label: 'F',
-    marker: 0,
     users: [
       {
         title: 'Michael',
@@ -57,12 +57,14 @@ const initialStore = {
       lat: 0,
       lng: 0,
       label: 'U',
-      marker: 0,
     },
   ],
 };
 
-const store = createStore(cityHunt, initialStore, applyMiddleware(thunkMiddleware));
+const store = createStore(cityHunt, initialStore, compose(applyMiddleware(thunkMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f));
+
+socketIO(store);
 
 ReactDOM.render(
   <Provider store={store}>

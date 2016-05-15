@@ -1,6 +1,8 @@
-import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 import { Tabs, Tab } from 'material-ui/lib/tabs/index';
+import React, { PropTypes } from 'react';
+import Avatar from 'material-ui/lib/avatar';
+import styles from 'material-ui/lib/styles';
 import DashboardCard from './DashboardCard';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
@@ -9,7 +11,7 @@ import UserProfile from '../components/UserProfile';
 
 injectTapEventPlugin();
 
-const Dashboard = () => (
+const Dashboard = ({ createFinishPoint }) => (
   <div>
     <VisibleDashboardLeftNav />
     <VisibleTopAppBar />
@@ -23,9 +25,15 @@ const Dashboard = () => (
           <DashboardCard />
         </div>
       </Tab>
-      <Tab label="Create Game">
+      <Tab label="Create Game" onClick={e => {
+        e.preventDefault();
+        createFinishPoint();
+      }}
+      >
         <div>
           <DashboardCreateGame />
+          <h2>Currently Available Games</h2>
+          <p>Here we can put a whole list of games that are available to begin playing.</p>
         </div>
       </Tab>
       <Tab label="Stats" >
@@ -36,5 +44,9 @@ const Dashboard = () => (
     </Tabs>
   </div>
 );
+
+Dashboard.propTypes = {
+  createFinishPoint: PropTypes.func.isRequired,
+};
 
 export default Dashboard;

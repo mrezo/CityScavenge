@@ -38,7 +38,9 @@
     "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.3.1",
     "redux-thunk": "^2.0.1",
-    "request-promise": "^3.0.0"
+    "request-promise": "^3.0.0",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6"
   },
   "devDependencies": {
     "babel-core": "^6.7.7",
