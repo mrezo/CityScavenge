@@ -19,10 +19,7 @@ export const assignGameRadius = () => {
 export const logout = (dispatch) => {
   fetch('api/v1/logout', {
     method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    credentials: 'same-origin',
   })
   .then((response) => {
     if (response.status >= 400) {
