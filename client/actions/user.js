@@ -15,6 +15,6 @@ export const createUser = (title, coords, socketId) => {
 export const updateUserWithGoogle = (data) => {
   return {
     type: 'UPDATE_USER_WITH_GOOGLE',
-    data: data,
+    data,
   };
 };
