@@ -4,6 +4,14 @@ var connectionString = require(path.join(__dirname, '../config/dbconfig'));
 var db = require(path.join(__dirname, '../utils/utils'));
 
 module.exports = {
+  findCurrentUser: function(req, res) {
+    db.query({
+      text: "SELECT * FROM users WHERE id = $1",
+      values: [req.session.passport.id],
+    }, function (err, data) {
+      return res.json(data.rows[0]);
+    });
+  },
   findUser: function(field, value, cb) {
     pg.connect(connectionString, function(err, client, done) {
       // Handle connection errors
