@@ -33,7 +33,7 @@ class Dashboard extends Component {
           </Tab>
           <Tab label="Create Game" onClick={e => {
             e.preventDefault();
-            createFinishPoint();
+            this.props.createFinishPoint();
           }}
           >
             <div>
