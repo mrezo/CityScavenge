@@ -11,10 +11,15 @@ module.exports = function(server) {
     players.push(socket.id);
     console.log('List of Players', players);
 
-    io.to(socket.id).emit('createUser', { title: ++counter, socketId: socket.id, });
+    io.to(socket.id).emit('createUser', { title: ++counter, socketId: socket.id });
 
     socket.on('newUser', function(data) {
       socket.broadcast.emit('newUser', data);
+    });
+
+    socket.on('sendMeToNewUser', function(data) {
+      console.log('Who am I sending this to?', data.socketId);
+      io.to(data.socketId).emit('addOtherUser', data.currentUser);
     });
 
     socket.on('test', function(data) {
