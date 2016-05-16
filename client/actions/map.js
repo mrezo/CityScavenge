@@ -35,15 +35,8 @@ export const getFinishPoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    // socket.setFinishPoint(data[0].latitude, data[0].longitude);
-    // dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
-    // iterate over checkpoints array and dispatch action for each
-    // dispatch placeFinishPoint for first object
-    // dispatch placeCheckpoint for rest of objects
-    for (var i = 0; i < data.length; i++) {
-      socket.setFinishPoint(data[i].latitude, data[i].longitude);
-      dispatch(setFinishPoint(data[i].latitude, data[i].longitude));
-    }
+    socket.setFinishPoint(data[0].latitude, data[0].longitude);
+    dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
   })
   .catch((error) => {
     console.log('Error', error);
@@ -105,14 +98,10 @@ export const getCheckpoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    // socket.setFinishPoint(data[0].latitude, data[0].longitude);
-    // dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
     // iterate over checkpoints array and dispatch action for each
-    // dispatch placeFinishPoint for first object
-    // dispatch placeCheckpoint for rest of objects
-    for (var i = 0; i < data.length; i++) {
-      socket.setFinishPoint(data[i].latitude, data[i].longitude);
-      dispatch(setFinishPoint(data[i].latitude, data[i].longitude));
+    for (var i = 1; i < data.length; i++) {
+      socket.setCheckpoint(data[i].latitude, data[i].longitude);
+      dispatch(setCheckpoint(data[i].latitude, data[i].longitude));
     }
   })
   .catch((error) => {
