@@ -21,7 +21,8 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
       <form>
         <input type="file" name="pic" accept="image/*" />
         <input type="submit"
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             photoSubmit(lat, lng, open);
           }}
         />
