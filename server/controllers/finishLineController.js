@@ -45,17 +45,19 @@ module.exports.searchGoogle = function (req, res) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
-      if (data.results && data.results.length > 4) {
+      if (data.results && data.results.length > 4 ) {
         // randomly pick a location
         var allCheckpoints = [];
         var storeValues = {};
         while (allCheckpoints.length < 4) {
           var rand = Math.floor(Math.random() * data.results.length);
+          // check for duplicate places
           if (!storeValues[rand]) {
             storeValues[rand] = 1;
             allCheckpoints.push(PlacesObj(data.results[rand]));
           }
         }
+        // set finish point as first location in array
         endpoint.latitude = allCheckpoints[0].latitude;
         endpoint.longitude = allCheckpoints[0].longitude;
         res.json(allCheckpoints);
