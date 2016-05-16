@@ -82,6 +82,45 @@ export const updateFinishPoint = (marker, lat, lng) => {
 
 // Checkpoint actions
 
+export const setCheckpoint = (lat, lng) => {
+  return {
+    type: 'SET_CHECKPOINT',
+    lat,
+    lng,
+  };
+};
+
+export const getCheckpoint = (dispatch) => {
+  fetch('api/v1/game', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      console.log('Server error', response);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    // socket.setFinishPoint(data[0].latitude, data[0].longitude);
+    // dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
+    // iterate over checkpoints array and dispatch action for each
+    // dispatch placeFinishPoint for first object
+    // dispatch placeCheckpoint for rest of objects
+    for (var i = 0; i < data.length; i++) {
+      socket.setFinishPoint(data[i].latitude, data[i].longitude);
+      dispatch(setFinishPoint(data[i].latitude, data[i].longitude));
+    }
+  })
+  .catch((error) => {
+    console.log('Error', error);
+    return;
+  });
+};
+
 export const placeCheckpoint = (map, lat, lng) => {
   return {
     type: 'PLACE_CHECKPOINT',
