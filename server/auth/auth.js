@@ -46,7 +46,7 @@ passport.use(new GoogleStrategy({
   clientSecret: googleKey.CLIENTSECRET,
   callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
-  User.findOrCreate(profile.displayName, profile.id, profile.name.givenName, function (err, user) {
+  User.findOrCreate(profile, function (err, user) {
     return done(err, user);
   });
 }));
