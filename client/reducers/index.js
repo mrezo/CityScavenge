@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
+import currentUser from './currentUser';
 import mapReducer from './mapReducer';
 import users from './users';
 import checkpoints from './checkpoints';
@@ -9,6 +10,7 @@ import photoUpload from './photoUpload';
 
 const cityHunt = combineReducers({
   auth,
+  currentUser,
   leftNav,
   mapReducer,
   checkpoints,
