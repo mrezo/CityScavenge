@@ -69,22 +69,28 @@ module.exports.searchGoogle = function (req, res) {
 };
 
 module.exports.getDistance = function (req, res) {
-  rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
-    + 'units=imperial'
-    + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
-    + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
-    + '&key=' + GOOGLE_PLACES_API_KEY
-  )
-  .catch(function (err) {
-    console.log('Google Distance Matrix API call failure', err);
-  })
-  .then(function (body) {
-    var collision = false;
-    console.log(JSON.parse(body).rows[0].elements[0].distance.value);
-    if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
-      collision = true;
-      console.log('You win!');
+  // loop through checkpoints in store
+  for (var i = 0; i < checkpoints.length; i++) {
+    // placeholder references for lat and long
+    if (checkpoints[i].lat === req.body.latitude && checkpoints[i].lng === req.body.longitude) {
+      rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
+        + 'units=imperial'
+        + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
+        + '&destinations=' + +req.body.latitude + '%2C' + +req.body.longitude
+        + '&key=' + GOOGLE_PLACES_API_KEY
+      )
+      .catch(function (err) {
+        console.log('Google Distance Matrix API call failure', err);
+      })
+      .then(function (body) {
+        var collision = false;
+        console.log(JSON.parse(body).rows[0].elements[0].distance.value);
+        if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
+          collision = true;
+          console.log('You win!');
+        }
+        res.json(collision);
+      });
     }
-    res.json(collision);
-  });
+  }
 };
