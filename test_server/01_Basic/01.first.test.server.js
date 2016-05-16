@@ -47,14 +47,6 @@ describe('Basic Server Functions', function () {
       }, callback);
     };
 
-    it('will respond to GET /api/v1/user/:id', function (done) {
-      makeGET('/api/v1/user', function (error, res, body) {
-        expect(error).to.equal(null);
-        expect(res.statusCode).to.equal(200);
-        done();
-      });
-    });
-
     it('will respond to POST /api/v1/user', function (done) {
       makePOST('/api/v1/user',
         {
