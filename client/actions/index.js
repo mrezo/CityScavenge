@@ -52,7 +52,6 @@ export const logout = (dispatch) => {
     return response;
   })
   .then((data) => {
-    console.log('Logged Out!');
   })
   .catch((error) => {
     console.log('Error', error);

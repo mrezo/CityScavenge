@@ -7,14 +7,13 @@ import { logout } from '../actions/index';
 const DashboardLeftNav = ({ handleToggle, visible }) => (
   <div>
     <LeftNav docked={false} width={200} open={visible} onRequestChange={open => handleToggle()}>
-      <MenuItem onClick={e => {
-        e.preventDefault();
-        handleToggle();
-        logout();
-      }}>
-        <Link to="/">
-          Logout
-        </Link>
+      <MenuItem
+        primaryText="Logout"
+        onTouchTap={ () => {
+          logout();
+        }}
+        href="/"
+      >
       </MenuItem>
     </LeftNav>
   </div>
