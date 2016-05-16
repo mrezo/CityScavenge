@@ -16,6 +16,26 @@ export const assignGameRadius = () => {
   };
 };
 
+export const fetchCurrentUser = (dispatch) => {
+  fetch('api/v1/user', {
+    method: 'GET',
+    credentials: 'same-origin',
+  })
+  .then((response) => {
+    if (response.status >= 400) {
+      console.log('Server error', response);
+    }
+    return response;
+  })
+  .then((data) => {
+    console.log('Data!: ', data);
+  })
+  .catch((error) => {
+    console.log('Error', error);
+    return;
+  });
+};
+
 export const logout = (dispatch) => {
   fetch('api/v1/logout', {
     method: 'GET',
