@@ -33,14 +33,14 @@ export const getFinishPoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    socket.setFinishPoint(data.latitude, data.longitude);
+    socket.setFinishPoint(data[0].latitude, data[0].longitude);
     dispatch(setFinishPoint(data.latitude, data.longitude));
     //iterate over checkpoints array and dispatch action for each
     // dispatch placeFinishPoint for first object
     // dispatch placeCheckpoint for rest of objects
-    for (var i = 0; i < data.length; i ++) {
+    for (var i = 0; i < data.length; i++) {
       dispatch(placeFinishPoint(googleMap, data[0].latitude, data[0].longitude));
-    for (var i = 1; i < data.length; i ++) {
+    for (var i = 1; i < data.length; i++) {
       dispatch(placeCheckpoint(googleMap, data[i].latitude, data[i].longitude));
     }
   })
