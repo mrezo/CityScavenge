@@ -7,7 +7,7 @@ module.exports = {
   findCurrentUser: function(req, res) {
     db.query({
       text: "SELECT * FROM users WHERE id = $1",
-      values: [req.session.passport.id],
+      values: [req.session.passport.user.id],
     }, function (err, data) {
       return res.json(data.rows[0]);
     });
