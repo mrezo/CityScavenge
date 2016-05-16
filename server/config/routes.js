@@ -15,7 +15,7 @@ module.exports = function (app, express) {
 
   // location routing
   app.post('/api/v1/game', finishLineController.searchGoogle);
-  app.post('/api/v1/game/collision', finishLineController.getDistance);
+  app.post('/api/v1/game/photosubmit', finishLineController.getDistance);
 
   // game routing
   app.post('/api/v1/game/new', Game.createNew);
