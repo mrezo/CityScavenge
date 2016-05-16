@@ -9,6 +9,18 @@ import socketIO from './socketIO.js';
 
 const initialStore = {
   auth: {},
+  currentUser: {
+    id: 0,
+    title: 'Temp',
+    google_id: 'Temp',
+    lat: 0,
+    lng: 0,
+    label: 'U',
+    marker: 0,
+    avatar: '',
+    gameName: '',
+    gameRadius: '',
+  },
   leftNav: { visible: false },
   mapReducer: {
     map: 0,
@@ -57,6 +69,9 @@ const initialStore = {
       lat: 0,
       lng: 0,
       label: 'U',
+      marker: 0,
+      gameName: '',
+      gameRadius: '',
     },
   ],
 };

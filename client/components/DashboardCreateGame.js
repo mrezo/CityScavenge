@@ -1,32 +1,42 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
 
-const DashboardCreateGame = () => (
+const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius }) => (
   <div>
     <TextField
-      hintText="Hint Text"
-      errorText="This field is required"
-    /><br />
-    <TextField
-      hintText="Hint Text"
-      errorText="The error text can be as long as you want, it will wrap."
-    /><br />
-    <TextField
-      hintText="Hint Text"
-      errorText="This field is required"
-      floatingLabelText="Floating Label Text"
-    /><br />
-    <TextField
-      hintText="Message Field"
-      errorText="This field is required."
-      floatingLabelText="MultiLine and FloatingLabel"
+      hintText="Time to Type!"
+      floatingLabelText="Game Name"
+      value={ gameName }
+      onChange={ handleChangeName }
+      id="text-field-controlled"
+      onChange={ handleChangeName }
       multiLine={true}
       rows={2}
     /><br />
-    <RaisedButton label="Create Game" backgroundColor={styles.Colors.pink400} primary={true} linkButton={true} href="/#/game" />
+    <TextField
+      hintText="Time to Type!"
+      // id="text-field-controlled"
+      floatingLabelText="Game Radius"
+      value={ gameRadius }
+      onChange={ handleChangeRadius }
+    /><br />
+    <RaisedButton
+      label="Create Game"
+      backgroundColor={styles.Colors.pink400}
+      primary={true}
+      linkButton={true}
+      onMouseDown={ submitGame }
+      href="/#/game"
+    />
   </div>
 );
+
+DashboardCreateGame.propTypes = {
+  gameName: PropTypes.string.isRequired,
+  submitGame: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+};
 
 export default DashboardCreateGame;

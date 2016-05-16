@@ -4,6 +4,14 @@ var connectionString = require(path.join(__dirname, '../config/dbconfig'));
 var db = require(path.join(__dirname, '../utils/utils'));
 
 module.exports = {
+  findCurrentUser: function(req, res) {
+    db.query({
+      text: "SELECT * FROM users WHERE id = $1",
+      values: [req.session.passport.user.id],
+    }, function (err, data) {
+      return res.json(data.rows[0]);
+    });
+  },
   findUser: function(field, value, cb) {
     pg.connect(connectionString, function(err, client, done) {
       // Handle connection errors
@@ -44,14 +52,14 @@ module.exports = {
       });
     });
   },
-  findOrCreate: function (displayname, googleid, name, cb) {
+  findOrCreate: function (profile, cb) {
     pg.connect(connectionString, function (err, client, done) {
       if (err) {
         done();
         console.log('findOrCreate error: ', err);
       }
 
-      var queryFindUserString = "SELECT * FROM users WHERE google_id = '" + googleid + "'";
+      var queryFindUserString = "SELECT * FROM users WHERE google_id = '" + profile.id + "'";
       client.query(queryFindUserString, [], function(err, result) {
         if (err) {
           done();
@@ -59,14 +67,14 @@ module.exports = {
         }
         if (!result.rows[0]) {
           client.query('INSERT INTO users '
-          + '(displayname, google_id, name) '
-          + 'VALUES ($1, $2, $3)', [displayname, googleid, name], function (err, results) {
+          + '(displayname, google_id, name, avatar) '
+          + 'VALUES ($1, $2, $3, $4)', [profile.displayName, profile.id, profile.name.givenName, profile.photos[0].value], function (err, results) {
             if (err) {
               done();
               return cb(err, null);
             }
             client.query('SELECT * FROM users '
-            + 'WHERE google_id = $1', [googleid], function (err, user) {
+            + 'WHERE google_id = $1', [profile.id], function (err, user) {
               if (err) {
                 done();
                 return cb(err, null);

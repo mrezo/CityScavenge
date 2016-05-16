@@ -4,7 +4,7 @@ import { toggleNav } from '../actions/index';
 
 const mapStateToProps = (state) => {
   return {
-    visible: state.leftNav.visible,
+    name: state.currentUser.title,
   };
 };
 

@@ -1,5 +1,5 @@
 var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
 
@@ -37,7 +37,6 @@ exports.authenticateGoogleLogin = passport.authenticate('google', {
 });
 
 exports.logout = function (req, res, next) {
-  delete req.user;
   req.session.destroy();
   res.redirect('/');
 };
@@ -47,7 +46,7 @@ passport.use(new GoogleStrategy({
   clientSecret: googleKey.CLIENTSECRET,
   callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
-  User.findOrCreate(profile.displayName, profile.id, profile.name.givenName, function (err, user) {
+  User.findOrCreate(profile, function (err, user) {
     return done(err, user);
   });
 }));
@@ -63,16 +62,5 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (user, done) {
-  if (user) {
-    User.findUser('google_id', user.google_id, function (err, result) {
-      if (err) {
-        console.log('google error: ', err);
-        return done(err);
-      } else if (!result[0]) {
-        done(err, null);
-      } else {
-        done(err, result[0]);
-      }
-    });
-  }
+  done(null, user);
 });
