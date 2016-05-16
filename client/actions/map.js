@@ -10,6 +10,8 @@ export const createMap = (map, lat, lng) => {
   };
 };
 
+// Finish Point actions
+
 export const setFinishPoint = (lat, lng) => {
   return {
     type: 'SET_FINISHPOINT',
@@ -33,15 +35,14 @@ export const getFinishPoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    socket.setFinishPoint(data[0].latitude, data[0].longitude);
-    dispatch(setFinishPoint(data.latitude, data.longitude));
-    //iterate over checkpoints array and dispatch action for each
+    // socket.setFinishPoint(data[0].latitude, data[0].longitude);
+    // dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
+    // iterate over checkpoints array and dispatch action for each
     // dispatch placeFinishPoint for first object
     // dispatch placeCheckpoint for rest of objects
     for (var i = 0; i < data.length; i++) {
-      dispatch(placeFinishPoint(googleMap, data[0].latitude, data[0].longitude));
-    for (var i = 1; i < data.length; i++) {
-      dispatch(placeCheckpoint(googleMap, data[i].latitude, data[i].longitude));
+      socket.setFinishPoint(data[i].latitude, data[i].longitude);
+      dispatch(setFinishPoint(data[i].latitude, data[i].longitude));
     }
   })
   .catch((error) => {
@@ -49,6 +50,58 @@ export const getFinishPoint = (dispatch) => {
     return;
   });
 };
+
+export const placeFinishPoint = (map, lat, lng) => {
+  return {
+    type: 'PLACE_FINISHPOINT',
+    map,
+    lat,
+    lng,
+  };
+};
+
+// Modifies the user's collision boolean in the finishpoint's user list
+// After it has checked all the checkpoint's user collisions
+export const finishPointCollision = (userTitle, timeIn, locTitle) => {
+  return {
+    type: 'FINISHPOINT_COLLISION',
+    userTitle,
+    timeIn,
+    locTitle,
+  };
+};
+
+export const updateFinishPoint = (marker, lat, lng) => {
+  return {
+    type: 'UPDATE_FINISHPOINT',
+    marker,
+    lat,
+    lng,
+  };
+};
+
+// Checkpoint actions
+
+export const placeCheckpoint = (map, lat, lng) => {
+  return {
+    type: 'PLACE_CHECKPOINT',
+    map,
+    lat,
+    lng,
+  };
+};
+
+
+// Modifies the user's collision boolean in the checkpoint's user list
+export const checkpointCollision = (locTitle, userTitle) => {
+  return {
+    type: 'CHECKPOINT_COLLISION',
+    locTitle,
+    userTitle,
+  };
+};
+
+// User actions
 
 export const getUserCoords = (lat, lng) => {
   return {
@@ -72,52 +125,5 @@ export const deleteUserMarker = (title) => {
   return {
     type: 'DELETE_USER_MARKER',
     title,
-  };
-};
-
-export const placeCheckpoint = (map, lat, lng) => {
-  return {
-    type: 'PLACE_CHECKPOINT',
-    map,
-    lat,
-    lng,
-  };
-};
-
-export const updateFinishPoint = (marker, lat, lng) => {
-  return {
-    type: 'UPDATE_FINISHPOINT',
-    marker,
-    lat,
-    lng,
-  };
-};
-
-// Modifies the user's collision boolean in the checkpoint's user list
-export const checkpointCollision = (locTitle, userTitle) => {
-  return {
-    type: 'CHECKPOINT_COLLISION',
-    locTitle,
-    userTitle,
-  };
-};
-
-export const placeFinishPoint = (map, lat, lng) => {
-  return {
-    type: 'PLACE_FINISHPOINT',
-    map,
-    lat,
-    lng,
-  };
-};
-
-// Modifies the user's collision boolean in the finishpoint's user list
-// After it has checked all the checkpoint's user collisions
-export const finishPointCollision = (userTitle, timeIn, locTitle) => {
-  return {
-    type: 'FINISHPOINT_COLLISION',
-    userTitle,
-    timeIn,
-    locTitle,
   };
 };
