@@ -15,7 +15,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.fetchUser();
   }
-// const Dashboard = ({ createFinishPoint }) => (
+
   render() {
     return (
       <div>
