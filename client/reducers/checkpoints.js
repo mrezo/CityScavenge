@@ -15,6 +15,11 @@ const user = (state = {}, action) => {
 
 const checkpoints = (state = [], action) => {
   switch (action.type) {
+    case 'SET_CHECKPOINT':
+      return Object.assign({}, state, {
+        lat: action.lat,
+        lng: action.lng,
+      });
     case 'PLACE_CHECKPOINT':
       const checkpointOptions = {
         position: { lat: action.lat, lng: action.lng },
@@ -29,7 +34,9 @@ const checkpoints = (state = [], action) => {
         },
       }];
     case 'CHECKPOINT_COLLISION':
-      return [];
+      return state.users.map(u =>
+        user(u, action)
+      );
     default:
       return state;
   }
