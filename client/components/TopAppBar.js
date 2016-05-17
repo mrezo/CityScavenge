@@ -5,10 +5,9 @@ import FlatButton from 'material-ui/lib/flat-button';
 const TopAppBar = ({ handleToggle, name }) => {
   return (
     <div>
-    <AppBar title="City Hunt" iconClassNameRight="muidocs-icon-navigation-expand-more" onClick={e => {
-      e.preventDefault();
-      handleToggle();
-    }}
+    <AppBar
+      title="City Scavenge"
+      onLeftIconButtonTouchTap={handleToggle}
       iconElementRight={<FlatButton label={name} />}
     />
   </div>

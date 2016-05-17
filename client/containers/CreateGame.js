@@ -12,17 +12,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    submitGame: (gameName, gameRadius) => {
-      console.log('This is it: ', gameName, gameRadius);
-      dispatch(assignGameRadius);
+    submitGame: () => {
+      console.log('Submit game clicked!');
     },
     handleChangeRadius: (event) => {
-      console.log('change', event.target.value);
-      dispatch(assignGameName);
+      console.log(event.target.value);
+      dispatch(assignGameRadius(event.target.value));
     },
     handleChangeName: (event) => {
-      console.log('change', event.target.value);
-      console.log(this.gameRadius);
+      console.log(event.target.value);
+      dispatch(assignGameName(event.target.value));
     },
     // watchUser: () => {
     //   getUserLocationAndWatchID(dispatch);

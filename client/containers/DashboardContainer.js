@@ -1,15 +1,19 @@
 import { connect } from 'react-redux';
 import Dashboard from '../components/Dashboard';
 import { getFinishPoint } from '../actions/map';
-import { fetchCurrentUser } from '../actions/index';
+import { fetchCurrentUser, createGame } from '../actions/index';
 import { updateUserWithGoogle } from '../actions/user';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    sendGameInformation: () => {
+      createGame(dispatch);
+    },
     createFinishPoint: () => {
       getFinishPoint(dispatch);
     },

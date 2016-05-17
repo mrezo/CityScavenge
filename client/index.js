@@ -18,6 +18,7 @@ const initialStore = {
     label: 'U',
     marker: 0,
     avatar: '',
+    game_id: 0,
     gameName: '',
     gameRadius: '',
   },

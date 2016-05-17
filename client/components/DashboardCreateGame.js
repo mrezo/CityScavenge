@@ -6,21 +6,18 @@ import styles from 'material-ui/lib/styles';
 const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius }) => (
   <div>
     <TextField
+      {...gameName}
       hintText="Time to Type!"
-      floatingLabelText="Game Name"
-      value={ gameName }
-      onChange={ handleChangeName }
       id="text-field-controlled"
-      onChange={ handleChangeName }
+      floatingLabelText="Game Name"
       multiLine={true}
       rows={2}
     /><br />
     <TextField
+      {...gameRadius}
       hintText="Time to Type!"
-      // id="text-field-controlled"
-      floatingLabelText="Game Radius"
-      value={ gameRadius }
-      onChange={ handleChangeRadius }
+      id="text-field-controlled"
+      floatingLabelText="Distance"
     /><br />
     <RaisedButton
       label="Create Game"
@@ -34,9 +31,11 @@ const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeNam
 );
 
 DashboardCreateGame.propTypes = {
-  gameName: PropTypes.string.isRequired,
+  gameName: PropTypes.string,
+  gameRadius: PropTypes.string,
   submitGame: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleChangeRadius: PropTypes.func.isRequired,
+  handleChangeName: PropTypes.func.isRequired,
 };
 
 export default DashboardCreateGame;
