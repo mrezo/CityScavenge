@@ -37,6 +37,7 @@ class Dashboard extends Component {
             label="Create Game"
             onActive={this.props.createFinishPoint}
             onActive={this.props.sendGameInformation}
+            onActive={this.props.updateUserPosition}
           >
             <div>
               <CreateGameContainer />
