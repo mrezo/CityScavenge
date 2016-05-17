@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     checkCollision: (checkpoints, currentUser) => {
-      dispatch(checkCollision(checkpoints, currentUser));
+      dispatch(checkCollision(dispatch, checkpoints, currentUser));
     },
 
     photoUploadStart: (lat, lng, open) => {
