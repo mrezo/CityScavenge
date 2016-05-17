@@ -38,8 +38,13 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
     return response.json();
   })
   .then((data) => {
+    console.log(data, 'this is data----------------');
     if (data.collided === true) {
-
+      for (var i = 0; i < checkpoints.length; i++) {
+        if (data.checkpoint.lat === checkpoints[i].lat && data.checkpoint.lng === checkpoints[i].lng) {
+          console.log('here we will update user state');
+        }
+      }
     } else {
       console.log('put error here');
     }
