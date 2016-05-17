@@ -19,6 +19,24 @@ var userLocation = {
   longitude: -122.4090172,
 };
 
+var checkpoints = [
+  {
+    name: 'tacos',
+    latitude: 37.783246,
+    longitude: -122.409078,
+  },
+  {
+    name: 'Omni Hotel',
+    latitude: 37.793120,
+    longitude: -122.403178,
+  },
+  {
+    name: 'Hotel Union Square',
+    latitude: 37.785872,
+    longitude: -122.407731,
+  },
+];
+
 var radius = 3200;
 
 var PlacesObj = function (googlePlacesData) {
@@ -69,14 +87,15 @@ module.exports.searchGoogle = function (req, res) {
 };
 
 module.exports.getDistance = function (req, res) {
+  // this function will run every time a user uploads a picture
   // loop through checkpoints in store
   for (var i = 0; i < checkpoints.length; i++) {
     // placeholder references for lat and long
-    if (checkpoints[i].lat === req.body.latitude && checkpoints[i].lng === req.body.longitude) {
+    if (checkpoints[i].lat === userLocation.latitude && checkpoints[i].lng === userLocation.longitude) {
       rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
         + 'units=imperial'
-        + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
-        + '&destinations=' + +req.body.latitude + '%2C' + +req.body.longitude
+        + '&origins=' + userLocation.latitude + ',' + userLocation.longitude
+        + '&destinations=' + checkpoints[i].latitude + '%2C' + checkpoints[i].longitude
         + '&key=' + GOOGLE_PLACES_API_KEY
       )
       .catch(function (err) {
