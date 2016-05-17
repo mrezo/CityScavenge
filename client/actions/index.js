@@ -4,6 +4,13 @@ export const toggleNav = () => {
   };
 };
 
+export const assignGameId = (value) => {
+  return {
+    type: 'ASSIGN_GAME_ID',
+    value,
+  };
+}
+
 export const assignGameName = (value) => {
   return {
     type: 'ASSIGN_GAME_NAME',
@@ -34,7 +41,7 @@ export const createGame = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    console.log(data);
+    dispatch(assignGameId(data.id));
   })
   .catch((error) => {
     console.log('Error', error);

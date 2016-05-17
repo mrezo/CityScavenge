@@ -8,6 +8,10 @@ const currentUser = (state = {}, action) => {
         label: action.data.name[0],
         avatar: action.data.avatar,
       });
+    case 'ASSIGN_GAME_ID':
+      return Object.assign({}, state, {
+        game_id: action.value,
+      });
     case 'ASSIGN_GAME_NAME':
       return Object.assign({}, state, {
         gameName: action.value,
