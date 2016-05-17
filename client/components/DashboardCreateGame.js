@@ -3,7 +3,7 @@ import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
 
-const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius }) => (
+const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius, updateUserPosition }) => (
   <div>
     <TextField
       {...gameName}
@@ -24,7 +24,6 @@ const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeNam
       backgroundColor={styles.Colors.pink400}
       primary={true}
       linkButton={true}
-      onMouseDown={ submitGame }
       href="/#/game"
     />
   </div>
