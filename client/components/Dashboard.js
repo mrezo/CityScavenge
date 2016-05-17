@@ -25,16 +25,18 @@ class Dashboard extends Component {
           <img className="main-image" src={'https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg'} />
         </div>
         <Tabs>
-          <Tab onClick={() => { console.log(' TESTING'); }} label="Old Games" >
+          <Tab
+            label="Old Games"
+          >
             <div>
               <DashboardCard />
               <DashboardCard />
             </div>
           </Tab>
-          <Tab label="Create Game" onClick={e => {
-            e.preventDefault();
-            this.props.createFinishPoint();
-          }}
+          <Tab
+            label="Create Game"
+            onActive={this.props.createFinishPoint}
+            onActive={this.props.sendGameInformation}
           >
             <div>
               <CreateGameContainer />
@@ -54,6 +56,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  sendGameInformation: PropTypes.func.isRequired,
   createFinishPoint: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
 };
