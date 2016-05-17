@@ -4,15 +4,17 @@ export const toggleNav = () => {
   };
 };
 
-export const assignGameName = () => {
+export const assignGameName = (value) => {
   return {
     type: 'ASSIGN_GAME_NAME',
+    value,
   };
 };
 
-export const assignGameRadius = () => {
+export const assignGameRadius = (value) => {
   return {
     type: 'ASSIGN_GAME_RADIUS',
+    value,
   };
 };
 

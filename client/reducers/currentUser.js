@@ -8,6 +8,14 @@ const currentUser = (state = {}, action) => {
         label: action.data.name[0],
         avatar: action.data.avatar,
       });
+    case 'ASSIGN_GAME_NAME':
+      return Object.assign({}, state, {
+        gameName: action.value,
+      });
+    case 'ASSIGN_GAME_RADIUS':
+      return Object.assign({}, state, {
+        gameRadius: action.value,
+      });
     default:
       return state;
   }
