@@ -87,33 +87,36 @@ module.exports.searchGoogle = function (req, res) {
 };
 
 module.exports.getDistance = function (req, res) {
-  console.log('get distance was called');
   // this function will run every time a user uploads a picture
   // loop through checkpoints in req.body
-  // check if lat and long === req.body.userLocation
+  // check if lat and long === req.body.currentUser
   // if so return true and checkpoint that collided
   // return false
-  for (var i = 0; i < checkpoints.length; i++) {
-    // placeholder references for lat and long
-    if (checkpoints[i].lat === userLocation.latitude && checkpoints[i].lng === userLocation.longitude) {
+  var currentCheckpoints = req.body.checkpoints;
+  var currentUser = req.body.currentUser;
+  var collision = {collided: false};
+  for (var i = 0; i < currentCheckpoints.length; i++) {
+    var thisCheckpoint = currentCheckpoints[i];
+    //if (currentCheckpoints[i].lat === currentUser.lat && currentCheckpoints[i].lng === currentUser.lng) {
       rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
         + 'units=imperial'
-        + '&origins=' + userLocation.latitude + ',' + userLocation.longitude
-        + '&destinations=' + checkpoints[i].latitude + '%2C' + checkpoints[i].longitude
+        + '&origins=' + currentCheckpoints[i].lat + ',' + currentCheckpoints[i].lng
+        + '&destinations=' + currentCheckpoints[i].lat + '%2C' + currentCheckpoints[i].lng
         + '&key=' + GOOGLE_PLACES_API_KEY
       )
       .catch(function (err) {
         console.log('Google Distance Matrix API call failure', err);
       })
       .then(function (body) {
-        var collision = false;
-        console.log(JSON.parse(body).rows[0].elements[0].distance.value);
         if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
-          collision = true;
+          collision.collided = true;
+          collision['checkpoint'] = thisCheckpoint;
           console.log('You win!');
+          res.json(collision);
         }
-        res.json(collision);
       });
-    }
+    //}
   }
+  console.log(collision);
+  //res.json(collision);
 };
