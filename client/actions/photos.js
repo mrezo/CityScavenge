@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+
 export const photoUploadStart = (lat, lng, open) => {
   return {
     type: 'PHOTO_UPLOAD_START',
