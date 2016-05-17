@@ -19,7 +19,7 @@ export const photoSubmit = (lat, lng, open) => {
 };
 
 
-export const checkCollision = (dispatch) => {
+export const checkCollision = (dispatch, checkpoints, currentUser) => {
   // send to server:
     // all checkpoints
     // current user position
@@ -30,7 +30,7 @@ export const checkCollision = (dispatch) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: 
+    body: checkpoints, currentUser,
   })
   .then((response) => {
     if (response.status >= 400) {
