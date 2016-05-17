@@ -87,8 +87,12 @@ module.exports.searchGoogle = function (req, res) {
 };
 
 module.exports.getDistance = function (req, res) {
+  console.log('get distance was called');
   // this function will run every time a user uploads a picture
-  // loop through checkpoints in store
+  // loop through checkpoints in req.body
+  // check if lat and long === req.body.userLocation
+  // if so return true and checkpoint that collided
+  // return false
   for (var i = 0; i < checkpoints.length; i++) {
     // placeholder references for lat and long
     if (checkpoints[i].lat === userLocation.latitude && checkpoints[i].lng === userLocation.longitude) {
