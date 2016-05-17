@@ -5,7 +5,7 @@ import { createUser } from './actions/user';
 
 export const socket = io();
 
-let currentUser = {
+export let currentUser = {
   socketId: null,
   coords: {
     latitude: null,
