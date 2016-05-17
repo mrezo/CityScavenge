@@ -30,7 +30,10 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: checkpoints, currentUser,
+    body: JSON.stringify({
+      checkpoints: checkpoints,
+      currentUser: currentUser,
+    }),
   })
   .then((response) => {
     if (response.status >= 400) {
