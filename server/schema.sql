@@ -17,6 +17,7 @@ CREATE TABLE users (
 
 CREATE TABLE game (
   id SERIAL NOT NULL PRIMARY KEY UNIQUE,
+  name VARCHAR(255) NULL DEFAULT NULL,
   winning_user INTEGER REFERENCES users,
   duration DECIMAL NULL DEFAULT NULL,
   start_time TIME NULL DEFAULT NULL,
@@ -63,11 +64,11 @@ INSERT INTO users (google_id, name, displayname, avatar, total_places_visited, t
 ('234529345201010613', 'Michael', 'Grey Whale', '', 4, 150.00, 62),
 ('194581005881345923', 'Alexander', 'Manatee', '', 12, 3.30, 4);
 
-INSERT INTO game (winning_user, duration, start_time, finish_time) VALUES
-(1, 2.00, '033000', '053000'),
-(1, 16.00, '133000', '053000'),
-(2, 13.10, '162000', '053000'),
-(3, 2.05, '033500', '053000');
+INSERT INTO game (name, winning_user, duration, start_time, finish_time) VALUES
+('Best game eva', 1, 2.00, '033000', '053000'),
+('Third Game', 1, 16.00, '133000', '053000'),
+('Fun timez', 2, 13.10, '162000', '053000'),
+('Presido Game', 3, 2.05, '033500', '053000');
 
 INSERT INTO checkpoint (id_game, name, address, google_place_id, latitude, longitude, picture, is_finish_point) VALUES
 (1, 'Super 8 San Francisco/Union Square Area', '415 O\Farrell St, San Francisco, CA 94102, United States', 'ChIJjbTjzo-AhYARF-knMk3L7cw', 37.7857596, -122.411828,  '', true),
