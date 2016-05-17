@@ -6,14 +6,6 @@ import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
 
 const LandingPage = () => (
-  <card backgroundColor={styles.Colors.red500}>
-  This is a test
-  </card>
-);
-
-export default LandingPage;
-
-const oldLandingPage = () => (
   <div className="landing-container">
     <br></br>
     <br></br>
