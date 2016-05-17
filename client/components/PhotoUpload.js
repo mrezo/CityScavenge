@@ -24,6 +24,7 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
           onClick={(e) => {
             e.preventDefault();
             photoSubmit(lat, lng, open);
+            // check for collisions with every checkpoint
           }}
         />
       </form>
