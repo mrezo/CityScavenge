@@ -32,8 +32,8 @@ export default (store) => {
     console.log('HERE IS MY SOCKET ID', currentUser);
     newUserPosition((currentLocation) => {
       store.dispatch(createUser(data.title, currentLocation, currentUser.socketId));
-      currentUser.coords.lat = currentLocation.latitutde;
-      currentUser.coords.lng = currentLocation.longitude;
+      currentUser.coords.latitude = currentLocation.latitude;
+      currentUser.coords.longitude = currentLocation.longitude;
       socket.emit('newUser', { title: data.title, coords: currentLocation, socketId: currentUser.socketId });
     });
   });
@@ -45,6 +45,7 @@ export default (store) => {
   });
 
   socket.on('addOtherUser', (data) => {
+    console.log('ADD THE OTHER USER', data);
     store.dispatch(createUser(data.title, data.coords, data.socketId));
   });
 
@@ -68,6 +69,5 @@ export default (store) => {
     store.dispatch(deleteUserMarker(data.map, data.title, data.coords));
     store.dispatch(placeUserMarker(data.map, data.title, data.coords));
   });
-
 }
 
