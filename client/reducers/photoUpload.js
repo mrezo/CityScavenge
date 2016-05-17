@@ -12,6 +12,11 @@ const photoUpload = (state = {}, action) => {
         lng: action.lng,
         open: false,
       });
+    case 'ON_COLLISION':
+      return Object.assign({}, state, {
+        checkpoint: action.checkpoint,
+        user: action.user,
+      });
     default:
       return state;
   }
