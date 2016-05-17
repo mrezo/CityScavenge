@@ -18,6 +18,13 @@ export const photoSubmit = (lat, lng, open) => {
   };
 };
 
+export const onCollision = (checkpoint, user) => {
+  return {
+    type: 'ON_COLLISION',
+    checkpoint,
+    user,
+  };
+};
 
 export const checkCollision = (dispatch, checkpoints, currentUser) => {
   fetch('api/v1/game/photosubmit', {
@@ -45,7 +52,8 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
           console.log('this is data--------------', data);
           for (var j = 0; j < checkpoints[i].users.length; j++) {
             if (checkpoints[i].users[j].title === currentUser.title) {
-              checkpoints[i].users[j].collision = true;
+              // dispatch here
+              dispatch(onCollision(checkpoints[i], currentUser));
             }
           }
         }
