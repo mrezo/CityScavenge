@@ -20,9 +20,6 @@ export const photoSubmit = (lat, lng, open) => {
 
 
 export const checkCollision = (dispatch, checkpoints, currentUser) => {
-  // send to server:
-    // all checkpoints
-    // current user position
   fetch('api/v1/game/photosubmit', {
     method: 'POST',
     headers: {
@@ -38,10 +35,14 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
     if (response.status >= 400) {
       console.log('Server error', response);
     }
-    return response;
+    return response.json();
   })
   .then((data) => {
-    console.log(data, 'this is data----------------------');
+    if (data.collided === true) {
+
+    } else {
+      console.log('put error here');
+    }
     // if response === true, change state for current user on res.body.checkpoint to true
     // else, emit user error: You are too far away from the checkpoint. Please get closer and try again.
   })
