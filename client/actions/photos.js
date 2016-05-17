@@ -41,6 +41,7 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
     return response;
   })
   .then((data) => {
+    console.log(data, 'this is data----------------------');
     // if response === true, change state for current user on res.body.checkpoint to true
     // else, emit user error: You are too far away from the checkpoint. Please get closer and try again.
   })
