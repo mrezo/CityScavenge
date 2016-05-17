@@ -32,8 +32,8 @@ const initialStore = {
   checkpoints: [
     {
       title: 'Checkpoint',
-      lat: 0,
-      lng: 0,
+      lat: 37.783246,
+      lng: -122.409078,
       marker: 0,
       users: [
         {
