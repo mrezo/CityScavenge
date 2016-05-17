@@ -3,6 +3,7 @@ var passport = require('passport');
 var finishLineController = require(path.join(__dirname, '../controllers/finishLineController'));
 var auth = require(__dirname + '/../auth/auth.js');
 var User = require(path.join(__dirname, '../models/userModel.js'));
+var Game = require(path.join(__dirname, '../models/gameModel.js'));
 
 module.exports = function (app, express) {
   app.use(express.static(path.join(__dirname, '../../client')));
@@ -15,6 +16,9 @@ module.exports = function (app, express) {
   // location routing
   app.post('/api/v1/game', finishLineController.searchGoogle);
   app.post('/api/v1/game/collision', finishLineController.getDistance);
+
+  // game routing
+  app.post('/api/v1/game/new', Game.createNew);
 
   // google auth routes
   app.post('/api/login', auth.checkAuth);
