@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 
 // TODO: add "action: " to form component with post request to DB
 
-const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
+const PhotoUpload = ({ checkCollision, dispatch, lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
     <RaisedButton
       label="Check In"
@@ -26,6 +26,7 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
           onClick={(e) => {
             e.preventDefault();
             photoSubmit(lat, lng, open);
+            checkCollision(dispatch);
             // check for collisions with every checkpoint
           }}
         />
@@ -35,6 +36,7 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
 );
 
 PhotoUpload.propTypes = {
+  checkCollision: PropTypes.func.isRequired,
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired,
   open: PropTypes.bool.isRequired,
