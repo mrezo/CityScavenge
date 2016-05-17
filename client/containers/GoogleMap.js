@@ -28,8 +28,10 @@ class GoogleMap extends Component {
 GoogleMap.propTypes = {
   // generateMap: PropTypes.func.isRequired,
   // updateUserMarkers: PropTypes.func.isRequired,
+  users: PropTypes.array,
+  finishPoint: PropTypes.object,
   placeAllMarkers: PropTypes.func.isRequired,
-  placeMarker: PropTypes.func.isRequired,
+  placeMarker: PropTypes.func.isRequired, 
   userTitle: PropTypes.string.isRequired,
 };
 
@@ -71,31 +73,38 @@ const mapDispatchToProps = (dispatch) => {
           label: users[i].label,
           animation: google.maps.Animation.DROP,
         });
-        console.log(marker);
+        console.log('CAN I PUT A STRING IN THERE< MARKER', marker);
         userMarkers.push(marker);
       }
 
-      // Updates the user markers with new positions
-      setInterval(() => {
+      const updateMarkers = (users, map) => {
         console.log('This is the userMarkers Array', userMarkers);
 
 
-        //iterate through userMarker and set marker to null
+        // iterate through userMarker and set marker to null
         userMarkers.forEach((element) => {
+          console.log('HEY HEY HEY I\'M IN FOR EACH', element);
           element.setMap(null);
         });
 
-        //clear markers and create new markers
+        // clear markers and create new markers
         userMarkers = [];
         let marker = null;
         for (let i = 0; i < users.length; i++) {
+          console.log('HERE IS MY MAP', map);
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(users[i].lat, users[i].lng),
             map,
             label: users[i].label,
           });
+          console.log('THIS IS THE NEW UPDATED MARKER', marker);
           userMarkers.push(marker);
         }
+      };
+
+      // Updates the user markers with new positions
+      setInterval(() => {
+        updateMarkers(users, map);
       }, 5000);
     },
 
@@ -140,7 +149,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(finishPointCollision(userTitle, timeIn, locTitle));
     },
     watchUser: () => {
-      //pass in a googlemap, and userTitle or a socket id
+      // pass in a googlemap, and userTitle or a socket id
       getUserLocationAndWatchID(dispatch);
     },
   };
