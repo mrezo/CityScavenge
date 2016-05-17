@@ -25,7 +25,6 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
     // current user position
   fetch('api/v1/game/photosubmit', {
     method: 'POST',
-    credentials: 'same-origin',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -50,3 +49,17 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
     return;
   });
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
