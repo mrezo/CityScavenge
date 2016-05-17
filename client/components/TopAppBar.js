@@ -7,7 +7,6 @@ const TopAppBar = ({ handleToggle, name }) => {
     <div>
     <AppBar
       title="City Hunt"
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
       onLeftIconButtonTouchTap={handleToggle}
       iconElementRight={<FlatButton label={name} />}
     />
