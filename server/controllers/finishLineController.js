@@ -19,24 +19,6 @@ var userLocation = {
   longitude: -122.4090172,
 };
 
-var checkpoints = [
-  {
-    name: 'tacos',
-    latitude: 37.783246,
-    longitude: -122.409078,
-  },
-  {
-    name: 'Omni Hotel',
-    latitude: 37.793120,
-    longitude: -122.403178,
-  },
-  {
-    name: 'Hotel Union Square',
-    latitude: 37.785872,
-    longitude: -122.407731,
-  },
-];
-
 var radius = 3200;
 
 var PlacesObj = function (googlePlacesData) {
@@ -88,16 +70,11 @@ module.exports.searchGoogle = function (req, res) {
 
 module.exports.getDistance = function (req, res) {
   // this function will run every time a user uploads a picture
-  // loop through checkpoints in req.body
-  // check if lat and long === req.body.currentUser
-  // if so return true and checkpoint that collided
-  // return false
   var currentCheckpoints = req.body.checkpoints;
   var currentUser = req.body.currentUser;
   var collision = {collided: false};
   for (var i = 0; i < currentCheckpoints.length; i++) {
     var thisCheckpoint = currentCheckpoints[i];
-    //if (currentCheckpoints[i].lat === currentUser.lat && currentCheckpoints[i].lng === currentUser.lng) {
       rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
         + 'units=imperial'
         + '&origins=' + currentCheckpoints[i].lat + ',' + currentCheckpoints[i].lng
@@ -112,11 +89,12 @@ module.exports.getDistance = function (req, res) {
           collision.collided = true;
           collision['checkpoint'] = thisCheckpoint;
           console.log('You win!');
+          // TODO: handle closure in promise
           res.json(collision);
         }
       });
     //}
   }
   console.log(collision);
-  //res.json(collision);
+  // res.json(collision);
 };
