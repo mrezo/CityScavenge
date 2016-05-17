@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 import { placeUserMarker, deleteUserMarker, setFinishPoint } from './actions/map';
 import { newUserPosition } from './lib/locationController';
-import { createUser } from './actions/user';
+import { createUser, updateUserPosition } from './actions/user';
 
 export const socket = io();
 
@@ -54,20 +54,13 @@ export default (store) => {
     store.dispatch(setFinishPoint(data.lat, data.lng));
   });
 
-  // socket.updateFinishPoint = () => 
-  //   if (store.getState().finishPoint.lat !== 0) {
-  //     socket.emit('updateFinishPoint', {marker: store.getState().finishPoint.marker, lat: store.getState().finishPoint.lat, lng: store.getState().finishPoint.lng });
-  //   }
-  // }, 3000);
-
-
   socket.on('error', (err)=> {
     console.log(err);
   });
 
-  socket.on('updateUserPosition', data => {
-    store.dispatch(deleteUserMarker(data.map, data.title, data.coords));
-    store.dispatch(placeUserMarker(data.map, data.title, data.coords));
+  socket.on('updateUserPosition', (data) => {
+    console.log('RECEIVED USER POSITION AND SENDING DISPATCH', data);
+    store.dispatch(updateUserPosition(data.coords, data.socketId));
   });
-}
+};
 
