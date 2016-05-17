@@ -5,7 +5,14 @@ import { createUser } from './actions/user';
 
 export const socket = io();
 
-let currentUser = null;
+let currentUser = {
+  socketId: null,
+  coords: {
+    latitude: null,
+    longitude: null,
+  },
+  title: null,
+};
 
 socket.on('test', (data) => {
   console.log(data);
@@ -20,16 +27,25 @@ export default (store) => {
   // On user connection create with lat and long
   socket.on('createUser', (data) => {
     // get initial coords of user
-    currentUser = data.socketId;
+    currentUser.socketId = data.socketId;
+    currentUser.title = data.title;
     console.log('HERE IS MY SOCKET ID', currentUser);
     newUserPosition((currentLocation) => {
-      store.dispatch(createUser(data.title, currentLocation, currentUser));
-      socket.emit('newUser', { title: data.title, coords: currentLocation, socketId: currentUser});
+      store.dispatch(createUser(data.title, currentLocation, currentUser.socketId));
+      currentUser.coords.latitude = currentLocation.latitude;
+      currentUser.coords.longitude = currentLocation.longitude;
+      socket.emit('newUser', { title: data.title, coords: currentLocation, socketId: currentUser.socketId });
     });
   });
 
   socket.on('newUser', (data) => {
     console.log('Adds received user to state', data);
+    store.dispatch(createUser(data.title, data.coords, data.socketId));
+    socket.emit('sendMeToNewUser', { currentUser: currentUser, socketId: data.socketId });
+  });
+
+  socket.on('addOtherUser', (data) => {
+    console.log('ADD THE OTHER USER', data);
     store.dispatch(createUser(data.title, data.coords, data.socketId));
   });
 
@@ -37,10 +53,6 @@ export default (store) => {
     console.log('Finish point received for the game', data);
     store.dispatch(setFinishPoint(data.lat, data.lng));
   });
-  // const emitFinishPoint = () => {
-  //   socket.emit('placeFinishPoint', {googleMap: googleMap, lat: data.latitude, lng: data.longitude });
-  // };
-
 
   // socket.updateFinishPoint = () => 
   //   if (store.getState().finishPoint.lat !== 0) {
@@ -57,6 +69,5 @@ export default (store) => {
     store.dispatch(deleteUserMarker(data.map, data.title, data.coords));
     store.dispatch(placeUserMarker(data.map, data.title, data.coords));
   });
-
 }
 
