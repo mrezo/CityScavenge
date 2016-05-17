@@ -6,7 +6,7 @@ const TopAppBar = ({ handleToggle, name }) => {
   return (
     <div>
     <AppBar
-      title="City Hunt"
+      title="City Scavenge"
       onLeftIconButtonTouchTap={handleToggle}
       iconElementRight={<FlatButton label={name} />}
     />
