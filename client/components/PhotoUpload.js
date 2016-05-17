@@ -20,7 +20,9 @@ const PhotoUpload = ({ lat, lng, open, photoUploadStart, photoSubmit }) => (
     >
       <form>
         <input type="file" name="pic" accept="image/*" />
-        <input type="submit"
+        <input
+          type="submit"
+          href="/api/v1/game/photosubmit"
           onClick={(e) => {
             e.preventDefault();
             photoSubmit(lat, lng, open);
