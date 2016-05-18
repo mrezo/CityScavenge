@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkCollision: (dispatch, checkpoints, currentUser) => {
+    checkCollision: (checkpoints, currentUser) => {
       dispatch(checkCollision(dispatch, checkpoints, currentUser));
     },
 
