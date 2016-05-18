@@ -19,6 +19,8 @@ class GoogleMap extends Component {
   }
 
   render() {
+    this.props.updateMarkers(this.props.users, this.props.map);
+    console.log('users>>>>>>>>>>>>>>>>>>>>', this.props.users);
     return (
       <div id="map"></div>
     );
@@ -27,12 +29,13 @@ class GoogleMap extends Component {
 
 GoogleMap.propTypes = {
   // generateMap: PropTypes.func.isRequired,
-  // updateUserMarkers: PropTypes.func.isRequired,
+  updateMarkers: PropTypes.func,
   users: PropTypes.array,
   finishPoint: PropTypes.object,
   placeAllMarkers: PropTypes.func.isRequired,
-  placeMarker: PropTypes.func.isRequired, 
+  placeMarker: PropTypes.func.isRequired,
   userTitle: PropTypes.string.isRequired,
+  map: PropTypes.object,
 };
 
 
@@ -77,56 +80,37 @@ const mapDispatchToProps = (dispatch) => {
         userMarkers.push(marker);
       }
 
-      const updateMarkers = (users, map) => {
-        console.log('This is the userMarkers Array', userMarkers);
-
-
-        // iterate through userMarker and set marker to null
-        userMarkers.forEach((element) => {
-          console.log('HEY HEY HEY I\'M IN FOR EACH', element);
-          element.setMap(null);
-        });
-
-        // clear markers and create new markers
-        userMarkers = [];
-        let marker = null;
-        for (let i = 0; i < users.length; i++) {
-          console.log('HERE IS MY MAP', map);
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(users[i].lat, users[i].lng),
-            map,
-            label: users[i].label,
-          });
-          console.log('THIS IS THE NEW UPDATED MARKER', marker);
-          userMarkers.push(marker);
-        }
-      };
-
       // Updates the user markers with new positions
-      setInterval(() => {
-        updateMarkers(users, map);
-      }, 5000);
+      // setInterval(() => {
+      //   updateMarkers(users, map);
+      // }, 5000);
     },
 
-    // updateUserMarkers: (users, map) => {
-    //   // setInterval(() => {
-    //   //   console.log('This is the userMarkers Array', userMarkers);
-    //   //   userMarkers = [];
-    //   //   const mapOptions = {
-    //   //     center: { lat: 37.7749, lng: -122.4194 },
-    //   //     zoom: 12,
-    //   //   };
-    //   //   let marker = null;
-    //   //   for (let i = 0; i < users.length; i++) {
-    //   //     marker = new google.maps.Marker({
-    //   //       position: new google.maps.LatLng(users[i].lat, users[i].lng),
-    //   //       map,
-    //   //       label: users[i].label,
-    //   //     });
-    //   //     userMarkers.push(marker);
-    //   //   }
-    //   // }, 5000);
-    // },
+    updateMarkers: (users, map) => {
+      console.log('This is the userMarkers Array', userMarkers);
+
+
+      // iterate through userMarker and set marker to null
+      userMarkers.forEach((element) => {
+        console.log('HEY HEY HEY I\'M IN FOR EACH', element);
+        element.setMap(null);
+      });
+
+      // clear markers and create new markers
+      userMarkers = [];
+      let marker = null;
+      for (let i = 0; i < users.length; i++) {
+        console.log('HERE IS MY MAP', map);
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(users[i].lat, users[i].lng),
+          map,
+          label: users[i].label,
+        });
+        console.log('THIS IS THE NEW UPDATED MARKER', marker);
+        userMarkers.push(marker);
+      }
+    },
+
     // Places a marker on the user's location
     placeMarker: (map, title, lat, lng) => {
       dispatch(placeUserMarker(map, title, lat, lng));
