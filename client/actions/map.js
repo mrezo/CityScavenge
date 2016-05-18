@@ -119,16 +119,6 @@ export const placeCheckpoint = (map, lat, lng) => {
   };
 };
 
-
-// Modifies the user's collision boolean in the checkpoint's user list
-export const checkpointCollision = (locTitle, userTitle) => {
-  return {
-    type: 'CHECKPOINT_COLLISION',
-    locTitle,
-    userTitle,
-  };
-};
-
 // User actions
 
 export const getUserCoords = (lat, lng) => {
