@@ -2,7 +2,7 @@
 ==================================
 */
 
-body, html {
+body, html, #app {
   margin: 0;
   height: 100%;
   width: 100%;
@@ -11,18 +11,42 @@ body, html {
 /* Landing Page
 ==================================
 */
-.card-title: {
-  font-weight: 100,
-  font-size: 20,
-  line-height: '24px',
+
+.homepage-logo {
+  font-size: 4em;
+  color: #FFFFFF;
+  font-family:'fatfrank', sans-serif;
+  margin-bottom: 1.5em
 }
 
-.login-button {
-  display: block;
+.button-container {
+  text-align:center;
+  padding-top: 20%;
+}
+
+.icon {
+  padding-top: 20%;
 }
 
 .signup-button {
   display: block;
+}
+
+.title {
+  padding-top: 25%;
+  top: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3em;
+  color: #FFFFFF;
+}
+
+.landing-container {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  background-size: cover;
+  background: url('../assets/bg.jpg') no-repeat center;
 }
 
 /* Dashboard
