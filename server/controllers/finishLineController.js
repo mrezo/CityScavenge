@@ -1,6 +1,5 @@
 var urlParser = require('url');
 var rp = require('request-promise');
-// var userLocation = require('./locationController');
 var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
 var _ = require('underscore');
 
@@ -18,8 +17,6 @@ var userLocation = {
   latitude: 37.7837731,
   longitude: -122.4090172,
 };
-
-var radius = 3200;
 
 var PlacesObj = function (googlePlacesData) {
   return {
