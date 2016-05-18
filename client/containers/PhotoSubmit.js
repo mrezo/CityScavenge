@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PhotoUpload from '../components/PhotoUpload';
-import { checkCollision, onCollision, photoUploadStart, photoSubmit } from '../actions/photos';
+import { onCollision, photoUploadStart, photoSubmit } from '../actions/photos';
+import checkpointCollision from '..actions/map';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,8 +16,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    checkCollision: (dispatch, checkpoints, currentUser) => {
-      dispatch(checkCollision(dispatch, checkpoints, currentUser));
+    checkpointCollision: (dispatch, checkpoints, currentUser) => {
+      dispatch(checkpointCollision(dispatch, checkpoints, currentUser));
     },
 
     onCollision: (checkpoints, currentUser) => {
