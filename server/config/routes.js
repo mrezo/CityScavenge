@@ -12,6 +12,7 @@ module.exports = function (app, express) {
   app.post('/api/v1/user', User.newUser);
   app.get('/api/v1/user', User.findCurrentUser);
   app.delete('/api/v1/user', User.deleteUser);
+  app.get('/api/v1/user/stats', User.retrieveUserStats);
 
   // location routing
   app.post('/api/v1/game', finishLineController.searchGoogle);
