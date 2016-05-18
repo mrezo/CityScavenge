@@ -7,7 +7,6 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 **Screenshot**  
 ![Landing Page](http://i.imgur.com/BZ2Th80.png)
 
-
 ## Team
 
   - __Product Owner__: Michael Balarezo
@@ -39,7 +38,6 @@ Webpack bundles dependencies into one file, so that all dependencies can be load
 On the client side, the state of the app is maintained in a Redux store. We render the index page by initializing this store. When a user interacts with the app (e.g. when the "start game"; is clicked, for example), an action is triggered, which tells the reducers how the state should update in response (e.g. render a pin at a random location on the map). For more information, review the [Redux documentation](http://redux.js.org/index.html) and watch [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux).
 
 #### Architecture
-User data and saved places are managed in a Postgres database called `city_scavenge`.
 ![Architecture design](http://i.imgur.com/AYNorBl.png)
 
 #### Schema
