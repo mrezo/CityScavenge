@@ -11,19 +11,35 @@ body, html {
 /* Landing Page
 ==================================
 */
-.card-title: {
-  font-weight: 100,
-  font-size: 20,
-  line-height: '24px',
-}
 
 .login-button {
-  display: block;
+  padding-top: 85%;
+  text-align:center;
 }
 
 .signup-button {
   display: block;
 }
+
+.title {
+
+}
+
+.landing-container {
+  height: 800px;
+  background: url('https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg') no-repeat;
+  background-size: cover;
+  text-shadow: #444 0 1px 1px;
+  margin: 0;
+  width: 100%;
+}
+
+.transparent {
+  height: 100%;
+  background:#7f7f7f;
+  background:rgba(255,255,255,0.5);
+}
+
 
 /* Dashboard
 ==================================
