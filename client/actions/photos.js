@@ -53,8 +53,6 @@ export const checkCollision = (dispatch, checkpoints, currentUser) => {
       for (var i = 0; i < checkpoints.length; i++) {
         // find checkpoint in store that matches checkpoint in data
         if (data.checkpoint.lat === checkpoints[i].lat && data.checkpoint.lng === checkpoints[i].lng) {
-          console.log('this is current user--------------', currentUser);
-          console.log('this is data--------------', data);
           for (var j = 0; j < checkpoints[i].users.length; j++) {
             // find user in checkpoints store that matches currentUser
             if (checkpoints[i].users[j].title === currentUser.title) {
