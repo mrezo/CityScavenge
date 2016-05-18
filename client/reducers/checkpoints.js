@@ -1,7 +1,7 @@
 const user = (state = {}, action) => {
   switch (action.type) {
-    case 'FINISHPOINT_COLLISION':
-      if (state.title !== action.title) {
+    case 'ON_COLLISION':
+      if (state.title !== action.user.title) {
         // action.title will be current user's name
         return state;
       }
@@ -9,6 +9,20 @@ const user = (state = {}, action) => {
         collision: !state.collision,
         timeIn: new Date(),
       });
+    default:
+      return state;
+  }
+};
+
+const checkpoint = (state = {}, action) => {
+  switch(action.type) {
+    case 'ON_COLLISION':
+      if (state.title !== action.checkpoint.title) {
+        return state;
+      }
+      return state.users.map(u =>
+        user(u, action)
+      );
     default:
       return state;
   }
@@ -37,8 +51,8 @@ const checkpoints = (state = [], action) => {
     case 'ON_COLLISION':
       // loop through users on checkpoint in store
       // return new state with collision = true
-      return state.users.map(u =>
-        user(u, action)
+      return state.map(c =>
+        checkpoint(c, action)
       );
     default:
       return state;
