@@ -7,11 +7,12 @@ import CardTitle from 'material-ui/lib/card/card-title';
 
 const LandingPage = () => (
   <div className="landing-container">
-    <div className="transparent">
-      <span className="title">City Scavenge</span>
-      <div className="login-button">
-        <RaisedButton label="Login with Google" backgroundColor={styles.Colors.red500} primary={true} linkButton={true} href="/api/v1/auth/google" />
-      </div>
+  <br></br>
+  <br></br>
+    <span className="title">City Scavenge</span>
+    <img className="icon" width="200px" height="200px" src="../assets/icon2.png"></img>
+    <div className="button-container">
+      <RaisedButton label="Login with Google" backgroundColor={styles.Colors.pink500} primary={true} linkButton={true} href="/api/v1/auth/google" />
     </div>
   </div>
 );
