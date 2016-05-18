@@ -18,3 +18,11 @@ export const updateUserWithGoogle = (data) => {
     data,
   };
 };
+
+export const updateUserPosition = (coords, socketId) => {
+  return {
+    type: 'UPDATE_USER_POSITION',
+    coords,
+    socketId,
+  };
+};

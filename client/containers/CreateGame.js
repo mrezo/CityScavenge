@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DashboardCreateGame from '../components/DashboardCreateGame';
 import { assignGameRadius, assignGameName } from '../actions/index';
+import getUserLocationAndWatchID from '../lib/locationController';
+
 
 const mapStateToProps = (state) => {
   return {
@@ -22,6 +24,10 @@ const mapDispatchToProps = (dispatch) => {
     handleChangeName: (event) => {
       console.log(event.target.value);
       dispatch(assignGameName(event.target.value));
+    },
+    updateUserPosition: () => {
+      console.log('AM I STARTING TO TRACK NEW POSITIONS');
+      getUserLocationAndWatchID(dispatch);
     },
     // watchUser: () => {
     //   getUserLocationAndWatchID(dispatch);

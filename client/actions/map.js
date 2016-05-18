@@ -1,10 +1,10 @@
 import 'isomorphic-fetch';
 import { socket } from '../socketIO';
 
-export const createMap = (googleMap, lat, lng) => {
+export const createMap = (map, lat, lng) => {
   return {
     type: 'CREATE_MAP',
-    googleMap,
+    map,
     lat,
     lng,
   };

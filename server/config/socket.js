@@ -31,5 +31,10 @@ module.exports = function(server) {
       console.log('BROADCASTING FINISHPOINT TO SOCKETS', data);
       socket.broadcast.emit('placeFinishPoint', data);
     });
+
+    socket.on('updateUserPosition', function(data) {
+      console.log('Updating user position', data.socketId);
+      socket.broadcast.emit('updateUserPosition', data);
+    });
   });
 };

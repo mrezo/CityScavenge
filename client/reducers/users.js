@@ -22,6 +22,14 @@ const user = (state = {}, action) => {
       return Object.assign({}, state, {
         marker: state.marker.setMap(null),
       });
+    case 'UPDATE_USER_POSITION':
+      if (state.socketId !== action.socketId) {
+        return state;
+      }
+      return Object.assign({}, state, {
+        lat: action.coords.latitude,
+        lng: action.coords.longitude,
+      });
     default:
       return state;
   }
@@ -50,6 +58,10 @@ const users = (state = [], action) => {
       return state.map(u =>
         user(u, action)
       );
+    case 'UPDATE_USER_POSITION':
+      return state.map(u =>
+        user(u, action)
+    );
     default:
       return state;
   }

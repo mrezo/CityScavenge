@@ -6,8 +6,10 @@
 // the return valu
 
 import { placeUserMarker, deleteUserMarker, createMap } from '../actions/map';
+import { updateUserPosition } from '../actions/user';
+import { socket, currentUser } from '../socketIO';
 
-export const getUserLocationAndWatchID = (dispatch, googleMap, title) => {
+export const getUserLocationAndWatchID = (dispatch) => {
   let currentLocation = {};
 
   let showLocation = (position) => {
@@ -17,9 +19,9 @@ export const getUserLocationAndWatchID = (dispatch, googleMap, title) => {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     };
-    // TODO: Pass Map as argument
-    dispatch(deleteUserMarker(title));
-    dispatch(placeUserMarker(googleMap, title, currentLocation));
+    dispatch(updateUserPosition(currentLocation, currentUser.socketId));
+    // socket emit /broadcast to the other users
+    socket.emit('updateUserPosition', { coords: currentLocation, socketId: currentUser.socketId });
     return currentLocation;
   };
 
