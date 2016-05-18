@@ -7,8 +7,8 @@ import CardTitle from 'material-ui/lib/card/card-title';
 
 const LandingPage = () => (
   <div className="landing-container">
-  <br></br>
-  <br></br>
+    <br></br>
+    <br></br>
     <span className="title">City Scavenge</span>
     <img className="icon" width="200px" height="200px" src="../assets/icon2.png"></img>
     <div className="button-container">
