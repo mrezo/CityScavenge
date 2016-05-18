@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    placeAllMarkers: (users, finishPoint) => {
+    placeAllMarkers: (users, finishPoint, checkpoints) => {
       const mapOptions = {
         center: { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
@@ -64,6 +64,16 @@ const mapDispatchToProps = (dispatch) => {
         label: finishPoint.label,
         animation: google.maps.Animation.DROP,
       });
+
+      // Creates checkpoints markers
+      for (let j = 0; j < checkpoints.length; j++) {
+        marker = new google.maps.Marker({
+        position: new google.maps.LatLng(checkpoints[j].lat, checkpoints[j].lng),
+        map,
+        label: checkpoints[j].label,
+        animation: google.maps.Animation.DROP,
+      });        
+      }
       
       // Creates user markers
       for (let i = 0; i < users.length; i++) {
