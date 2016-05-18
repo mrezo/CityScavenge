@@ -35,9 +35,12 @@ class Dashboard extends Component {
           </Tab>
           <Tab
             label="Create Game"
-            onActive={this.props.createFinishPoint}
-            onActive={this.props.sendGameInformation}
-            onActive={this.props.updateUserPosition}
+            onClick={(e) => {
+              e.preventDefault();
+              this.props.sendGameInformation();
+              this.props.updateUserPosition();
+              this.props.createFinishPoint();
+            }}
           >
             <div>
               <CreateGameContainer />
@@ -57,6 +60,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  updateUserPosition: PropTypes.func.isRequired,
   sendGameInformation: PropTypes.func.isRequired,
   createFinishPoint: PropTypes.func.isRequired,
   fetchUser: PropTypes.func.isRequired,
