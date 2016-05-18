@@ -41,6 +41,7 @@ PhotoUpload.propTypes = {
   lat: PropTypes.number.isRequired,
   lng: PropTypes.number.isRequired,
   open: PropTypes.bool.isRequired,
+  onCollision: PropTypes.func.isRequired,
   photoUploadStart: PropTypes.func.isRequired,
   photoSubmit: PropTypes.func.isRequired,
 };
