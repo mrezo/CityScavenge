@@ -33,7 +33,9 @@ const checkpoints = (state = [], action) => {
           marker: new google.maps.Marker(checkpointOptions),
         },
       }];
-    case 'CHECKPOINT_COLLISION':
+    case 'ON_COLLISION':
+      // loop through users on checkpoint in store
+      // return new state with collision = true
       return state.users.map(u =>
         user(u, action)
       );
