@@ -34,6 +34,7 @@ const initialStore = {
       title: 'Checkpoint',
       lat: 37.783246,
       lng: -122.409078,
+      label: 'C',
       marker: 0,
       users: [
         {
