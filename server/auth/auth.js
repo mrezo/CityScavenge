@@ -44,7 +44,7 @@ exports.logout = function (req, res, next) {
 passport.use(new GoogleStrategy({
   clientID: googleKey.CLIENTID,
   clientSecret: googleKey.CLIENTSECRET,
-  callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
+  callbackURL: '/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
   User.findOrCreate(profile, function (err, user) {
     return done(err, user);
