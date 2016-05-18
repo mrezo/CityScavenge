@@ -37,6 +37,10 @@ export const getFinishPoint = (dispatch) => {
   .then((data) => {
     socket.setFinishPoint(data[0].latitude, data[0].longitude);
     dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
+    for (var i = 1; i < data.length; i++) {
+      socket.setCheckpoint(data[i].latitude, data[i].longitude);
+      dispatch(setCheckpoint(data[i].latitude, data[i].longitude));
+    }
   })
   .catch((error) => {
     console.log('Error', error);
@@ -81,33 +85,6 @@ export const setCheckpoint = (lat, lng) => {
     lat,
     lng,
   };
-};
-
-export const getCheckpoint = (dispatch) => {
-  fetch('api/v1/game', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  })
-  .then((response) => {
-    if (response.status >= 400) {
-      console.log('Server error', response);
-    }
-    return response.json();
-  })
-  .then((data) => {
-    // iterate over checkpoints array and dispatch action for each
-    for (var i = 1; i < data.length; i++) {
-      socket.setCheckpoint(data[i].latitude, data[i].longitude);
-      dispatch(setCheckpoint(data[i].latitude, data[i].longitude));
-    }
-  })
-  .catch((error) => {
-    console.log('Error', error);
-    return;
-  });
 };
 
 export const placeCheckpoint = (map, lat, lng) => {
