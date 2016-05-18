@@ -12,14 +12,6 @@ body, html, #app {
 ==================================
 */
 
-/*.icon-homepage {
-  width: 97px;
-  height: 97px;
-  background: url('../assets/icon.png') no-repeat;
-  background-size:contain;
-  margin: auto;
-}*/
-
 .homepage-logo {
   font-size: 4em;
   color: #FFFFFF;
@@ -56,14 +48,6 @@ body, html, #app {
   background-size: cover;
   background: url('../assets/bg.jpg') no-repeat center;
 }
-
-/*.transparent {
-  text-align:center;
-  height: 100%;
-  background:##311B92;
-  background:rgba(255,255,255,0.5);
-}*/
-
 
 /* Dashboard
 ==================================
