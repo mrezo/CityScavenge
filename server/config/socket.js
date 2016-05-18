@@ -27,6 +27,10 @@ module.exports = function(server) {
       socket.broadcast.emit('placeFinishPoint', data);
     });
 
+    socket.on('setCheckpoint', function(data) {
+      socket.broadcast.emit('placeCheckpoint', data);
+    });
+
     socket.on('updateUserPosition', function(data) {
       console.log('Updating user position', data.socketId);
       socket.broadcast.emit('updateUserPosition', data);
