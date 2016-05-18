@@ -29,12 +29,16 @@ const checkpoint = (state = {}, action) => {
 };
 
 const checkpoints = (state = [], action) => {
+  console.log('this is state-----------', state);
   switch (action.type) {
     case 'SET_CHECKPOINT':
-      return Object.assign({}, state, {
+      return [
+      ...state,
+      {
         lat: action.lat,
         lng: action.lng,
-      });
+        label: 'C',
+      }];
     case 'PLACE_CHECKPOINT':
       const checkpointOptions = {
         position: { lat: action.lat, lng: action.lng },
