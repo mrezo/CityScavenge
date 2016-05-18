@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PhotoUpload from '../components/PhotoUpload';
 import { onCollision, photoUploadStart, photoSubmit } from '../actions/photos';
-import checkpointCollision from '..actions/map';
+import checkpointCollision from '../actions/map';
 
 const mapStateToProps = (state) => {
   return {
