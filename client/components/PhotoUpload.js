@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 import Dialog from 'material-ui/lib/dialog';
-import FlatButton from 'material-ui/lib/flat-button';
-import RaisedButton from 'material-ui/lib/raised-button';
+import FloatingActionButton from 'material-ui/lib/floating-action-button';
+import Camera from 'material-ui/lib/svg-icons/image/camera-alt';
 
 // TODO: add "action: " to form component with post request to DB
 
 const PhotoUpload = ({ checkCollision, checkpoints, currentUser, lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
-    <RaisedButton
-      label="Check In"
+    <FloatingActionButton
       onClick={() => {
         photoUploadStart(lat, lng, open);
       }}
-      primary={true} />
+      primary={true} >
+      <Camera />
+    </FloatingActionButton>
     <Dialog
       title="Check in with a photo"
       open={open}
