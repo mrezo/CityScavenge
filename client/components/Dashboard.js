@@ -21,9 +21,6 @@ class Dashboard extends Component {
       <div>
         <VisibleDashboardLeftNav />
         <VisibleTopAppBar />
-        <div className="avatar-container">
-          <Avatar className="avatar" size={150} src={this.props.avatarImg} />
-        </div>
         <Tabs>
           <Tab
             label="Old Games"
