@@ -105,17 +105,17 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 =====================
 ## Meet The Engineers
 Product Owner
-- [**Michael Balarezo**](https://github.com/mrezo)
+- [Michael Balarezo](https://github.com/mrezo)
 
 Scrum Master
-- [**Alexander Turinske**](https://github.com/alexanderturinske)
+- [Alexander Turinske](https://github.com/alexanderturinske)
 
 Development Team
-- [**Genevieve Sublette**](https://github.com/Genevieve1722)
+- [Genevieve Sublette](https://github.com/Genevieve1722)
 
 =====================
 ## Questions and Issues
-For any issues, please refer to [**our issues page**](https://github.com/FuturisticSalamander/CityScavenge/issues)
-Please direct any questions regarding City Scavenge to [**our wiki page**](https://github.com/FuturisticSalamander/CityScavenge/wiki)
+For any issues, please refer to [our issues page](https://github.com/FuturisticSalamander/CityScavenge/issues)
+Please direct any questions regarding City Scavenge to [our wiki page](https://github.com/FuturisticSalamander/CityScavenge/wiki)
 
 Thank you!
