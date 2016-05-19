@@ -13,11 +13,10 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 2. [Usage](#usage)
 3. [Requirements](#requirements)
 4. [Development](#development)
-5. [Installing Dependencies](#installing-dependencies)
+5. [Installation](#installation)
 6. [Deployment](#deployment)
 7. [Contributing](#contributing)
 8. [Meet the Engineers](#meet-the-engineers)
-9. [Testing](#testing)
 
 ## Overview
 
@@ -60,7 +59,7 @@ Visit `localhost:1337` in the browser.
 
 ## Development
 
-### Installing Dependencies
+### Installation
 
 From within the root directory:
 
@@ -87,6 +86,19 @@ npm start
 
 Visit `localhost:1337` in the browser.
 
+=====================
+## Testing
+
+First install all dependencies
+```
+$ npm install
+```
+
+Now run the tests
+```
+$ npm test
+```
+
 ## Deployment
 #### TBD once deployed
 
@@ -110,12 +122,6 @@ Scrum Master
 
 Development Team
 - [**Genevieve Sublette**](https://github.com/Genevieve1722)
-
-=====================
-## Testing
-```
-npm start
-```
 
 TBD:
 socket.io
