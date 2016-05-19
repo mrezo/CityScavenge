@@ -10,26 +10,20 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Usage](#usage)
-3. [Requirements](#requirements)
-4. [Development](#development)
-5. [Installation](#installation)
-6. [Deployment](#deployment)
-7. [Contributing](#contributing)
-8. [Meet the Engineers](#meet-the-engineers)
+2. [Requirements](#requirements)
+3. [Development](#development)
+4. [Installation](#installation)
+5. [Deployment](#deployment)
+6. [Contributing](#contributing)
+7. [Meet the Engineers](#meet-the-engineers)
 
 ## Overview
 
-### Tech Stack
+### Technologies
 - [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/)
+- [Socket.IO](http://socket.io/)
 - [Node](https://nodejs.org/en/) and [Express](http://expressjs.com/)
-- [Postgres](http://www.postgresql.org/)
-
-#### Webpack
-Webpack bundles dependencies into one file, so that all dependencies can be loaded into the DOM with a single `<script>` tag.  Webpack starts with an entry file (`App.js`) and traverses the project’s dependencies based on the `import` and `export` statements in the code. It uses a `webpack.config.js` file in the root directory to define which loaders are required for compilation and the destination of the output file.
-
-#### React and Redux
-On the client side, the state of the app is maintained in a Redux store. We render the index page by initializing this store. When a user interacts with the app (e.g. when the "start game"; is clicked, for example), an action is triggered, which tells the reducers how the state should update in response (e.g. render a pin at a random location on the map). For more information, review the [Redux documentation](http://redux.js.org/index.html) and watch [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux).
+- [PostgreSQL](http://www.postgresql.org/)
 
 #### Architecture
 ![Architecture design](http://i.imgur.com/AYNorBl.png)
@@ -38,8 +32,27 @@ On the client side, the state of the app is maintained in a Redux store. We rend
 User data and saved places are managed in a Postgres database called `city_scavenge`.
 ![Schema design](http://i.imgur.com/FpiUDaX.png)
 
-## Usage
-You'll need API keys for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key), [Google Maps Geolocation](https://developers.google.com/maps/documentation/geolocation/get-api-key), and for ??[Google Places](https://developers.google.com/places/web-service/get-api-key)??. Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
+## Requirements
+
+- Node 0.10.x
+- Postgres 9.5.2
+- [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
+  * Enable the following Google APIs
+    - Google Maps JavaScript API
+    - Google Maps Embeded API
+    - Google Maps Directions API
+    - Google Maps Distance Matrix API
+    - Google Maps Geocoding API
+    - Google Maps API Web Service
+    - Google Maps Elevation API
+    - Google+ API
+- [Google OAuth 2.0 Client Credentials](https://developers.google.com/identity/protocols/OAuth2)
+
+## Development
+
+### Installation
+
+You'll need API keys for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key), [Google Maps Geolocation](https://developers.google.com/maps/documentation/geolocation/get-api-key), and for [Google Places](https://developers.google.com/places/web-service/get-api-key). Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
 Ensure all [dependencies](#installing-dependencies) are installed. Start a Postgres server by running `??`. Then, from within the root directory:
 ```
 $ npm install
@@ -48,18 +61,6 @@ $ npm start
 ```
 
 Visit `localhost:1337` in the browser.
-
-## Requirements
-
-- Node 0.10.x
-- Postgres 9.5.2
-- [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
-- [Google Maps Geolocation API key](https://developers.google.com/maps/documentation/geolocation/get-api-key)
-- ??[Google Places API key](https://developers.google.com/places/web-service/get-api-key)??
-
-## Development
-
-### Installation
 
 From within the root directory:
 
@@ -98,14 +99,6 @@ Now run the tests
 $ npm test
 ```
 
-## Deployment
-#### TBD once deployed
-
-#### Deploying New Changes
-#### TBD once deployed
-
-- Go to `xxx.xxx.xx.x:??` to see your site live
-
 =====================
 ## Contributing
 
@@ -121,6 +114,3 @@ Scrum Master
 
 Development Team
 - [**Genevieve Sublette**](https://github.com/Genevieve1722)
-
-TBD:
-socket.io
