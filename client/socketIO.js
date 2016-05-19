@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { placeUserMarker, deleteUserMarker, setFinishPoint } from './actions/map';
+import { placeUserMarker, deleteUserMarker, setCheckpoint, setFinishPoint } from './actions/map';
 import { newUserPosition } from './lib/locationController';
 import { createUser, updateUserPosition } from './actions/user';
 
@@ -21,6 +21,11 @@ socket.on('test', (data) => {
 socket.setFinishPoint = (lat, lng) => {
   console.log('Setting Finish Point', lat, lng);
   socket.emit('setFinishPoint', { lat, lng });
+};
+
+socket.setCheckpoint = (lat, lng) => {
+  console.log('Setting Checkpoint', lat, lng);
+  socket.emit('setCheckpoint', { lat, lng });
 };
 
 export default (store) => {
@@ -52,6 +57,11 @@ export default (store) => {
   socket.on('placeFinishPoint', (data) => {
     console.log('Finish point received for the game', data);
     store.dispatch(setFinishPoint(data.lat, data.lng));
+  });
+
+  socket.on('placeCheckpoint', (data) => {
+    console.log('Checkpoint received for the game', data);
+    store.dispatch(setCheckpoint(data.lat, data.lng));
   });
 
   socket.on('error', (err)=> {

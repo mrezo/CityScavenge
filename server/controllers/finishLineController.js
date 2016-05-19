@@ -1,6 +1,5 @@
 var urlParser = require('url');
 var rp = require('request-promise');
-// var userLocation = require('./locationController');
 var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
 
 if (!process.env.TRAVIS) {
@@ -21,16 +20,12 @@ var userLocation = {
 var PlacesObj = function (googlePlacesData) {
   return {
     name: googlePlacesData.name,
-    address: googlePlacesData['formatted_address'],
     googlePlaceId: googlePlacesData['place_id'],
     latitude: googlePlacesData['geometry']['location']['lat'],
     longitude: googlePlacesData['geometry']['location']['lng'],
-    url: '',
     rating: Math.round(googlePlacesData.rating),
-    numberOfReviews: googlePlacesData.reviews.length,
   };
 };
-
 
 module.exports.searchGoogle = function (req, res) {
   var responseBody = {};
@@ -46,48 +41,56 @@ module.exports.searchGoogle = function (req, res) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
-      if (data.results && data.results.length > 0) {
+      if (data.results && data.results.length > 4 ) {
         // randomly pick a location
-        var rand = Math.floor(Math.random() * data.results.length);
-        return data.results[rand];
+        var allCheckpoints = [];
+        var storeValues = {};
+        while (allCheckpoints.length < 4) {
+          var rand = Math.floor(Math.random() * data.results.length);
+          // check for duplicate places
+          if (!storeValues[rand]) {
+            storeValues[rand] = 1;
+            allCheckpoints.push(PlacesObj(data.results[rand]));
+          }
+        }
+        // set finish point as first location in array
+        endpoint.latitude = allCheckpoints[0].latitude;
+        endpoint.longitude = allCheckpoints[0].longitude;
+        res.json(allCheckpoints);
       }
     })
     .catch(function (err) {
       console.log('google places API call failure', err);
     })
-    .then(function (place) {
-        rp.get('https://maps.googleapis.com/maps/api/place/details/json?'
-                + 'key=' + GOOGLE_PLACES_API_KEY
-                + '&placeid=' + place.place_id
-              )
-              .then(function (locationData) {
-                var formattedLocation = JSON.parse(locationData).result;
-                var placesObj = PlacesObj(formattedLocation);
-                endpoint.latitude = formattedLocation.geometry.location.lat;
-                endpoint.longitude = formattedLocation.geometry.location.lng;
-                res.json(placesObj);
-              }
-              );
-    });
 };
 
-module.exports.getDistance = function(req, res) {
-  rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
-    + 'units=imperial'
-    + '&origins=' + +req.body.userLatitude + ',' + +req.body.userLongitude
-    + '&destinations=' + +req.body.endpointLatitude + '%2C' + +req.body.endpointLongitude
-    + '&key=' + GOOGLE_PLACES_API_KEY
-  )
-  .catch(function (err) {
-    console.log('Google Distance Matrix API call failure', err);
-  })
-  .then(function (body) {
-    var collision = false;
-    console.log(JSON.parse(body).rows[0].elements[0].distance.value);
-    if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
-      collision = true;
-      console.log('You win!');
-    }
-    res.json(collision);
-  });
+module.exports.getDistance = function (req, res) {
+  // this function will run every time a user uploads a picture
+  var currentCheckpoints = req.body.checkpoints;
+  var currentUser = req.body.currentUser;
+  var collision = {collided: false};
+  for (var i = 0; i < currentCheckpoints.length; i++) {
+    var thisCheckpoint = currentCheckpoints[i];
+      rp.get('https://maps.googleapis.com/maps/api/distancematrix/json?'
+        + 'units=imperial'
+        + '&origins=' + currentCheckpoints[i].lat + ',' + currentCheckpoints[i].lng
+        + '&destinations=' + currentCheckpoints[i].lat + '%2C' + currentCheckpoints[i].lng
+        + '&key=' + GOOGLE_PLACES_API_KEY
+      )
+      .catch(function (err) {
+        console.log('Google Distance Matrix API call failure', err);
+      })
+      .then(function (body) {
+        if (JSON.parse(body).rows[0].elements[0].distance.value <= 2000) {
+          collision.collided = true;
+          collision['checkpoint'] = thisCheckpoint;
+          console.log('You win!');
+          // TODO: handle closure in promise
+          res.json(collision);
+        }
+      });
+    //}
+  }
+  console.log(collision);
+  // res.json(collision);
 };

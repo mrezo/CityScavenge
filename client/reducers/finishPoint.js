@@ -2,11 +2,12 @@ const user = (state = {}, action) => {
   switch (action.type) {
     case 'FINISHPOINT_COLLISION':
       if (state.title !== action.title) {
+        // action.title will be current user's name
         return state;
       }
       return Object.assign({}, state, {
         collision: !state.collision,
-        timeIn: action.timeIn,
+        timeIn: new Date(),
       });
     default:
       return state;

@@ -13,7 +13,8 @@ class GoogleMap extends Component {
     // var context = this;
     // var users = this.props.users;
     var finishPoint = this.props.finishPoint;
-    this.props.placeAllMarkers(this.props.users, finishPoint);
+    var checkpoints = this.props.checkpoints;
+    this.props.placeAllMarkers(this.props.users, finishPoint, checkpoints);
     // this.props.updateUserMarkers(this.props.users, this.props.map);
     // this.props.generateMap();
   }
@@ -30,6 +31,7 @@ GoogleMap.propTypes = {
   // updateUserMarkers: PropTypes.func.isRequired,
   users: PropTypes.array,
   finishPoint: PropTypes.object,
+  checkpoints: PropTypes.array,
   placeAllMarkers: PropTypes.func.isRequired,
   placeMarker: PropTypes.func.isRequired, 
   userTitle: PropTypes.string.isRequired,
@@ -38,6 +40,7 @@ GoogleMap.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    checkpoints: state.checkpoints,
     map: state.mapReducer.map,
     userTitle: state.users[0].title,
     users: state.users,
@@ -47,7 +50,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    placeAllMarkers: (users, finishPoint) => {
+    placeAllMarkers: (users, finishPoint, checkpoints) => {
       const mapOptions = {
         center: { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
@@ -64,6 +67,16 @@ const mapDispatchToProps = (dispatch) => {
         label: finishPoint.label,
         animation: google.maps.Animation.DROP,
       });
+
+      // Creates checkpoints markers
+      for (let j = 0; j < checkpoints.length; j++) {
+        marker = new google.maps.Marker({
+        position: new google.maps.LatLng(checkpoints[j].lat, checkpoints[j].lng),
+        map,
+        label: checkpoints[j].label,
+        animation: google.maps.Animation.DROP,
+      });        
+      }
       
       // Creates user markers
       for (let i = 0; i < users.length; i++) {
@@ -73,17 +86,14 @@ const mapDispatchToProps = (dispatch) => {
           label: users[i].label,
           animation: google.maps.Animation.DROP,
         });
-        console.log('CAN I PUT A STRING IN THERE< MARKER', marker);
         userMarkers.push(marker);
       }
 
       const updateMarkers = (users, map) => {
-        console.log('This is the userMarkers Array', userMarkers);
 
 
         // iterate through userMarker and set marker to null
         userMarkers.forEach((element) => {
-          console.log('HEY HEY HEY I\'M IN FOR EACH', element);
           element.setMap(null);
         });
 
@@ -91,13 +101,11 @@ const mapDispatchToProps = (dispatch) => {
         userMarkers = [];
         let marker = null;
         for (let i = 0; i < users.length; i++) {
-          console.log('HERE IS MY MAP', map);
           marker = new google.maps.Marker({
             position: new google.maps.LatLng(users[i].lat, users[i].lng),
             map,
             label: users[i].label,
           });
-          console.log('THIS IS THE NEW UPDATED MARKER', marker);
           userMarkers.push(marker);
         }
       };
@@ -135,8 +143,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteUserMarker(title));
     },
 
-    placeCheckpoint: (map, title, lat, lng) => {
-      dispatch(placeCheckpoint(map, title, lat, lng));
+    placeCheckpoint: (map, lat, lng) => {
+      dispatch(placeCheckpoint(map, lat, lng));
     },
     checkpointCollision: (locTitle, userTitle) => {
       dispatch(checkpointCollision(locTitle, userTitle));

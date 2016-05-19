@@ -13,7 +13,6 @@ export const getUserLocationAndWatchID = (dispatch) => {
   let currentLocation = {};
 
   let showLocation = (position) => {
-    console.log('Position', position);
     currentLocation =
     {
       latitude: position.coords.latitude,
