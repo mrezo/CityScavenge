@@ -1,19 +1,25 @@
 import React, { PropTypes } from 'react';
+import styles from 'material-ui/lib/styles';
 import Dialog from 'material-ui/lib/dialog';
 import FloatingActionButton from 'material-ui/lib/floating-action-button';
 import Camera from 'material-ui/lib/svg-icons/image/camera-alt';
 
 // TODO: add "action: " to form component with post request to DB
 
+const style = {
+  marginRight: 100,
+  backgroundColor: '#ff2453',
+};
+
 const PhotoUpload = ({ checkCollision, checkpoints, currentUser, lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
     <FloatingActionButton
-      className="check-in"
+      backgroundColor={styles.Colors.pink500}
       onClick={() => {
         photoUploadStart(lat, lng, open);
       }}
       primary={true} >
-      <Camera className="check-in"/>
+      <Camera />
     </FloatingActionButton>
     <Dialog
       title="Check in with a photo"
