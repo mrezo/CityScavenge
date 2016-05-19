@@ -26,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     updateUserPosition: () => {
-      console.log('AM I STARTING TO TRACK NEW POSITIONS');
       getUserLocationAndWatchID(dispatch);
     },
   };
