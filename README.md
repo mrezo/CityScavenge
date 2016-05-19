@@ -5,15 +5,7 @@
 City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to find a croissant before your competition does. It utilizes the Google Maps API to find your current location and place a croissant at a random interest area within two miles. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
 
 **Screenshot**  
-<<<<<<< 2aab54f49cb2e71547f5fcad3db9e01e4f0d4445
 ![Landing Page](http://i.imgur.com/BZ2Th80.png)
-||||||| merged common ancestors
-![Landing Page](http://i.imgur.com/AYNorBl.png)
-
-=======
-![Landing Page](http://i.imgur.com/BZ2Th80.png)
-
->>>>>>> Add architecture image to readme
 
 ## Team
 
