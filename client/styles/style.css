@@ -57,10 +57,9 @@ body, html, #app {
   margin: 0 auto;
 }
 
-.dash-jumbotron {
-  height: 200px;
-  padding-top: 50px;
-  background: #FF4081;
+.avatar-container {
+  height: 175px;
+  background: url("https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg")
 }
 
 .main-image {
