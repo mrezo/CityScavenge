@@ -19,13 +19,15 @@ const DashboardCreateGame = ({ gameName, gameRadius }) => (
       floatingLabelText="Distance"
       fullWidth={true}
     /><br />
-    <RaisedButton
-      label="Create Game"
-      backgroundColor={styles.Colors.pink400}
-      primary={true}
-      linkButton={true}
-      href="/#/game"
-    />
+    <div className="create-game-button">
+      <RaisedButton
+        label="Create Game"
+        backgroundColor={styles.Colors.pink400}
+        primary={true}
+        linkButton={true}
+        href="/#/game"
+      />
+    </div>
   </div>
 );
 
