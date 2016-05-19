@@ -11,11 +11,10 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 
 1. [Overview](#overview)
 2. [Requirements](#requirements)
-3. [Development](#development)
-4. [Installation](#installation)
-5. [Deployment](#deployment)
-6. [Contributing](#contributing)
-7. [Meet the Engineers](#meet-the-engineers)
+3. [Installation](#installation)
+4. [Deployment](#deployment)
+5. [Contributing](#contributing)
+6. [Meet the Engineers](#meet-the-engineers)
 
 ## Overview
 
@@ -35,7 +34,7 @@ User data and saved places are managed in a Postgres database called `city_scave
 ## Requirements
 
 - Node 0.10.x
-- Postgres 9.5.2
+- PostgreSQL 9.5.2
 - [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
   * Enable the following Google APIs
     - Google Maps JavaScript API
@@ -48,38 +47,38 @@ User data and saved places are managed in a Postgres database called `city_scave
     - Google+ API
 - [Google OAuth 2.0 Client Credentials](https://developers.google.com/identity/protocols/OAuth2)
 
-## Development
-
 ### Installation
 
-You'll need API keys for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key), [Google Maps Geolocation](https://developers.google.com/maps/documentation/geolocation/get-api-key), and for [Google Places](https://developers.google.com/places/web-service/get-api-key). Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
-Ensure all [dependencies](#installing-dependencies) are installed. Start a Postgres server by running `??`. Then, from within the root directory:
-```
-$ npm install
-$ webpack
-$ npm start
-```
 
-Visit `localhost:1337` in the browser.
-
-From within the root directory:
+From within the root directory, install the global dependencies and the local dependencies
 
 ```
 $ npm install -g nodemon webpack grunt
 $ npm install
 ```
 
+=====================
 ### Setting up the database
 
-From within the root directory:
+First start your PostgreSQL server
+
+Next, from within the root directory, create the database and tables in PostgreSQL
 
 ```
 $ psql -f server/schema.sql
 ```
 
+=====================
+### Setting up the Google API keys
+
+Add your Google API credentials to the config files in `/server/config`, following the format of the example files.
+
+Remove `.example` from the filename.
+
+=====================
 ### Running Locally
 
-To compile client-side code and start the server, run:
+Compile client-side code and start the server
 ```
 $ npm start
 ```
@@ -87,7 +86,7 @@ $ npm start
 Visit `localhost:1337` in the browser.
 
 =====================
-## Testing
+### Testing
 
 First install all dependencies
 ```
