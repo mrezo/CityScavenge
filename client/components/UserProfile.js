@@ -15,8 +15,6 @@ import Lightning from 'material-ui/lib/svg-icons/image/flash-on';
 import Mood from 'material-ui/lib/svg-icons/social/mood';
 import MoodBad from 'material-ui/lib/svg-icons/social/mood-bad';
 
-
-
 const stats = [
   {
     title: "Games Played",
