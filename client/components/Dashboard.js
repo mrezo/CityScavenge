@@ -21,8 +21,8 @@ class Dashboard extends Component {
       <div>
         <VisibleDashboardLeftNav />
         <VisibleTopAppBar />
-        <div>
-          <img className="main-image" src={'https://cdn.getyourguide.com/niwziy2l9cvz/1XBkFZIKqYw0248uGCuaWG/cc3d1c8fec71b6706ac961b449d2d823/san-francisco-san-francisco-bay-1112x630.jpg'} />
+        <div className="avatar-container">
+          <Avatar className="avatar" src="this.props.avatarImg" />
         </div>
         <Tabs>
           <Tab
@@ -60,6 +60,7 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  avatarImg: PropTypes.string,
   updateUserPosition: PropTypes.func.isRequired,
   sendGameInformation: PropTypes.func.isRequired,
   createFinishPoint: PropTypes.func.isRequired,
