@@ -22,37 +22,31 @@ const stats = [
     title: "Games Played",
     icon: <HardwareVideogameAsset />,
     badgeContent: 10,
-    text: '',
   },
   {
     title: "Games Won",
     icon: <Star />,
     badgeContent: 5,
-    text: '',
   },
   {
     title: "Games Finished",
     icon: <DoubleCheck />,
     badgeContent: 5,
-    text: '',
   },
   {
     title: "Places Visited",
     icon: <AddLocation />,
     badgeContent: 19,
-    text: '',
   },
   {
     title: "Distance Traveled",
     icon: <DirectionsRun />,
     badgeContent: '15',
-    text: '',
   },
   {
     title: "# of Actions Used",
     icon: <Flare />,
     badgeContent: 11,
-    text: '',
   },
 ];
 
@@ -93,24 +87,6 @@ const UserProfile = () => (
               </IconButton>
             </Badge><br></br>
             {stat.title}
-          </CardText>
-        </Card>
-      </div>
-    )}
-    {peopleStats.map(stat =>
-      <div>
-        <Card>
-          <CardText>
-            <Badge
-              className="person"
-              primary={true}
-              badgeStyle={{ top: 12, right: 12 }}
-            >
-              <IconButton tooltip={stat.title}>
-                {stat.icon}
-              </IconButton>
-            </Badge>
-            {stat.title} {stat.text}
           </CardText>
         </Card>
       </div>
