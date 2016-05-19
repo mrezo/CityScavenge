@@ -57,6 +57,7 @@ const mapDispatchToProps = (dispatch) => {
       const mapOptions = {
         center: { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
+        disableDefaultUI: true,
       };
 
       let marker = null;
