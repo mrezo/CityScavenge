@@ -49,7 +49,6 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  avatarImg: PropTypes.string,
   updateUserPosition: PropTypes.func.isRequired,
   sendGameInformation: PropTypes.func.isRequired,
   createFinishPoint: PropTypes.func.isRequired,
