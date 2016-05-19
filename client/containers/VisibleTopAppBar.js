@@ -5,6 +5,7 @@ import { toggleNav } from '../actions/index';
 const mapStateToProps = (state) => {
   return {
     name: state.currentUser.title,
+    avatar: state.currentUser.avatar,
   };
 };
 
