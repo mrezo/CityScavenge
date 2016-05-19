@@ -42,9 +42,9 @@ User data and saved places are managed in a Postgres database called `city_scave
 You'll need API keys for [Google Maps](https://developers.google.com/maps/documentation/javascript/get-api-key), [Google Maps Geolocation](https://developers.google.com/maps/documentation/geolocation/get-api-key), and for ??[Google Places](https://developers.google.com/places/web-service/get-api-key)??. Add these to the config files in `/server/config`, following the format of the example files. Remove `.example` from the filename.
 Ensure all [dependencies](#installing-dependencies) are installed. Start a Postgres server by running `??`. Then, from within the root directory:
 ```
-npm install
-webpack
-npm start
+$ npm install
+$ webpack
+$ npm start
 ```
 
 Visit `localhost:1337` in the browser.
@@ -64,8 +64,8 @@ Visit `localhost:1337` in the browser.
 From within the root directory:
 
 ```
-npm install -g nodemon webpack grunt
-npm install
+$ npm install -g nodemon webpack grunt
+$ npm install
 ```
 
 ### Setting up the database
@@ -73,16 +73,15 @@ npm install
 From within the root directory:
 
 ```
-psql -f server/schema.sql
+$ psql -f server/schema.sql
 ```
 
 ### Running Locally
 
 To compile client-side code and start the server, run:
 ```
-npm start
+$ npm start
 ```
-`npm start` will recompile a `bundle.js` file when any client-side JS files have changed, streamlining the development workflow.
 
 Visit `localhost:1337` in the browser.
 
