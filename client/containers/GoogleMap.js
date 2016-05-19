@@ -12,8 +12,8 @@ class GoogleMap extends Component {
   componentDidMount() {
     // var context = this;
     // var users = this.props.users;
-    var finishPoint = this.props.finishPoint;
-    this.props.placeAllMarkers(this.props.users, finishPoint);
+    // var finishPoint = this.props.finishPoint;
+    this.props.placeAllMarkers(this.props.users, this.props.finishPoint);
     // this.props.updateUserMarkers(this.props.users, this.props.map);
     // this.props.generateMap();
   }
