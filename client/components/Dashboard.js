@@ -41,8 +41,6 @@ class Dashboard extends Component {
           >
             <div>
               <CreateGameContainer />
-              <h2>Currently Available Games</h2>
-              <p>Here we can put a whole list of games that are available to begin playing.</p>
             </div>
           </Tab>
           <Tab label="Stats" >
