@@ -68,8 +68,9 @@ const mapDispatchToProps = (dispatch) => {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(finishPoint.lat, finishPoint.lng),
         map,
-        label: finishPoint.label,
+        //label: finishPoint.label,
         animation: google.maps.Animation.DROP,
+        icon: '../assets/Map-Marker-Flag-3-Right-Pink-icon-48.png',
       });
 
       // Creates checkpoints markers
@@ -79,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
         map,
         label: checkpoints[j].label,
         animation: google.maps.Animation.DROP,
+        icon: '../assets/Map-Marker-Flag-3-Right-Azure-icon-48.png',
       });        
       }
       
