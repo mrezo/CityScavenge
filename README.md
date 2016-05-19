@@ -7,12 +7,6 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 **Screenshot**  
 ![Landing Page](http://i.imgur.com/BZ2Th80.png)
 
-## Team
-
-  - __Product Owner__: Michael Balarezo
-  - __Scrum Master__: Alexander Turinske
-  - __Development Team Member__: Genevieve Sublette
-
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -22,7 +16,8 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 5. [Installing Dependencies](#installing-dependencies)
 6. [Deployment](#deployment)
 7. [Contributing](#contributing)
-8. [Testing](#testing)
+8. [Meet the Engineers](#meet-the-engineers)
+9. [Testing](#testing)
 
 ## Overview
 
@@ -98,15 +93,25 @@ Visit `localhost:1337` in the browser.
 #### Deploying New Changes
 #### TBD once deployed
 
-==============================
-
 - Go to `xxx.xxx.xx.x:??` to see your site live
 
-
+=====================
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
+=====================
+## Meet The Engineers
+Product Owner
+- [**Michael Balarezo**](https://github.com/mrezo)
+
+Scrum Master
+- [**Alexander Turinske**](https://github.com/alexanderturinske)
+
+Development Team
+- [**Genevieve Sublette**](https://github.com/Genevieve1722)
+
+=====================
 ## Testing
 ```
 npm start
