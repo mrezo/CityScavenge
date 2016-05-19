@@ -22,7 +22,7 @@ class Dashboard extends Component {
         <VisibleDashboardLeftNav />
         <VisibleTopAppBar />
         <div className="avatar-container">
-          <Avatar className="avatar" src="this.props.avatarImg" />
+          <Avatar className="avatar" size={150} src={this.props.avatarImg} />
         </div>
         <Tabs>
           <Tab
