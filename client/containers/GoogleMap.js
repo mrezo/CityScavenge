@@ -68,7 +68,6 @@ const mapDispatchToProps = (dispatch) => {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(finishPoint.lat, finishPoint.lng),
         map,
-        //label: finishPoint.label,
         animation: google.maps.Animation.DROP,
         icon: '../assets/Map-Marker-Flag-3-Right-Pink-icon-48.png',
       });
@@ -78,7 +77,6 @@ const mapDispatchToProps = (dispatch) => {
         marker = new google.maps.Marker({
         position: new google.maps.LatLng(checkpoints[j].lat, checkpoints[j].lng),
         map,
-        label: checkpoints[j].label,
         animation: google.maps.Animation.DROP,
         icon: '../assets/Map-Marker-Flag-3-Right-Azure-icon-48.png',
       });        
@@ -89,8 +87,9 @@ const mapDispatchToProps = (dispatch) => {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
-          label: users[i].label,
+          //label: users[i].label,
           animation: google.maps.Animation.DROP,
+          icon: '../assets/small-blue-circle.png',
         });
         userMarkers.push(marker);
       }
@@ -118,7 +117,8 @@ const mapDispatchToProps = (dispatch) => {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
-          label: users[i].label,
+          //label: users[i].label,
+          icon: '../assets/small-blue-circle.png',
         });
         console.log('THIS IS THE NEW UPDATED MARKER', marker);
         userMarkers.push(marker);
