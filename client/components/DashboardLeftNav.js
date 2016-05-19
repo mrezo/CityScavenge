@@ -15,6 +15,22 @@ const DashboardLeftNav = ({ handleToggle, visible }) => (
         href="/"
       >
       </MenuItem>
+      <MenuItem
+        primaryText="Join Current Game"
+        onTouchTap={ () => {
+          handleToggle();
+        }}
+        href="/#/game"
+      >
+      </MenuItem>
+      <MenuItem
+        primaryText="Back to Dashboard"
+        onTouchTap={ () => {
+          handleToggle();
+        }}
+        href="/#/dashboard"
+      >
+      </MenuItem>
     </LeftNav>
   </div>
 );
