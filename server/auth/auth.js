@@ -2,6 +2,7 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var User = require('../models/userModel.js');
 var port = process.env.PORT || 1337;
+var connection = process.env.WEBSITE_URL || 'http://localhost:1337';
 
 var googleKey = {
   CLIENTID: process.env.GOOGLEKEY,
@@ -44,7 +45,7 @@ exports.logout = function (req, res, next) {
 passport.use(new GoogleStrategy({
   clientID: googleKey.CLIENTID,
   clientSecret: googleKey.CLIENTSECRET,
-  callbackURL: 'http://localhost:1337/api/v1/auth/google/callback',
+  callbackURL: connection + '/api/v1/auth/google/callback',
 }, function (accessToken, refreshToken, profile, done) {
   User.findOrCreate(profile, function (err, user) {
     return done(err, user);

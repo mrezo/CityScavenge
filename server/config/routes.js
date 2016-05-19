@@ -12,6 +12,7 @@ module.exports = function (app, express) {
   app.post('/api/v1/user', User.newUser);
   app.get('/api/v1/user', User.findCurrentUser);
   app.delete('/api/v1/user', User.deleteUser);
+  // app.get('/api/v1/user/stats', User.retrieveUserStats);
 
   // location routing
   app.post('/api/v1/game', finishLineController.searchGoogle);
@@ -19,6 +20,7 @@ module.exports = function (app, express) {
 
   // game routing
   app.post('/api/v1/game/new', Game.createNew);
+  app.get('/api/v1/game/old', Game.retrieveOldGames);
 
   // google auth routes
   app.post('/api/login', auth.checkAuth);
@@ -26,7 +28,7 @@ module.exports = function (app, express) {
   app.get('/api/v1/logout', auth.logout);
   app.get('/api/v1/auth/google/callback', auth.authenticateGoogleLogin,
     function (req, res) {
-      res.redirect('http://localhost:1337/#/dashboard');
+      res.redirect('/#/dashboard');
     }
   );
 };

@@ -5,8 +5,7 @@
 City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to find a croissant before your competition does. It utilizes the Google Maps API to find your current location and place a croissant at a random interest area within two miles. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
 
 **Screenshot**  
-<img src="tbd" width="600px"/>  
-
+![Landing Page](http://i.imgur.com/BZ2Th80.png)
 
 ## Team
 
@@ -37,6 +36,9 @@ Webpack bundles dependencies into one file, so that all dependencies can be load
 
 #### React and Redux
 On the client side, the state of the app is maintained in a Redux store. We render the index page by initializing this store. When a user interacts with the app (e.g. when the "start game"; is clicked, for example), an action is triggered, which tells the reducers how the state should update in response (e.g. render a pin at a random location on the map). For more information, review the [Redux documentation](http://redux.js.org/index.html) and watch [Getting Started with Redux](https://egghead.io/series/getting-started-with-redux).
+
+#### Architecture
+![Architecture design](http://i.imgur.com/AYNorBl.png)
 
 #### Schema
 User data and saved places are managed in a Postgres database called `city_scavenge`.
