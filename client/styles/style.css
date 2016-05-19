@@ -8,6 +8,14 @@ body, html, #app {
   width: 100%;
 }
 
+/* Dashboard
+==================================
+*/
+
+.create-game-button {
+  text-align:center;
+}
+
 /* Landing Page
 ==================================
 */
