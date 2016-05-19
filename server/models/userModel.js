@@ -130,13 +130,4 @@ module.exports = {
       return res.json(data[0]);
     });
   },
-  retrieveUserStats: function (req, res) {
-    // retrieves a user's stats including
-    // all games played, total games won, total games finished,
-    // total places, total_places_visited, total_distance, # of actions used
-    // nemesis, ally, and enemy
-    db.query({
-    }, function (err, stats) {
-    });
-  },
 };
