@@ -8,14 +8,6 @@ const DashboardLeftNav = ({ handleToggle, visible }) => (
   <div>
     <LeftNav docked={false} width={200} open={visible} onRequestChange={open => handleToggle()}>
       <MenuItem
-        primaryText="Logout"
-        onTouchTap={ () => {
-          logout();
-        }}
-        href="/"
-      >
-      </MenuItem>
-      <MenuItem
         primaryText="Join Current Game"
         onTouchTap={ () => {
           handleToggle();
@@ -24,11 +16,19 @@ const DashboardLeftNav = ({ handleToggle, visible }) => (
       >
       </MenuItem>
       <MenuItem
-        primaryText="Back to Dashboard"
+        primaryText="Dashboard"
         onTouchTap={ () => {
           handleToggle();
         }}
         href="/#/dashboard"
+      >
+      </MenuItem>
+      <MenuItem
+        primaryText="Logout"
+        onTouchTap={ () => {
+          logout();
+        }}
+        href="/"
       >
       </MenuItem>
     </LeftNav>
