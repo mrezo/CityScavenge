@@ -21,7 +21,7 @@ const DashboardCreateGame = ({ gameName, gameRadius }) => (
     /><br />
     <div className="create-game-button">
       <RaisedButton
-        label="Create Game"
+        label="Start Game"
         backgroundColor={styles.Colors.pink400}
         primary={true}
         linkButton={true}
