@@ -1,8 +1,6 @@
 import injectTapEventPlugin from 'react-tap-event-plugin/src/injectTapEventPlugin';
 import { Tabs, Tab } from 'material-ui/lib/tabs/index';
 import React, { Component, PropTypes } from 'react';
-import Avatar from 'material-ui/lib/avatar';
-import styles from 'material-ui/lib/styles';
 import DashboardCard from './DashboardCard';
 import VisibleDashboardLeftNav from '../containers/VisibleDashboardLeftNav';
 import VisibleTopAppBar from '../containers/VisibleTopAppBar';
@@ -22,9 +20,7 @@ class Dashboard extends Component {
         <VisibleDashboardLeftNav />
         <VisibleTopAppBar />
         <Tabs>
-          <Tab
-            label="Old Games"
-          >
+          <Tab label="Old Games">
             <div>
               <DashboardCard />
               <DashboardCard />
@@ -39,9 +35,7 @@ class Dashboard extends Component {
               this.props.createFinishPoint();
             }}
           >
-            <div>
-              <CreateGameContainer />
-            </div>
+            <CreateGameContainer />
           </Tab>
           <Tab label="Stats" >
             <div>
