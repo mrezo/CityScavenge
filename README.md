@@ -14,6 +14,7 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 4. [Deployment](#deployment)
 5. [Contributing](#contributing)
 6. [Meet the Engineers](#meet-the-engineers)
+7. [Questions and Issues](#questions-and-issues)
 
 =====================
 ## Overview
@@ -98,6 +99,7 @@ $ npm test
 =====================
 ## Contributing
 
+City Scavenge was built using waffle.io as the project organization tool.
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 =====================
@@ -110,3 +112,10 @@ Scrum Master
 
 Development Team
 - [**Genevieve Sublette**](https://github.com/Genevieve1722)
+
+=====================
+## Questions and Issues
+For any issues, please refer to [**our issues page**](https://github.com/FuturisticSalamander/CityScavenge/issues)
+Please direct any questions regarding City Scavenge to [**our wiki page**](https://github.com/FuturisticSalamander/CityScavenge/wiki)
+
+Thank you!
