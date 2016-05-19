@@ -8,6 +8,7 @@ import { getUserLocationAndWatchID } from '../lib/locationController';
 
 const mapStateToProps = (state) => {
   return {
+    avatarImg: state.currentUser.avatar,
   };
 };
 
