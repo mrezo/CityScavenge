@@ -4,7 +4,6 @@
 
 City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to find a croissant before your competition does. It utilizes the Google Maps API to find your current location and place a croissant at a random interest area within two miles. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
 
-**Screenshot**  
 ![Landing Page](http://i.imgur.com/BZ2Th80.png)
 
 ## Table of Contents
@@ -16,6 +15,7 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 5. [Contributing](#contributing)
 6. [Meet the Engineers](#meet-the-engineers)
 
+=====================
 ## Overview
 
 ### Technologies
@@ -31,6 +31,7 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 User data and saved places are managed in a Postgres database called `city_scavenge`.
 ![Schema design](http://i.imgur.com/FpiUDaX.png)
 
+=====================
 ## Requirements
 
 - Node 0.10.x
@@ -47,8 +48,8 @@ User data and saved places are managed in a Postgres database called `city_scave
     - Google+ API
 - [Google OAuth 2.0 Client Credentials](https://developers.google.com/identity/protocols/OAuth2)
 
-### Installation
-
+=====================
+## Installation
 
 From within the root directory, install the global dependencies and the local dependencies
 
@@ -57,7 +58,6 @@ $ npm install -g nodemon webpack grunt
 $ npm install
 ```
 
-=====================
 ### Setting up the database
 
 First start your PostgreSQL server
@@ -68,14 +68,12 @@ Next, from within the root directory, create the database and tables in PostgreS
 $ psql -f server/schema.sql
 ```
 
-=====================
 ### Setting up the Google API keys
 
 Add your Google API credentials to the config files in `/server/config`, following the format of the example files.
 
 Remove `.example` from the filename.
 
-=====================
 ### Running Locally
 
 Compile client-side code and start the server
@@ -85,7 +83,6 @@ $ npm start
 
 Visit `localhost:1337` in the browser.
 
-=====================
 ### Testing
 
 First install all dependencies
