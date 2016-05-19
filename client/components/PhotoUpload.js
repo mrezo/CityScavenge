@@ -8,11 +8,12 @@ import Camera from 'material-ui/lib/svg-icons/image/camera-alt';
 const PhotoUpload = ({ checkCollision, checkpoints, currentUser, lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
     <FloatingActionButton
+      className="check-in"
       onClick={() => {
         photoUploadStart(lat, lng, open);
       }}
       primary={true} >
-      <Camera />
+      <Camera className="check-in"/>
     </FloatingActionButton>
     <Dialog
       title="Check in with a photo"

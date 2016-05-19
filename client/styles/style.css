@@ -71,6 +71,10 @@ body, html, #app {
  bottom: 0%; 
 }
 
+.check-in {
+  left: 125px;
+}
+
 .game-wrapper {
   display: flex;
   min-height: 100%;
