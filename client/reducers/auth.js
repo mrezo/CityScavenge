@@ -1,13 +1,10 @@
 // Helper function for below
 function signInAttempt(state, action) {
-  // ideally below I would somehow change the path to only show the encounter
-  console.log('sign in attempted');
   // must ALWAYS return state, or state will become undefined
   return state;
 }
 
 function signUpAttempt(state, action) {
-  console.log('sign up attempted');
   return state;
 }
 

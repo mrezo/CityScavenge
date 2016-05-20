@@ -29,7 +29,6 @@ const checkpoint = (state = {}, action) => {
 };
 
 const checkpoints = (state = [], action) => {
-  console.log('this is state-----------', state);
   switch (action.type) {
     case 'SET_CHECKPOINT':
       return [
