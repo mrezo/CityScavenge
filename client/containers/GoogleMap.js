@@ -165,7 +165,7 @@ const mapDispatchToProps = (dispatch) => {
           map,
           //label: users[i].label,
           animation: google.maps.Animation.DROP,
-          icon: '../assets/small.blue.001.circle.png',
+          icon: '../assets/circle_yellow_24_ns.png',
         });
         userMarkers.push(marker);
       }
@@ -184,7 +184,7 @@ const mapDispatchToProps = (dispatch) => {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
-          icon: '../assets/small.blue.001.circle.png',
+          icon: '../assets/circle_yellow_24_ns.png',
         });
         userMarkers.push(marker);
       }
