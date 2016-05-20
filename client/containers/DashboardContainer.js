@@ -8,6 +8,7 @@ import { getUserLocationAndWatchID } from '../lib/locationController';
 
 const mapStateToProps = (state) => {
   return {
+    avatarImg: state.currentUser.avatar,
   };
 };
 
@@ -25,7 +26,6 @@ const mapDispatchToProps = (dispatch) => {
       });
     },
     updateUserPosition: () => {
-      console.log('AM I STARTING TO TRACK NEW POSITIONS');
       getUserLocationAndWatchID(dispatch);
     },
   };

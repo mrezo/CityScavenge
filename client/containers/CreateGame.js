@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import DashboardCreateGame from '../components/DashboardCreateGame';
 import { assignGameRadius, assignGameName } from '../actions/index';
@@ -29,21 +28,6 @@ const mapDispatchToProps = (dispatch) => {
       console.log('AM I STARTING TO TRACK NEW POSITIONS');
       getUserLocationAndWatchID(dispatch);
     },
-    // watchUser: () => {
-    //   getUserLocationAndWatchID(dispatch);
-    // },
-    // createGame: () => {
-    //   initialPosition(dispatch, (positionData) => {
-    //     const mapOptions = {
-    //       center: { lat: positionData.latitude, lng: positionData.longitude },
-    //       zoom: 15,
-    //     };
-    //     const googleMap = new google.maps.Map(document.getElementById('map'), mapOptions);
-    //     dispatch(placeUserMarker(googleMap, 'Michael', positionData));
-    //     startGame(dispatch, googleMap, positionData.latitude, positionData.longitude);
-    //     getUserLocationAndWatchID(dispatch, googleMap, 'Michael');
-    //   });
-    // },
   };
 };
 

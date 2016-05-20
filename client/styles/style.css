@@ -8,6 +8,19 @@ body, html, #app {
   width: 100%;
 }
 
+/* Dashboard
+==================================
+*/
+
+.create-game-button {
+  text-align:center;
+}
+
+.avatar {
+  margin-top: 4px;
+  margin-right: 8px;
+}
+
 /* Landing Page
 ==================================
 */
@@ -49,24 +62,6 @@ body, html, #app {
   background: url('../assets/bg.jpg') no-repeat center;
 }
 
-/* Dashboard
-==================================
-*/
-
-.avatar {
-  margin: 0 auto;
-}
-
-.dash-jumbotron {
-  height: 200px;
-  padding-top: 50px;
-  background: #FF4081;
-}
-
-.main-image {
-  max-width: 100%;
-}
-
 /* Game Window
 ==================================
 */
@@ -95,19 +90,15 @@ body, html, #app {
 ==================================
 */
 .stats, .stats>div>div {
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 .stats {
   flex-direction: column;
+  width: 100%;
 }
-
-.person span {
-  /*width: 0px !important;*/
-}
-
 
 .text {
   padding: 35px 24px 12px 12px;

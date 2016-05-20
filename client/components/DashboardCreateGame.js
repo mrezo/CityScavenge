@@ -3,29 +3,31 @@ import TextField from 'material-ui/lib/TextField';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
 
-const DashboardCreateGame = ({ gameName, gameRadius, submitGame, handleChangeName, handleChangeRadius, updateUserPosition }) => (
+const DashboardCreateGame = ({ gameName, gameRadius }) => (
   <div>
     <TextField
       {...gameName}
-      hintText="Time to Type!"
+      hintText="Make sure it's EPIC!"
       id="text-field-controlled"
-      floatingLabelText="Game Name"
-      multiLine={true}
-      rows={2}
+      floatingLabelText="Scanvenge Name"
+      fullWidth={true}
     /><br />
     <TextField
       {...gameRadius}
-      hintText="Time to Type!"
+      hintText="Make sure it's in meters"
       id="text-field-controlled"
       floatingLabelText="Distance"
+      fullWidth={true}
     /><br />
-    <RaisedButton
-      label="Create Game"
-      backgroundColor={styles.Colors.pink400}
-      primary={true}
-      linkButton={true}
-      href="/#/game"
-    />
+    <div className="create-game-button">
+      <RaisedButton
+        label="Start Game"
+        backgroundColor={styles.Colors.pink400}
+        primary={true}
+        linkButton={true}
+        href="/#/game"
+      />
+    </div>
   </div>
 );
 
