@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import LeftNav from 'material-ui/lib/left-nav';
+import Divider from 'material-ui/lib/divider';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 import { Link } from 'react-router';
 import { logout } from '../actions/index';
@@ -23,6 +24,7 @@ const DashboardLeftNav = ({ handleToggle, visible }) => (
         href="/#/dashboard"
       >
       </MenuItem>
+      <Divider />
       <MenuItem
         primaryText="Logout"
         onTouchTap={ () => {
