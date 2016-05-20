@@ -67,13 +67,15 @@ body, html, #app {
 */
 
 .bottom-toolbar {
- position: fixed;
- bottom: 0%; 
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
 }
 
 .check-in {
-  bottom: 25px;
-  left: 125px;
+  display: flex;
+  justify-content: center;
 }
 
 .game-wrapper {
