@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => {
           map,
           //label: users[i].label,
           animation: google.maps.Animation.DROP,
-          icon: '../assets/small-blue-circle.png',
+          icon: '../assets/small.blue.001.circle.png',
         });
         userMarkers.push(marker);
       }
@@ -118,7 +118,7 @@ const mapDispatchToProps = (dispatch) => {
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
           //label: users[i].label,
-          icon: '../assets/small-blue-circle.png',
+          icon: '../assets/small.blue.001.circle.png',
         });
         console.log('THIS IS THE NEW UPDATED MARKER', marker);
         userMarkers.push(marker);
