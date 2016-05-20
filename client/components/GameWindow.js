@@ -11,11 +11,7 @@ const GameWindow = () => (
   <VisibleDashboardLeftNav />
   <VisibleTopAppBar />
   <GoogleMapContainer />
-    <Toolbar className="bottom-toolbar">
-      <ToolbarGroup >
-        <PhotoSubmitContainer />
-      </ToolbarGroup>
-    </Toolbar>
+        <PhotoSubmitContainer className="bottom-toolbar"/>
   </div>
 );
 
