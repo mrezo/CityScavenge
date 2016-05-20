@@ -23,7 +23,6 @@ class Dashboard extends Component {
           <Tab label="Old Games">
             <div>
               <DashboardCard />
-              <DashboardCard />
             </div>
           </Tab>
           <Tab
