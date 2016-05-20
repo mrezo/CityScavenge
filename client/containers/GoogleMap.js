@@ -58,10 +58,95 @@ const mapDispatchToProps = (dispatch) => {
         center: { lat: 37.7749, lng: -122.4194 },
         zoom: 12,
         disableDefaultUI: true,
+        mapTypeControlOptions: { mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style'] },
       };
 
+      const styles = [
+        {
+          "featureType": "all",
+          "elementType": "all",
+          "stylers": [
+            {
+              "invert_lightness": true,
+            },
+            {
+              "saturation": 20,
+            },
+            {
+              "lightness": 50,
+            },
+            {
+              "gamma": 0.4,
+            },
+            {
+              "hue": "#00ffee",
+            },
+          ],
+        },
+        {
+          "featureType": "all",
+          "elementType": "geometry",
+          "stylers": [
+            {
+              "visibility": "simplified",
+            },
+          ],
+        },
+        {
+          "featureType": "all",
+          "elementType": "labels",
+          "stylers": [
+            {
+              "visibility": "on",
+            },
+          ],
+        },
+        {
+          "featureType": "administrative",
+          "elementType": "all",
+          "stylers": [
+            {
+              "color": "#ffffff",
+            },
+            {
+              "visibility": "simplified",
+            },
+          ],
+        },
+        {
+          "featureType": "administrative.land_parcel",
+          "elementType": "geometry.stroke",
+          "stylers": [
+            {
+              "visibility": "simplified",
+            },
+          ],
+        },
+        {
+          "featureType": "landscape",
+          "elementType": "all",
+          "stylers": [
+            {
+              "color": "#405769",
+            },
+          ],
+        },
+        {
+          "featureType": "water",
+          "elementType": "geometry.fill",
+          "stylers": [
+            {
+              "color": "#232f3a",
+            },
+          ],
+        },
+      ];
+
+      let styledMap = new google.maps.StyledMapType(styles, { name: "Styled Map" });
       let marker = null;
       const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+      map.mapTypes.set('map_style', styledMap);
+      map.setMapTypeId('map_style');
       dispatch(createMap(map, mapOptions.center.lat, mapOptions.center.lng));
 
       // Creates Finish Point marker
