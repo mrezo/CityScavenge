@@ -1,4 +1,3 @@
-var urlParser = require('url');
 var rp = require('request-promise');
 var GOOGLE_PLACES_API_KEY = process.env.GOOGLEPLACESAPIKEY;
 
@@ -91,6 +90,4 @@ module.exports.getDistance = function (req, res) {
       });
     //}
   }
-  console.log(collision);
-  // res.json(collision);
 };

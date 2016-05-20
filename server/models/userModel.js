@@ -17,7 +17,6 @@ module.exports = {
       // Handle connection errors
       if (err) {
         done();
-        console.log('findUser error: ', err);
       }
       // SQL Query > Retrieve data
       var queryFindUserString = "SELECT * FROM users WHERE " + field + " = '" + value + "'";
@@ -56,9 +55,7 @@ module.exports = {
     pg.connect(connectionString, function (err, client, done) {
       if (err) {
         done();
-        console.log('findOrCreate error: ', err);
       }
-
       var queryFindUserString = "SELECT * FROM users WHERE google_id = '" + profile.id + "'";
       client.query(queryFindUserString, [], function(err, result) {
         if (err) {

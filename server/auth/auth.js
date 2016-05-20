@@ -15,7 +15,6 @@ if (!process.env.TRAVIS) {
 
 // Middleware for checking whether the user is logged in
 exports.checkAuth = function (req, res, next) {
-  console.log('checkAuth');
   if (req.session.passport ? req.session.passport.user : false) {
     next();
   } else {
