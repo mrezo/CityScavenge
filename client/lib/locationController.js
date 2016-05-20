@@ -3,9 +3,7 @@
 
 // getWatchID returns a watchID. This id can be used to identify the requested position watcher
 // this value can be used in tandem with clearPosition() to stop watching the user’s location
-// the return valu
 
-import { placeUserMarker, deleteUserMarker, createMap } from '../actions/map';
 import { updateUserPosition } from '../actions/user';
 import { socket, currentUser } from '../socketIO';
 
@@ -49,7 +47,6 @@ export const initialPosition = (dispatch, cb) => {
   let currentLocation;
 
   let showLocation = (position) => {
-    console.log('WHY', position);
     currentLocation =
     {
       latitude: position.coords.latitude,
