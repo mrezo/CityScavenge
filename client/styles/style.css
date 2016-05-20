@@ -16,6 +16,11 @@ body, html, #app {
   text-align:center;
 }
 
+.avatar {
+  margin-top: 4px;
+  margin-right: 8px;
+}
+
 /* Landing Page
 ==================================
 */
@@ -85,19 +90,15 @@ body, html, #app {
 ==================================
 */
 .stats, .stats>div>div {
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 .stats {
   flex-direction: column;
+  width: 100%;
 }
-
-.person span {
-  /*width: 0px !important;*/
-}
-
 
 .text {
   padding: 35px 24px 12px 12px;
