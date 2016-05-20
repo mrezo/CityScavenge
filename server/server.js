@@ -1,6 +1,4 @@
 var express = require('express');
-// var path = require('path');
-// var passport = require('passport');
 var socket = require('./config/socket.js');
 
 var app = express();
@@ -8,7 +6,6 @@ var app = express();
 // Required for Socket.io
 var server = require('http').Server(app);
 socket(server);
-// var io = require('socket.io')(server);
 
 require('./config/middleware.js')(app, express);
 require('./config/routes.js')(app, express);

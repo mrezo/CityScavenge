@@ -1,9 +1,6 @@
 import React from 'react';
 import RaisedButton from 'material-ui/lib/raised-button';
 import styles from 'material-ui/lib/styles';
-import card from 'material-ui/lib/card';
-import CardMedia from 'material-ui/lib/card/card-media';
-import CardTitle from 'material-ui/lib/card/card-title';
 
 const LandingPage = () => (
   <div className="landing-container">

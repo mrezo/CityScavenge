@@ -1,22 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision, getFinishPoint } from '../actions/map';
-import GameWindow from '../components/GameWindow';
-import fetch from 'isomorphic-fetch';
-import { getUserLocationAndWatchID, stopWatching, initialPosition} from '../lib/locationController';
+import { createMap, placeUserMarker, deleteUserMarker, placeCheckpoint, checkpointCollision, placeFinishPoint, finishPointCollision } from '../actions/map';
+import { getUserLocationAndWatchID } from '../lib/locationController';
 
 let userMarkers = [];
 
 class GoogleMap extends Component {
 
   componentDidMount() {
-    // var context = this;
-    // var users = this.props.users;
     var checkpoints = this.props.checkpoints;
     this.props.placeAllMarkers(this.props.users, this.props.finishPoint, checkpoints);
-    // var finishPoint = this.props.finishPoint;
-    // this.props.updateUserMarkers(this.props.users, this.props.map);
-    // this.props.generateMap();
   }
 
   render() {
@@ -29,7 +22,6 @@ class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  // generateMap: PropTypes.func.isRequired,
   updateMarkers: PropTypes.func,
   users: PropTypes.array,
   finishPoint: PropTypes.object,
@@ -164,7 +156,7 @@ const mapDispatchToProps = (dispatch) => {
         map,
         animation: google.maps.Animation.DROP,
         icon: '../assets/Map-Marker-Flag-3-Right-Azure-icon-48.png',
-      });        
+      });    
       }
       
       // Creates user markers
@@ -178,19 +170,11 @@ const mapDispatchToProps = (dispatch) => {
         });
         userMarkers.push(marker);
       }
-
-      // Updates the user markers with new positions
-      // setInterval(() => {
-      //   updateMarkers(users, map);
-      // }, 5000);
     },
 
     updateMarkers: (users, map) => {
-      console.log('This is the userMarkers Array', userMarkers);
-
       // iterate through userMarker and set marker to null
       userMarkers.forEach((element) => {
-        console.log('HEY HEY HEY I\'M IN FOR EACH', element);
         element.setMap(null);
       });
 
@@ -198,14 +182,11 @@ const mapDispatchToProps = (dispatch) => {
       userMarkers = [];
       let marker = null;
       for (let i = 0; i < users.length; i++) {
-        console.log('HERE IS MY MAP', map);
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
-          //label: users[i].label,
           icon: '../assets/small.blue.001.circle.png',
         });
-        console.log('THIS IS THE NEW UPDATED MARKER', marker);
         userMarkers.push(marker);
       }
     },
