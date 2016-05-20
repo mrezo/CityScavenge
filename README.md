@@ -100,7 +100,7 @@ $ npm test
 ## Contributing
 
 City Scavenge was built using waffle.io as the project organization tool.
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](https://github.com/FuturisticSalamander/CityScavenge/blob/master/.github/CONTRIBUTING.md) for contribution guidelines.
 
 =====================
 ## Meet The Engineers
