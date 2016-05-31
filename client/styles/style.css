@@ -1,6 +1,38 @@
+/*  body, html, #app {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }*/
+  .main-container {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+@media screen and (min-width: 500px) {
+  
 
 
-@media screen and (max-width: 500px) {
+    .mobile-landing-container {
+      display: none;
+    }
+
+    h2 {
+      padding-left: 300px;
+    }
+
+    .landing-container {
+      background: url('../assets/mainbg.jpg') no-repeat center;
+    }
+  
+}
+
+
+@media screen and (max-width: 499px) {
+
+  .landing-container {
+    display: none;
+  }
 
   /* Margin Reset
   ==================================
@@ -36,12 +68,12 @@
     margin-bottom: 1.5em
   }
 
-  .button-container {
+  .mobile-button-container {
     text-align:center;
     padding-top: 20%;
   }
 
-  .icon {
+  .mobile-icon {
     padding-top: 20%;
   }
 
@@ -49,7 +81,7 @@
     display: block;
   }
 
-  .title {
+  .mobile-title {
     padding-top: 25%;
     top: 50px;
     font-family: 'Open Sans', sans-serif;
@@ -57,7 +89,7 @@
     color: #FFFFFF;
   }
 
-  .landing-container {
+  .mobile-landing-container {
     height: 100%;
     width: 100%;
     margin: 0;
