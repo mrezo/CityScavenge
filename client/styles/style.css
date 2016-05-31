@@ -1,29 +1,33 @@
-/*  body, html, #app {
+    body, html, #app {
     margin: 0;
     height: 100%;
     width: 100%;
-  }*/
+  }
+
   .main-container {
     margin: 0;
     height: 100%;
     width: 100%;
   }
 
+
 @media screen and (min-width: 500px) {
   
+  .mobile-landing-container {
+    display: none;
+  }
 
+  h2 {
+    padding-left: 300px;
+  }
 
-    .mobile-landing-container {
-      display: none;
-    }
-
-    h2 {
-      padding-left: 300px;
-    }
-
-    .landing-container {
-      background: url('../assets/mainbg.jpg') no-repeat center;
-    }
+  .landing-container {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background: url('../assets/mainbg.jpg') no-repeat center;
+  }
   
 }
 
@@ -38,11 +42,11 @@
   ==================================
   */
 
-  body, html, #app {
+/*  body, html, #app {
     margin: 0;
     height: 100%;
     width: 100%;
-  }
+  }*/
 
   /* Dashboard
   ==================================
