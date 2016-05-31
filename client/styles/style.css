@@ -1,16 +1,22 @@
-    body, html, #app {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
+/* Global Styles
+==============================================================
+*/
 
-  .main-container {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }
+body, html, #app {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
 
-/*Desktop Styles*/
+.main-container {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+/* Desktop Styles
+==============================================================
+*/
 @media screen and (min-width: 500px) {
   
   .mobile-landing-container {
@@ -28,25 +34,34 @@
     background-size: cover;
     background: url('../assets/mainbg.jpg') no-repeat center;
   }
+
+  .desktop-title {
+    padding-top: 20%;
+    padding-left: 15%;
+    top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3em;
+    color: #FFFFFF;
+  }
+
+  .what-is-cs p {
+    width: 450px;
+    padding-left: 15%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5em;
+    color: #FFFFFF;
+  }
   
 }
 
-/*Mobile Styles*/
+/* Mobile Styles
+==============================================================
+*/
 @media screen and (max-width: 499px) {
 
   .desktop-landing-container {
     display: none;
   }
-
-  /* Margin Reset
-  ==================================
-  */
-
-/*  body, html, #app {
-    margin: 0;
-    height: 100%;
-    width: 100%;
-  }*/
 
   /* Dashboard
   ==================================
