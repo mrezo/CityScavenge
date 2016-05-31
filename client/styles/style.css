@@ -36,6 +36,7 @@ body, html, #app {
   }
 
   .desktop-title {
+    width: 450px;
     padding-top: 20%;
     padding-left: 15%;
     top: 50px;
@@ -44,12 +45,31 @@ body, html, #app {
     color: #FFFFFF;
   }
 
-  .what-is-cs p {
+  .what-is-cs {
     width: 450px;
     padding-left: 15%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Helvetica', sans-serif;
     font-size: 1.5em;
     color: #FFFFFF;
+  }
+
+  .how-to-play {
+    font-style: italic;
+    font-size: 1em;
+    padding-left: 15%;
+    font-family: 'Helvetica', sans-serif;
+    color: #FFFFFF;
+  }
+
+  .phones {
+    padding-top: 100px;
+    float: right;
+  }
+
+  .left-text {
+    padding-top: 300px;
+    width: 450px;
+    float: left;
   }
   
 }
