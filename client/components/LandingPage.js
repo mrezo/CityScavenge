@@ -4,8 +4,12 @@ import styles from 'material-ui/lib/styles';
 
 const LandingPage = () => (
   <div className="main-container">
-    <div className="landing-container">
-      <span>City Scavenge</span>
+    <div className="desktop-landing-container">
+      <div className="desktop-title">City Scavenge</div>
+      <div className="what-is-cs">
+        <p>A mobile scavenger hunt game where you can explore a city with your friends</p>
+      </div>
+      <img src="../assets/cs-phones.png"></img>
     </div>
     <div className="mobile-landing-container">
       <br></br>
