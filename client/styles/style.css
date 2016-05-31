@@ -1,5 +1,5 @@
-/* Margin Reset
-==================================
+/* Global Styles
+==============================================================
 */
 
 body, html, #app {
@@ -8,142 +8,218 @@ body, html, #app {
   width: 100%;
 }
 
-/* Dashboard
-==================================
-*/
-
-.create-game-button {
-  text-align:center;
-}
-
-.avatar {
-  margin-top: 4px;
-  margin-right: 8px;
-}
-
-/* Landing Page
-==================================
-*/
-
-.homepage-logo {
-  font-size: 4em;
-  color: #FFFFFF;
-  font-family:'fatfrank', sans-serif;
-  margin-bottom: 1.5em
-}
-
-.button-container {
-  text-align:center;
-  padding-top: 20%;
-}
-
-.icon {
-  padding-top: 20%;
-}
-
-.signup-button {
-  display: block;
-}
-
-.title {
-  padding-top: 25%;
-  top: 50px;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 3em;
-  color: #FFFFFF;
-}
-
-.landing-container {
-  height: 100%;
-  width: 100%;
+.main-container {
   margin: 0;
-  text-align: center;
-  background-size: cover;
-  background: url('../assets/bg.jpg') no-repeat center;
-}
-
-/* Game Window
-==================================
-*/
-
-.bottom-toolbar {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 0;
-}
-
-.check-in {
-  display: flex;
-  justify-content: center;
-}
-
-.game-wrapper {
-  display: flex;
-  min-height: 100%;
   height: 100%;
-  flex-direction: column;
-}
-
-#map {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-/* User Profile
-==================================
-*/
-.stats, .stats>div>div {
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: center;
-}
-
-.stats {
-  flex-direction: column;
   width: 100%;
 }
 
-.text {
-  padding: 35px 24px 12px 12px;
+/* Desktop Styles
+==============================================================
+*/
+@media screen and (min-width: 500px) {
+  
+  .mobile-landing-container {
+    display: none;
+  }
+
+  h2 {
+    padding-left: 300px;
+  }
+
+  .desktop-landing-container {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background: url('../assets/mainbg.jpg') no-repeat center;
+  }
+
+  .desktop-title {
+    width: 450px;
+    padding-top: 20%;
+    padding-left: 15%;
+    top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3em;
+    color: #FFFFFF;
+  }
+
+  .what-is-cs {
+    width: 450px;
+    padding-left: 15%;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 1.5em;
+    color: #FFFFFF;
+  }
+
+  .how-to-play {
+    font-style: italic;
+    font-size: 1em;
+    padding-left: 15%;
+    font-family: 'Helvetica', sans-serif;
+    color: #FFFFFF;
+  }
+
+  .phones {
+    padding-top: 100px;
+    float: right;
+  }
+
+  .left-text {
+    padding-top: 300px;
+    width: 450px;
+    float: left;
+  }
+  
 }
 
-form {
-  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
-  margin: auto;
-  position: relative;
-  font-family: Tahoma, Geneva, sans-serif;
-  font-size: 14px;
-  font-style: italic;
-  line-height: 24px;
-  font-weight: bold;
-  color: #09C;
-  text-decoration: none;
-  border-radius: 10px;
-  padding: 10px;
-  border: 1px solid #999;
-  border: inset 1px solid #333;
-  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-}
+/* Mobile Styles
+==============================================================
+*/
+@media screen and (max-width: 499px) {
 
-button {
-  background: #09C;
-  color: #fff;
-  font-family: Tahoma, Geneva, sans-serif;
-  border-radius: 15px;
-  border: 1p solid #999;
-}
+  .desktop-landing-container {
+    display: none;
+  }
 
-input.button:hover {
-  background: #fff;
-  color: #09C;
+  /* Dashboard
+  ==================================
+  */
+
+  .create-game-button {
+    text-align:center;
+  }
+
+  .avatar {
+    margin-top: 4px;
+    margin-right: 8px;
+  }
+
+  /* Landing Page
+  ==================================
+  */
+
+  .homepage-logo {
+    font-size: 4em;
+    color: #FFFFFF;
+    font-family:'fatfrank', sans-serif;
+    margin-bottom: 1.5em
+  }
+
+  .mobile-button-container {
+    text-align:center;
+    padding-top: 20%;
+  }
+
+  .mobile-icon {
+    padding-top: 20%;
+  }
+
+  .signup-button {
+    display: block;
+  }
+
+  .mobile-title {
+    padding-top: 25%;
+    top: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 3em;
+    color: #FFFFFF;
+  }
+
+  .mobile-landing-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    background-size: cover;
+    background: url('../assets/bg.jpg') no-repeat center;
+  }
+
+  /* Game Window
+  ==================================
+  */
+
+  .bottom-toolbar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+  }
+
+  .check-in {
+    display: flex;
+    justify-content: center;
+  }
+
+  .game-wrapper {
+    display: flex;
+    min-height: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  #map {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+
+  /* User Profile
+  ==================================
+  */
+  .stats, .stats>div>div {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+  }
+
+  .stats {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .text {
+    padding: 35px 24px 12px 12px;
+  }
+
+  form {
+    background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+    background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+    background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+    margin: auto;
+    position: relative;
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 24px;
+    font-weight: bold;
+    color: #09C;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #999;
+    border: inset 1px solid #333;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  button {
+    background: #09C;
+    color: #fff;
+    font-family: Tahoma, Geneva, sans-serif;
+    border-radius: 15px;
+    border: 1p solid #999;
+  }
+
+  input.button:hover {
+    background: #fff;
+    color: #09C;
+  }
 }
 
 
