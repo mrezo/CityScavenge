@@ -10,7 +10,7 @@
     width: 100%;
   }
 
-
+/*Desktop Styles*/
 @media screen and (min-width: 500px) {
   
   .mobile-landing-container {
@@ -21,7 +21,7 @@
     padding-left: 300px;
   }
 
-  .landing-container {
+  .desktop-landing-container {
     margin: 0;
     height: 100%;
     width: 100%;
@@ -31,10 +31,10 @@
   
 }
 
-
+/*Mobile Styles*/
 @media screen and (max-width: 499px) {
 
-  .landing-container {
+  .desktop-landing-container {
     display: none;
   }
 
