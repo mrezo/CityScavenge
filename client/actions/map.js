@@ -57,7 +57,6 @@ export const getFinishPoint = (dispatch) => {
     }),
   })
   .then((response) => {
-    console.log(response, 'this is response');
     if (response.status >= 400) {
       console.log('Server error', response);
     }

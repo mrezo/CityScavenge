@@ -27,7 +27,6 @@ var PlacesObj = function (googlePlacesData) {
 };
 
 module.exports.searchGoogle = function (req, res) {
-  console.log(req.body, 'this is req.body--------------');
   var responseBody = {};
   responseBody.places = [];
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
@@ -55,7 +54,6 @@ module.exports.searchGoogle = function (req, res) {
         // set finish point as first location in array
         endpoint.latitude = allCheckpoints[0].latitude;
         endpoint.longitude = allCheckpoints[0].longitude;
-        console.log(allCheckpoints, 'this is all checkpoints---------------');
         res.json(allCheckpoints);
       }
     })

@@ -101,5 +101,3 @@ export const newUserPosition = (callback) => {
   const watchID = getWatchID();
   return { currentLocation, watchID };
 };
-
-
