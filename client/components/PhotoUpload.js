@@ -13,6 +13,7 @@ const style = {
 
 const PhotoUpload = ({ checkCollision, checkpoints, currentUser, lat, lng, open, photoUploadStart, photoSubmit }) => (
   <div>
+  <div className="check-in">
     <FloatingActionButton
       backgroundColor={styles.Colors.pink500}
       onClick={() => {
@@ -21,6 +22,7 @@ const PhotoUpload = ({ checkCollision, checkpoints, currentUser, lat, lng, open,
       primary={true} >
       <Camera />
     </FloatingActionButton>
+  </div>
     <Dialog
       title="Check in with a photo"
       open={open}

@@ -14,7 +14,6 @@ class GoogleMap extends Component {
 
   render() {
     this.props.updateMarkers(this.props.users, this.props.map);
-    console.log('users>>>>>>>>>>>>>>>>>>>>', this.props.users);
     return (
       <div id="map"></div>
     );
