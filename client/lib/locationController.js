@@ -52,7 +52,7 @@ export const initialPosition = (dispatch, cb) => {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     };
-    cb(currentLocation);
+      return currentLocation;
   };
 
   const geoError = () => {
