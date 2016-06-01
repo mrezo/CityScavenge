@@ -27,11 +27,11 @@ var PlacesObj = function (googlePlacesData) {
 };
 
 module.exports.searchGoogle = function (req, res) {
+  console.log(req.body, 'this is req.body--------------');
   var responseBody = {};
   responseBody.places = [];
-
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-      + '&location=' + userLocation.latitude + ',' + userLocation.longitude
+      + '&location=' + req.body.latitude + ',' + req.body.longitude
       + '&radius=' +  3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
@@ -44,7 +44,7 @@ module.exports.searchGoogle = function (req, res) {
         // randomly pick a location
         var allCheckpoints = [];
         var storeValues = {};
-        while (allCheckpoints.length < 2) {
+        while (allCheckpoints.length < 4) {
           var rand = Math.floor(Math.random() * data.results.length);
           // check for duplicate places
           if (!storeValues[rand]) {
@@ -55,6 +55,7 @@ module.exports.searchGoogle = function (req, res) {
         // set finish point as first location in array
         endpoint.latitude = allCheckpoints[0].latitude;
         endpoint.longitude = allCheckpoints[0].longitude;
+        console.log(allCheckpoints, 'this is all checkpoints---------------');
         res.json(allCheckpoints);
       }
     })
