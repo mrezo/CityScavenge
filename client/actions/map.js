@@ -36,22 +36,6 @@ export const setFinishPoint = (lat, lng) => {
   const getWatchID = () => navigator.geolocation.getCurrentPosition(showLocation, geoError, geoOptions);
 
 export const getFinishPoint = (dispatch) => {
-  // function getUserPosition() {
-  //   return new Promise(function(resolve, reject) {
-  //       navigator.geolocation.getCurrentPosition(resolve, reject);
-  //   });
-  // }
-  // //var coords = getUserPosition();
-  // var userCoords = {
-  //   latitude: 0
-  //   longitude: 0,
-  // };
-
-  // getUserPosition().then((coords) => {
-  //   console.log(coords, 'this is coords------------');
-  //   userCoords.latitude = position.coords.latitude;
-  //   userCoords.longitude = position.coords.longitude;
-  // });
 
   let currentLocation;
 
@@ -61,7 +45,6 @@ export const getFinishPoint = (dispatch) => {
       latitude: position.coords.latitude,
       longitude: position.coords.longitude,
     };
-    console.log(currentLocation, 'this is current location------------');
     fetch('api/v1/game', {
     method: 'POST',
     headers: {
@@ -81,7 +64,6 @@ export const getFinishPoint = (dispatch) => {
     return response.json();
   })
   .then((data) => {
-    console.log(data, 'this is data-----------------');
     socket.setFinishPoint(data[0].latitude, data[0].longitude);
     dispatch(setFinishPoint(data[0].latitude, data[0].longitude));
     for (var i = 1; i < data.length; i++) {
