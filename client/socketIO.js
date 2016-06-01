@@ -19,12 +19,10 @@ socket.on('test', (data) => {
 });
 
 socket.setFinishPoint = (lat, lng) => {
-  console.log('Setting Finish Point', lat, lng);
   socket.emit('setFinishPoint', { lat, lng });
 };
 
 socket.setCheckpoint = (lat, lng) => {
-  console.log('Setting Checkpoint', lat, lng);
   socket.emit('setCheckpoint', { lat, lng });
 };
 
@@ -34,7 +32,6 @@ export default (store) => {
     // get initial coords of user
     currentUser.socketId = data.socketId;
     currentUser.title = data.title;
-    console.log('HERE IS MY SOCKET ID', currentUser);
     newUserPosition((currentLocation) => {
       store.dispatch(createUser(data.title, currentLocation, currentUser.socketId));
       currentUser.coords.latitude = currentLocation.latitude;
@@ -44,23 +41,19 @@ export default (store) => {
   });
 
   socket.on('newUser', (data) => {
-    console.log('Adds received user to state', data);
     store.dispatch(createUser(data.title, data.coords, data.socketId));
     socket.emit('sendMeToNewUser', { currentUser: currentUser, socketId: data.socketId });
   });
 
   socket.on('addOtherUser', (data) => {
-    console.log('ADD THE OTHER USER', data);
     store.dispatch(createUser(data.title, data.coords, data.socketId));
   });
 
   socket.on('placeFinishPoint', (data) => {
-    console.log('Finish point received for the game', data);
     store.dispatch(setFinishPoint(data.lat, data.lng));
   });
 
   socket.on('placeCheckpoint', (data) => {
-    console.log('Checkpoint received for the game', data);
     store.dispatch(setCheckpoint(data.lat, data.lng));
   });
 
@@ -69,7 +62,6 @@ export default (store) => {
   });
 
   socket.on('updateUserPosition', (data) => {
-    console.log('RECEIVED USER POSITION AND SENDING DISPATCH', data);
     store.dispatch(updateUserPosition(data.coords, data.socketId));
   });
 };
