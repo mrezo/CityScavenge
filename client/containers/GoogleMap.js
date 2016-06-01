@@ -45,8 +45,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     placeAllMarkers: (users, finishPoint, checkpoints) => {
+      console.log(finishPoint, 'this is finish point--------------');
       const mapOptions = {
-        center: { lat: 37.7749, lng: -122.4194 },
+        center: { lat: finishPoint.lat, lng: finishPoint.lng },
         zoom: 12,
         mapTypeControlOptions: { mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style'] },
       };
