@@ -29,9 +29,8 @@ var PlacesObj = function (googlePlacesData) {
 module.exports.searchGoogle = function (req, res) {
   var responseBody = {};
   responseBody.places = [];
-
   rp.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?'
-      + '&location=' + userLocation.latitude + ',' + userLocation.longitude
+      + '&location=' + req.body.latitude + ',' + req.body.longitude
       + '&radius=' +  3200
       + '&key=' + GOOGLE_PLACES_API_KEY
       + '&types=' + 'park|bar|restaurant|cafe|point_of_interest|natural_feature'
@@ -40,7 +39,7 @@ module.exports.searchGoogle = function (req, res) {
       // parse the data
       var data = JSON.parse(body);
       // check that there is data
-      if (data.results && data.results.length > 4 ) {
+      if (data.results && data.results.length > 2 ) {
         // randomly pick a location
         var allCheckpoints = [];
         var storeValues = {};

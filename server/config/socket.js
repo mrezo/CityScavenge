@@ -32,7 +32,6 @@ module.exports = function(server) {
     });
 
     socket.on('updateUserPosition', function(data) {
-      console.log('Updating user position', data.socketId);
       socket.broadcast.emit('updateUserPosition', data);
     });
   });

@@ -14,7 +14,6 @@ class GoogleMap extends Component {
 
   render() {
     this.props.updateMarkers(this.props.users, this.props.map);
-    console.log('users>>>>>>>>>>>>>>>>>>>>', this.props.users);
     return (
       <div id="map"></div>
     );
@@ -46,10 +45,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     placeAllMarkers: (users, finishPoint, checkpoints) => {
+      console.log(finishPoint, 'this is finish point--------------');
       const mapOptions = {
-        center: { lat: 37.7749, lng: -122.4194 },
+        center: { lat: finishPoint.lat, lng: finishPoint.lng },
         zoom: 12,
-        disableDefaultUI: true,
         mapTypeControlOptions: { mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style'] },
       };
 
@@ -166,7 +165,7 @@ const mapDispatchToProps = (dispatch) => {
           map,
           //label: users[i].label,
           animation: google.maps.Animation.DROP,
-          icon: '../assets/small.blue.001.circle.png',
+          icon: '../assets/circle_yellow_24_ns.png',
         });
         userMarkers.push(marker);
       }
@@ -185,7 +184,7 @@ const mapDispatchToProps = (dispatch) => {
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(users[i].lat, users[i].lng),
           map,
-          icon: '../assets/small.blue.001.circle.png',
+          icon: '../assets/circle_yellow_24_ns.png',
         });
         userMarkers.push(marker);
       }

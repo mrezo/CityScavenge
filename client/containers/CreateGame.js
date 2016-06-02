@@ -17,15 +17,12 @@ const mapDispatchToProps = (dispatch) => {
       console.log('Submit game clicked!');
     },
     handleChangeRadius: (event) => {
-      console.log(event.target.value);
       dispatch(assignGameRadius(event.target.value));
     },
     handleChangeName: (event) => {
-      console.log(event.target.value);
       dispatch(assignGameName(event.target.value));
     },
     updateUserPosition: () => {
-      console.log('AM I STARTING TO TRACK NEW POSITIONS');
       getUserLocationAndWatchID(dispatch);
     },
   };

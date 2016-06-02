@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 import { socket } from '../socketIO';
+import { initialPosition } from '../lib/locationController';
+const rsvp = require('rsvp');
 
 export const createMap = (map, lat, lng) => {
   return {
@@ -20,13 +22,39 @@ export const setFinishPoint = (lat, lng) => {
   };
 };
 
+
+  const geoError = () => {
+    console.log('Finding geolocation failed.');
+  };
+
+  const geoOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000,
+  };
+
+  const getWatchID = () => navigator.geolocation.getCurrentPosition(showLocation, geoError, geoOptions);
+
 export const getFinishPoint = (dispatch) => {
-  fetch('api/v1/game', {
+
+  let currentLocation;
+
+  let showLocation = (position) => {
+    currentLocation =
+    {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    };
+    fetch('api/v1/game', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
+    body: JSON.stringify({
+      latitude: currentLocation.latitude,
+      longitude: currentLocation.longitude,
+    }),
   })
   .then((response) => {
     if (response.status >= 400) {
@@ -46,7 +74,21 @@ export const getFinishPoint = (dispatch) => {
     console.log('Error', error);
     return;
   });
+  }
+
+  const geoError = () => {
+    console.log('Finding geolocation failed.');
+  };
+
+  const geoOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 30000,
+    timeout: 27000,
+  };
+
+navigator.geolocation.getCurrentPosition(showLocation, geoError, geoOptions);
 };
+
 
 export const placeFinishPoint = (map, lat, lng) => {
   return {

@@ -9,7 +9,7 @@ const DashboardCreateGame = ({ gameName, gameRadius }) => (
       {...gameName}
       hintText="Make sure it's EPIC!"
       id="text-field-controlled"
-      floatingLabelText="Scanvenge Name"
+      floatingLabelText="Scavenge Name"
       fullWidth={true}
     /><br />
     <TextField

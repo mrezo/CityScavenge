@@ -2,7 +2,7 @@
 
 # City Scavenge
 
-City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to find a croissant before your competition does. It utilizes the Google Maps API to find your current location and place a croissant at a random interest area within two miles. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
+City Scavenge is a real-time scavenger hunt application that will send you on a chase around your city to reach all checkpoints before your competition does. It utilizes the Google Maps API to find your current location and place checkpoints at a random interest area within a distance of your choosing. Anyone can play, but you'll need to sign in with a Google account to begin your journey. Enjoy!
 
 ![Landing Page](http://i.imgur.com/BZ2Th80.png)
 
@@ -20,15 +20,18 @@ City Scavenge is a real-time scavenger hunt application that will send you on a 
 ## Overview
 
 ### Technologies
+
 - [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/)
 - [Socket.IO](http://socket.io/)
 - [Node](https://nodejs.org/en/) and [Express](http://expressjs.com/)
 - [PostgreSQL](http://www.postgresql.org/)
 
 #### Architecture
+
 ![Architecture design](http://i.imgur.com/AYNorBl.png)
 
 #### Schema
+
 User data and saved places are managed in a Postgres database called `city_scavenge`.
 ![Schema design](http://i.imgur.com/FpiUDaX.png)
 
@@ -40,7 +43,7 @@ User data and saved places are managed in a Postgres database called `city_scave
 - [Google Maps API key](https://developers.google.com/maps/documentation/javascript/get-api-key)
   * Enable the following Google APIs
     - Google Maps JavaScript API
-    - Google Maps Embeded API
+    - Google Maps Embedded API
     - Google Maps Directions API
     - Google Maps Distance Matrix API
     - Google Maps Geocoding API
@@ -104,6 +107,7 @@ See [CONTRIBUTING.md](https://github.com/FuturisticSalamander/CityScavenge/blob/
 
 =====================
 ## Meet The Engineers
+
 Product Owner
 - [Michael Balarezo](https://github.com/mrezo)
 
@@ -115,6 +119,7 @@ Development Team
 
 =====================
 ## Questions and Issues
+
 For any issues, please refer to [our issues page](https://github.com/FuturisticSalamander/CityScavenge/issues)
 Please direct any questions regarding City Scavenge to [our wiki page](https://github.com/FuturisticSalamander/CityScavenge/wiki)
 
